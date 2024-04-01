@@ -4,6 +4,7 @@
 
 #include "../GameInfo.h"
 #include "GameFramework/Character.h"
+#include "Interface/PA_AnimationAttackInterface.h"
 #include "PA_CharacterBase.generated.h"
 
 UENUM()
@@ -14,7 +15,7 @@ enum class ECharacterControlType : uint8
 };
 
 UCLASS()
-class PROJECT_A_API APA_CharacterBase : public ACharacter
+class PROJECT_A_API APA_CharacterBase : public ACharacter, public IPA_AnimationAttackInterface
 {
 	GENERATED_BODY()
 
@@ -44,4 +45,7 @@ protected:
 	int32 CurrentCombo = 0;
 	FTimerHandle ComboTimerHandle;
 	bool HasNextComboCommand = false;
+
+protected:
+	virtual void AttackHitCheck() override;
 };

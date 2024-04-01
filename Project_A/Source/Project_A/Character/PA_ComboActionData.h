@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "../GameInfo.h"
 #include "Engine/DataAsset.h"
 #include "PA_ComboActionData.generated.h"
 

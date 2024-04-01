@@ -49,6 +49,12 @@
     <Filter Include="Source\Project_A\Animation">
       <UniqueIdentifier>{34E46255-1062-399A-9577-782E7000DAFF}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Animation\AnimNotify_AttackHitCheck.cpp">
+      <Filter>Source\Project_A\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Animation\AnimNotify_AttackHitCheck.h">
+      <Filter>Source\Project_A\Animation</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Project_A\Animation\PA_AnimInstance.cpp">
       <Filter>Source\Project_A\Animation</Filter>
     </ClCompile>
@@ -90,6 +96,21 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\Game\PA_GameMode.h">
       <Filter>Source\Project_A\Game</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\Interface">
+      <UniqueIdentifier>{A0ECB8F6-C482-3F49-BF5A-C7CA78C851F2}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Interface\PA_AnimationAttackInterface.cpp">
+      <Filter>Source\Project_A\Interface</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Interface\PA_AnimationAttackInterface.h">
+      <Filter>Source\Project_A\Interface</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\Physics">
+      <UniqueIdentifier>{13997B6F-370D-3450-AFF6-67E25AACD636}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Project_A\Physics\PA_Collision.h">
+      <Filter>Source\Project_A\Physics</Filter>
     </ClInclude>
     <Filter Include="Source\Project_A\Player">
       <UniqueIdentifier>{2B1CD96D-44EB-3EF7-9E5A-222A9CB6135D}</UniqueIdentifier>
