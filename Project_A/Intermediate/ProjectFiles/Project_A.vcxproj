@@ -193,6 +193,7 @@
     <None Include="..\..\Project_A.uproject"/>
     <None Include="..\..\Source\Project_A.Target.cs"/>
     <None Include="..\..\Source\Project_AEditor.Target.cs"/>
+    <None Include="..\..\.vsconfig"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>
