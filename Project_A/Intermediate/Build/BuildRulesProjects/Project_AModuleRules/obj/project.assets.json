@@ -8042,19 +8042,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AR student\\.nuget\\packages\\": {}
+    "C:\\Users\\Jungho\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RPGProject\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\Project_AModuleRules.csproj",
+      "projectUniqueName": "D:\\RPG_Game\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\Project_AModuleRules.csproj",
       "projectName": "Project_AModuleRules",
-      "projectPath": "D:\\RPGProject\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\Project_AModuleRules.csproj",
-      "packagesPath": "C:\\Users\\AR student\\.nuget\\packages\\",
-      "outputPath": "D:\\RPGProject\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\obj\\",
+      "projectPath": "D:\\RPG_Game\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\Project_AModuleRules.csproj",
+      "packagesPath": "C:\\Users\\Jungho\\.nuget\\packages\\",
+      "outputPath": "D:\\RPG_Game\\Project_A\\Intermediate\\Build\\BuildRulesProjects\\Project_AModuleRules\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\AR student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jungho\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8087,6 +8087,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8108,7 +8113,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

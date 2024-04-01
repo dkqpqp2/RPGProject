@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Project_AModuleRules
-build_property.ProjectDir = D:\RPGProject\Project_A\Intermediate\Build\BuildRulesProjects\Project_AModuleRules\
+build_property.ProjectDir = D:\RPG_Game\Project_A\Intermediate\Build\BuildRulesProjects\Project_AModuleRules\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
