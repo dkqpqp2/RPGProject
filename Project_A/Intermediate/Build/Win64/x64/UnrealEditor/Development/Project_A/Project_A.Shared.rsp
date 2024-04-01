@@ -257,7 +257,13 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\WidgetRegistration\UHT"
 /I "Developer\WidgetRegistration\Public"
 /I "D:\RPGProject\Project_A\Intermediate\Build\Win64\UnrealEditor\Inc\Project_A\UHT"
+/I "D:\RPGProject\Project_A\Source\Project_A"
 /I "D:\RPGProject\Project_A\Source"
+/I "..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT"
+/I "..\Plugins\EnhancedInput\Source\EnhancedInput\Public"
+/I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\UHT"
+/I "Runtime\AIModule\Classes"
+/I "Runtime\AIModule\Public"
 /external:W0
 /external:I "ThirdParty\mimalloc\include"
 /external:I "ThirdParty\LibTiff\Source\Win64"

@@ -11,6 +11,7 @@
     <None Include="..\..\Source\Project_AEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -30,6 +31,12 @@
     <Filter Include="Source\Project_A">
       <UniqueIdentifier>{579C99FF-E2AD-3AE5-AE00-213622A6360B}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Project_A\GameInfo.cpp">
+      <Filter>Source\Project_A</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\GameInfo.h">
+      <Filter>Source\Project_A</Filter>
+    </ClInclude>
     <None Include="..\..\Source\Project_A\Project_A.Build.cs">
       <Filter>Source\Project_A</Filter>
     </None>
@@ -39,13 +46,37 @@
     <ClInclude Include="..\..\Source\Project_A\Project_A.h">
       <Filter>Source\Project_A</Filter>
     </ClInclude>
+    <Filter Include="Source\Project_A\Character">
+      <UniqueIdentifier>{C4C68043-5C3F-3B67-9D91-6FFB6F23B4A3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Character\PA_CharacterBase.cpp">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Character\PA_CharacterBase.h">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\Character\PA_CharacterPlayer.cpp">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Character\PA_CharacterPlayer.h">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\Game">
+      <UniqueIdentifier>{FC9E4DDE-1AB8-3D2E-B9BB-003D9CE9E08F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Game\PA_GameMode.cpp">
+      <Filter>Source\Project_A\Game</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Game\PA_GameMode.h">
+      <Filter>Source\Project_A\Game</Filter>
+    </ClInclude>
     <Filter Include="Source\Project_A\Player">
       <UniqueIdentifier>{2B1CD96D-44EB-3EF7-9E5A-222A9CB6135D}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Project_A\Player\PlayerCharacter.cpp">
+    <ClCompile Include="..\..\Source\Project_A\Player\PA_PlayerController.cpp">
       <Filter>Source\Project_A\Player</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Project_A\Player\PlayerCharacter.h">
+    <ClInclude Include="..\..\Source\Project_A\Player\PA_PlayerController.h">
       <Filter>Source\Project_A\Player</Filter>
     </ClInclude>
   </ItemGroup>

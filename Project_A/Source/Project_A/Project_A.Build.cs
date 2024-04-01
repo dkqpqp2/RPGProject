@@ -15,6 +15,9 @@ public class Project_A : ModuleRules
 			, "CoreUObject"
 			, "Engine"
 			, "InputCore" 
+			, "EnhancedInput"
+			, "NavigationSystem"
+			, "AIModule"
 
 		
 		});
