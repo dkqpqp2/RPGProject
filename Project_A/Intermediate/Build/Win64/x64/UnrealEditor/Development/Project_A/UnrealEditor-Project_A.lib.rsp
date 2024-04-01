@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-Project_A.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\Project_AEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Project_A.cpp.obj"
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Default.rc2.res"
+/OUT:"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\UnrealEditor-Project_A.lib"
