@@ -1145,3 +1145,101 @@ LogConfig: CVar [[framepro.ScopeMinTimeMicroseconds:10]] deferred - dummy variab
 [2024.04.01-01.22.20:694][ 58]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
 [2024.04.01-01.22.20:719][ 58]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
 [2024.04.01-01.22.20:856][ 59]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.22.43:483][214]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.22.43:610][214]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.22.43:654][214]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.22.43:654][214]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.22.46:673][224]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.22.50:705][236]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.22.56:328][249]Running C:/Program Files/Epic Games/UE_5.3/Engine/Build/BatchFiles/Build.bat  -projectfiles -project="D:/RPGProject/Project_A/Project_A.uproject" -game -rocket -progress
+[2024.04.01-01.22.56:434][249]Using bundled DotNet SDK version: 6.0.302
+[2024.04.01-01.22.56:434][249]Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" -projectfiles -project="D:/RPGProject/Project_A/Project_A.uproject" -game -rocket -progress
+[2024.04.01-01.22.56:835][249]Log file: C:\Users\AR student\AppData\Local\UnrealBuildTool\Log_GPF.txt
+[2024.04.01-01.22.57:136][249]
+[2024.04.01-01.22.57:136][249]Generating VisualStudio project files:
+[2024.04.01-01.22.57:136][249]Discovering modules, targets and source code for project...
+[2024.04.01-01.22.58:141][249]Binding IntelliSense data...
+[2024.04.01-01.23.01:659][249]Binding IntelliSense data... 100%
+[2024.04.01-01.23.01:659][249]Creating common properties file...
+[2024.04.01-01.23.01:659][249]Creating common properties file... 0%
+[2024.04.01-01.23.01:659][249]Writing project files...
+[2024.04.01-01.23.03:217][249]Writing project files... 100%
+[2024.04.01-01.23.03:217][249]
+[2024.04.01-01.23.03:218][249]Generating QueryTargets data for editor...
+[2024.04.01-01.23.03:432][249]LogLiveCoding: Display: Starting Live Coding compile.
+[2024.04.01-01.23.03:449][249]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:454][249]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:454][249]LogSlate: Window 'C++ 클래스 추가' being destroyed
+[2024.04.01-01.23.03:461][249]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:464][249]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:494][250]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:496][250]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:828][251]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.03:832][251]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:162][252]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:165][252]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:495][253]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:498][253]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:836][254]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.04:840][254]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.05:171][255]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.05:183][255]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.05:503][256]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.05:511][256]LogVSAccessor: Warning: Visual Studio is open but could not be queried - it may be blocked by a modal operation
+[2024.04.01-01.23.13:656][325]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.23.13:656][325]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.23.14:299][356]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.134:50955, Sequence=0
+[2024.04.01-01.23.20:713][620]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.23.20:864][620]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.23.22:762][626]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.23.23:326][628]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.134:50955, Sequence=0
+[2024.04.01-01.23.29:670][789]LogLiveCoding: Display:    D:\RPGProject\Project_A\Binaries\Win64\UnrealEditor-Project_A.patch_0.lib 라이브러리 및 D:\RPGProject\Project_A\Binaries\Win64\UnrealEditor-Project_A.patch_0.exp 개체를 생성하고 있습니다.
+[2024.04.01-01.23.30:747][793]LogClass: Could not find existing package /Script/Project_A for reload of class PlayerCharacter, assuming a new package.
+[2024.04.01-01.23.30:795][793]LogUObjectHash: Compacting FUObjectHashTables data took   0.69ms
+[2024.04.01-01.23.31:007][794]Display: Reload/Re-instancing Complete: 1 package new, 1 class new
+[2024.04.01-01.23.31:009][794]LogLiveCoding: Warning: Live coding succeeded, data type changes may cause packaging to fail if assets reference the new or updated data types
+[2024.04.01-01.23.32:670][798]LogSlateStyle: Warning: 'CoreStyle' 스타일의 리소스 누락: ''ContentBrowser.ListViewFolderIcon.Base' 브러시를 찾을 수 없습니다.'
+[2024.04.01-01.23.32:670][798]LogSlateStyle: Warning: 'CoreStyle' 스타일의 리소스 누락: ''ContentBrowser.ListViewFolderIcon.Mask' 브러시를 찾을 수 없습니다.'
+[2024.04.01-01.23.52:764][206]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.23.52:764][206]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.23.52:764][206]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.24.01:592][233]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.135:61725, Sequence=0
+[2024.04.01-01.24.07:495][251]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.07:495][251]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:908][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:935][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:935][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:935][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:936][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.14:961][273]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.37:508][341]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.24.44:936][363]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.24.44:938][363]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.24.44:940][363]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.24.49:512][377]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.49:621][377]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.49:677][377]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.59:104][405]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.59:104][405]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.59:106][405]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.59:106][405]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.24.59:117][405]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.25.14:946][453]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.25.26:885][489]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.134:50955, Sequence=0
+[2024.04.01-01.25.40:496][530]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.134:50955, Sequence=0
+[2024.04.01-01.26.28:030][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:033][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:044][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:044][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:055][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:055][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:060][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:063][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:063][672]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.28:198][673]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.57:962][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0
+[2024.04.01-01.26.58:045][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.26.58:050][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.26.58:064][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.26.58:064][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.169:63784, Sequence=0
+[2024.04.01-01.26.58:109][762]LogUdpMessaging: Warning: FUdpMessageProcessor::UpdateReassemblers Discarding 1/2 of stale message segements from Sender=192.168.0.141:49473, Sequence=0

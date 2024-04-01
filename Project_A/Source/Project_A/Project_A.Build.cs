@@ -7,8 +7,17 @@ public class Project_A : ModuleRules
 	public Project_A(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+
+
+		PublicIncludePaths.AddRange(new string[] { "Project_A" });
+
+        PublicDependencyModuleNames.AddRange(new string[] { "Core"
+			, "CoreUObject"
+			, "Engine"
+			, "InputCore" 
+
+		
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

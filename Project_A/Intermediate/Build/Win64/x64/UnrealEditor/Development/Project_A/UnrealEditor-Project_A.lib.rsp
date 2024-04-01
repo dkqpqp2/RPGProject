@@ -7,6 +7,9 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\Project_AEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PlayerCharacter.gen.cpp.obj"
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Project_A.init.gen.cpp.obj"
 "D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Project_A.cpp.obj"
+"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PlayerCharacter.cpp.obj"
 "D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Default.rc2.res"
 /OUT:"D:\RPGProject\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\UnrealEditor-Project_A.lib"

@@ -39,5 +39,14 @@
     <ClInclude Include="..\..\Source\Project_A\Project_A.h">
       <Filter>Source\Project_A</Filter>
     </ClInclude>
+    <Filter Include="Source\Project_A\Player">
+      <UniqueIdentifier>{2B1CD96D-44EB-3EF7-9E5A-222A9CB6135D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Player\PlayerCharacter.cpp">
+      <Filter>Source\Project_A\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Player\PlayerCharacter.h">
+      <Filter>Source\Project_A\Player</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
