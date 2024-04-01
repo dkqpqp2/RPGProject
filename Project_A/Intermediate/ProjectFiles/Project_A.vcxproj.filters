@@ -46,6 +46,15 @@
     <ClInclude Include="..\..\Source\Project_A\Project_A.h">
       <Filter>Source\Project_A</Filter>
     </ClInclude>
+    <Filter Include="Source\Project_A\Animation">
+      <UniqueIdentifier>{34E46255-1062-399A-9577-782E7000DAFF}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Animation\PA_AnimInstance.cpp">
+      <Filter>Source\Project_A\Animation</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Animation\PA_AnimInstance.h">
+      <Filter>Source\Project_A\Animation</Filter>
+    </ClInclude>
     <Filter Include="Source\Project_A\Character">
       <UniqueIdentifier>{C4C68043-5C3F-3B67-9D91-6FFB6F23B4A3}</UniqueIdentifier>
     </Filter>
@@ -55,10 +64,22 @@
     <ClInclude Include="..\..\Source\Project_A\Character\PA_CharacterBase.h">
       <Filter>Source\Project_A\Character</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\Character\PA_CharacterControlData.cpp">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Character\PA_CharacterControlData.h">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Project_A\Character\PA_CharacterPlayer.cpp">
       <Filter>Source\Project_A\Character</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\Character\PA_CharacterPlayer.h">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\Character\PA_ComboActionData.cpp">
+      <Filter>Source\Project_A\Character</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Character\PA_ComboActionData.h">
       <Filter>Source\Project_A\Character</Filter>
     </ClInclude>
     <Filter Include="Source\Project_A\Game">

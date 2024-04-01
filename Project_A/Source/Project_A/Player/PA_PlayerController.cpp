@@ -5,7 +5,6 @@
 
 APA_PlayerController::APA_PlayerController()
 {
-	bShowMouseCursor = true;
 }
 
 void APA_PlayerController::BeginPlay()
