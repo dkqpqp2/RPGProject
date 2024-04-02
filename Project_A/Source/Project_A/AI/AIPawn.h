@@ -37,6 +37,19 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Monster)
 	UFloatingPawnMovement* MonsterMovement;
 
+	bool AttackEnd;
+
+public:
+	void SetAttackEnd(bool End)
+	{
+		AttackEnd = End;
+	}
+
+	bool IsAttackEnd()
+	{
+		return AttackEnd;
+	}
+
 public:
 	virtual void ChangeAIAnimType(uint8 AnimType);
 

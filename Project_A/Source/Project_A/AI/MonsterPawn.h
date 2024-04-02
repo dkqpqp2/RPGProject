@@ -19,6 +19,7 @@ public:
 
 protected:
 	class UMonsterAnimInstance* MonsterAnimInst;
+	
 
 protected:
 	// Called when the game starts or when spawned

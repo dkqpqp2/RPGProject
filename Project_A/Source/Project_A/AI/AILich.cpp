@@ -5,6 +5,7 @@
 #include "PA_AIController.h"
 #include "MonsterAnimInstance.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "../Effect/EffectBase.h"
 
 AAILich::AAILich()
 {
@@ -67,6 +68,15 @@ void AAILich::NormalAttack()
 	{
 		FDamageEvent DmgEvent;
 		HitResult.GetActor()->TakeDamage(10.f, DmgEvent, GetController(), this);
+
+		FActorSpawnParameters ParamResult;
+
+		ParamResult.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+		AEffectBase* Effect = GetWorld()->SpawnActor<AEffectBase>(HitResult.ImpactPoint, HitResult.ImpactNormal.Rotation(), ParamResult);
+
+		Effect->SetParticleAsset(TEXT("/Script/Engine.ParticleSystem'/Game/UndeadPack/Lich/Particles/P_Smoke_2_FX.P_Smoke_2_FX'"));
+		//Effect->SetSoundAsset(TEXT(""));
 	}
 
 }

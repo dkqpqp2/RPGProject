@@ -85,18 +85,15 @@ void UBTTask_TraceTarget::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* Nod
 	FVector TargetLocation = Target->GetActorLocation();
 
 	AILocation.Z -= Pawn->GetHalfHeight();
-	TargetLocation.Z -= Pawn->GetHalfHeight();
-
-	float Distance = FVector::Distance(AILocation, TargetLocation);
-
-	Distance -= Pawn->GetCapsuleRadius();
 
 	UCapsuleComponent* TargetCapsule = Cast<UCapsuleComponent>(Target->GetRootComponent());
 
 	if (IsValid(TargetCapsule))
 	{
-		Distance -= TargetCapsule->GetScaledCapsuleRadius();
+		TargetLocation.Z -= TargetCapsule->GetScaledCapsuleHalfHeight();
 	}
+
+	float Distance = FVector::Distance(AILocation, TargetLocation);
 
 	if (Distance <= 200.0f)
 	{

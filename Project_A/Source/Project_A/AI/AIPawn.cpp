@@ -9,6 +9,9 @@ AAIPawn::AAIPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	AttackEnd = false;
+
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	MonsterCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("MonsterCapsule"));
