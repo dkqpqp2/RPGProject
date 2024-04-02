@@ -3,11 +3,13 @@
 #pragma once
 
 #include "EngineMinimal.h"
-
+#include "DrawDebugHelpers.h"
 
 
 #include "InputActionValue.h"
-
+#include "BehaviorTree/BehaviorTree.h"
+#include "BehaviorTree/BlackboardData.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 
 

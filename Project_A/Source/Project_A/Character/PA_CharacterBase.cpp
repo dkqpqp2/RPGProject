@@ -18,7 +18,7 @@ APA_CharacterBase::APA_CharacterBase()
 	bUseControllerRotationRoll = false;
 
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-	GetCapsuleComponent()->SetCollisionProfileName(TEXT("Pawn"));
+	GetCapsuleComponent()->SetCollisionProfileName(CPROFILE_PACAPSULE);
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
@@ -30,7 +30,7 @@ APA_CharacterBase::APA_CharacterBase()
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -100.0f), FRotator(0.0f, -90.0f, 0.0f));
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
-	GetMesh()->SetCollisionProfileName(TEXT("CharacterMesh"));
+	GetMesh()->SetCollisionProfileName(TEXT("NoCollision"));
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharacterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWarriors/Character/CompleteCharacters/SK_CharM_Cardboard.SK_CharM_Cardboard'"));
 	if (CharacterMeshRef.Object)
@@ -56,6 +56,20 @@ APA_CharacterBase::APA_CharacterBase()
 	{
 		CharacterControlManager.Add(ECharacterControlType::Quater, QuaterDataRef.Object);
 	}
+
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> ComboActionMontageRef(TEXT("/Script/Engine.AnimMontage'/Game/Project_A/Animation/AM_ComboAttack.AM_ComboAttack'"));
+	if (ComboActionMontageRef.Object)
+	{
+		ComboActionMontage = ComboActionMontageRef.Object;
+	}
+	
+	static ConstructorHelpers::FObjectFinder<UPA_ComboActionData> ComboActionDataRef(TEXT("/Script/Project_A.PA_ComboActionData'/Game/Project_A/CharacterAction/PA_ComboAttack.PA_ComboAttack'"));
+	if (ComboActionDataRef.Object)
+	{
+		ComboActionData = ComboActionDataRef.Object;
+	}
+
+
 }
 
 void APA_CharacterBase::SetCharacterControlData(const UPA_CharacterControlData* CharacterControlData)
@@ -153,6 +167,17 @@ void APA_CharacterBase::AttackHitCheck()
 	{
 
 	}
+
+#if ENABLE_DRAW_DEBUG
+
+	FVector CapsuleOrigin = Start + (End - Start) + 0.5f;
+	float CapsuleHalfHeight = AttackRange * 0.5f;
+	FColor DrawColor = HitDetected ? FColor::Red : FColor::Green;
+
+	DrawDebugCapsule(GetWorld(), CapsuleOrigin, CapsuleHalfHeight, AttackRadius, FRotationMatrix::MakeFromZ(GetActorForwardVector()).ToQuat(), DrawColor, false, 5.0f);
+
+
+#endif
 }
 
 

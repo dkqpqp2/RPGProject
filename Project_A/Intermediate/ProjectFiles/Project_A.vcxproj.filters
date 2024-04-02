@@ -46,6 +46,51 @@
     <ClInclude Include="..\..\Source\Project_A\Project_A.h">
       <Filter>Source\Project_A</Filter>
     </ClInclude>
+    <Filter Include="Source\Project_A\AI">
+      <UniqueIdentifier>{1A1DD30E-4B83-3546-B927-6BB711718FFE}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\AI\AILich.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AILich.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIPawn.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIPawn.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\MonsterAnimInstance.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\MonsterAnimInstance.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Project_A\AI\PA_AI.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\PA_AIController.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\PA_AIController.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\AI\AIModule">
+      <UniqueIdentifier>{125EE721-0200-38FC-A680-743582E5F538}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\BTService_DetectTarget.cpp">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTService_DetectTarget.h">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\BTTask_FindPatrolPos.cpp">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_FindPatrolPos.h">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClInclude>
     <Filter Include="Source\Project_A\Animation">
       <UniqueIdentifier>{34E46255-1062-399A-9577-782E7000DAFF}</UniqueIdentifier>
     </Filter>

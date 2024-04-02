@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\rpg_game\\project_a\\source\\project_a\\project_a.cpp",
+        "Source": "d:\\projecta\\project_a\\source\\project_a\\project_a.cpp",
         "ProvidedModule": "",
-        "PCH": "d:\\rpg_game\\project_a\\intermediate\\build\\win64\\x64\\project_aeditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "PCH": "d:\\projecta\\project_a\\intermediate\\build\\win64\\x64\\project_aeditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
         "Includes": [
-            "d:\\rpg_game\\project_a\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\project_a\\definitions.project_a.h",
-            "d:\\rpg_game\\project_a\\source\\project_a\\project_a.h"
+            "d:\\projecta\\project_a\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\project_a\\definitions.project_a.h",
+            "d:\\projecta\\project_a\\source\\project_a\\project_a.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
