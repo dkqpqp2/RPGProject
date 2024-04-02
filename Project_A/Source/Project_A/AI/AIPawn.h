@@ -21,6 +21,10 @@ public:
 	{
 		return MonsterCapsule->GetScaledCapsuleHalfHeight();
 	}
+	float GetCapsuleRadius()
+	{
+		return MonsterCapsule->GetScaledCapsuleRadius();
+	}
 
 
 protected:
@@ -32,6 +36,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = Monster)
 	UFloatingPawnMovement* MonsterMovement;
+
+public:
+	virtual void ChangeAIAnimType(uint8 AnimType);
 
 protected:
 	// Called when the game starts or when spawned

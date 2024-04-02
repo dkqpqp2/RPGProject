@@ -9,14 +9,14 @@ AAILich::AAILich()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> MonsterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/UndeadPack/Lich/Mesh/SK_Lich.SK_Lich'"));
-	if (MonsterMeshRef.Object)
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> MonsterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/UndeadPack/Lich/Mesh/SK_Lich_Full.SK_Lich_Full'"));
+	if (MonsterMeshRef.Succeeded())
 	{
 		MonsterMesh->SetSkeletalMesh(MonsterMeshRef.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> MonsterAnimInstanceRef(TEXT("/Game/Project_A/Animation/AI/AB_Lich.AB_Lich_C"));
-	if (MonsterAnimInstanceRef.Class)
+	static ConstructorHelpers::FClassFinder<UAnimInstance> MonsterAnimInstanceRef(TEXT("/Script/Engine.AnimBlueprint'/Game/Project_A/Animation/AI/AB_Lich.AB_Lich_C'"));
+	if (MonsterAnimInstanceRef.Succeeded())
 	{
 		MonsterMesh->SetAnimInstanceClass(MonsterAnimInstanceRef.Class);
 	}
@@ -29,5 +29,25 @@ AAILich::AAILich()
 
 
 	AIControllerClass = APA_AIController::StaticClass();
+
+}
+
+void AAILich::ChangeAIAnimType(uint8 AnimType)
+{
+	MonsterAnimInst->ChangeAnimType((EMonsterAnimType)AnimType);
+}
+
+void AAILich::BeginPlay()
+{
+	Super::BeginPlay();
+
+	MonsterAnimInst = Cast<UMonsterAnimInstance>(MonsterMesh->GetAnimInstance());
+
+}
+
+void AAILich::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
 
 }

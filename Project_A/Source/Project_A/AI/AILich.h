@@ -14,4 +14,18 @@ class PROJECT_A_API AAILich : public AAIPawn
 	GENERATED_BODY()
 public:
 	AAILich();
+
+public:
+	virtual void ChangeAIAnimType(uint8 AnimType) override;
+
+protected:
+	class UMonsterAnimInstance* MonsterAnimInst;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };

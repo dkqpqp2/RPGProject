@@ -9,6 +9,7 @@ AAIPawn::AAIPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	MonsterCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("MonsterCapsule"));
 	MonsterMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MonsterMesh"));
@@ -20,7 +21,7 @@ AAIPawn::AAIPawn()
 	MonsterMesh->SetupAttachment(MonsterCapsule);
 	MonsterMovement->SetUpdatedComponent(MonsterCapsule);
 
-	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+
 	//AIControllerClass = APA_AIController::StaticClass();
 	static ConstructorHelpers::FClassFinder<AAIController> AIControllerClassRef(TEXT("/Game/Project_A/Blueprint/AI/BP_PA_AIController.BP_PA_AIController_C"));
 	if (AIControllerClassRef.Class)
@@ -28,6 +29,10 @@ AAIPawn::AAIPawn()
 		AIControllerClass = AIControllerClassRef.Class;
 	}
 
+}
+
+void AAIPawn::ChangeAIAnimType(uint8 AnimType)
+{
 }
 
 // Called when the game starts or when spawned

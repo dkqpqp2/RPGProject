@@ -91,6 +91,18 @@
     <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_FindPatrolPos.h">
       <Filter>Source\Project_A\AI\AIModule</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\BTTask_NormalAttack.cpp">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_NormalAttack.h">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\BTTask_TraceTarget.cpp">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_TraceTarget.h">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClInclude>
     <Filter Include="Source\Project_A\Animation">
       <UniqueIdentifier>{34E46255-1062-399A-9577-782E7000DAFF}</UniqueIdentifier>
     </Filter>
