@@ -4,7 +4,7 @@
 
 #include "EngineMinimal.h"
 #include "DrawDebugHelpers.h"
-
+#include "Engine/DamageEvents.h"
 
 #include "InputActionValue.h"
 #include "BehaviorTree/BehaviorTree.h"

@@ -2,24 +2,18 @@
 
 #pragma once
 
-#include "AIPawn.h"
+#include "MonsterPawn.h"
 #include "AILich.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_A_API AAILich : public AAIPawn
+class PROJECT_A_API AAILich : public AMonsterPawn
 {
 	GENERATED_BODY()
 public:
 	AAILich();
-
-public:
-	virtual void ChangeAIAnimType(uint8 AnimType) override;
-
-protected:
-	class UMonsterAnimInstance* MonsterAnimInst;
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,4 +22,5 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void NormalAttack();
 };

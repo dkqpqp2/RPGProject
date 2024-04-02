@@ -2,6 +2,7 @@
 
 
 #include "MonsterAnimInstance.h"
+#include "MonsterPawn.h"
 
 void UMonsterAnimInstance::NativeInitializeAnimation()
 {
@@ -13,4 +14,11 @@ void UMonsterAnimInstance::NativeInitializeAnimation()
 void UMonsterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
+}
+
+void UMonsterAnimInstance::AnimNotify_Attack()
+{
+	AMonsterPawn* Pawn = Cast<AMonsterPawn>(TryGetPawnOwner());
+
+	Pawn->NormalAttack();
 }

@@ -4,37 +4,30 @@
 #include "AILich.h"
 #include "PA_AIController.h"
 #include "MonsterAnimInstance.h"
+#include "GameFramework/FloatingPawnMovement.h"
 
 AAILich::AAILich()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> MonsterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/UndeadPack/Lich/Mesh/SK_Lich_Full.SK_Lich_Full'"));
-	if (MonsterMeshRef.Succeeded())
+	if (MonsterMeshRef.Object)
 	{
 		MonsterMesh->SetSkeletalMesh(MonsterMeshRef.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> MonsterAnimInstanceRef(TEXT("/Script/Engine.AnimBlueprint'/Game/Project_A/Animation/AI/AB_Lich.AB_Lich_C'"));
-	if (MonsterAnimInstanceRef.Succeeded())
+	static ConstructorHelpers::FClassFinder<UAnimInstance> MonsterAnimInstanceRef(TEXT("/Game/Project_A/Animation/AI/AB_Lich.AB_Lich_C"));
+	if (MonsterAnimInstanceRef.Class)
 	{
 		MonsterMesh->SetAnimInstanceClass(MonsterAnimInstanceRef.Class);
 	}
 
 	MonsterMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -108.0f));
 	MonsterMesh->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
-	
+
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
 	MonsterCapsule->SetCapsuleRadius(42.0f);
 
-
-	AIControllerClass = APA_AIController::StaticClass();
-
-}
-
-void AAILich::ChangeAIAnimType(uint8 AnimType)
-{
-	MonsterAnimInst->ChangeAnimType((EMonsterAnimType)AnimType);
 }
 
 void AAILich::BeginPlay()
@@ -49,5 +42,31 @@ void AAILich::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+
+}
+
+void AAILich::NormalAttack()
+{
+	FCollisionQueryParams Params(NAME_None, false, this);
+
+	FVector StartLocation = GetActorLocation() + GetActorForwardVector() * 50.0f;
+	FVector EndLocation = StartLocation + GetActorForwardVector() * 150.0f;
+
+	FHitResult HitResult;
+	bool IsCollision = GetWorld()->SweepSingleByChannel(HitResult, StartLocation, EndLocation, FQuat::Identity, ECC_GameTraceChannel2, FCollisionShape::MakeSphere(50.0f), Params);
+
+#if ENABLE_DRAW_DEBUG
+
+	FColor DrawColor = IsCollision ? FColor::Red : FColor::Green;
+	DrawDebugCapsule(GetWorld(), (StartLocation + EndLocation) / 2.0f, 75.0f, 50.0f, FRotationMatrix::MakeFromZ(GetActorForwardVector()).ToQuat(), DrawColor, false, 3.0f);
+
+#endif
+	
+
+	if (IsCollision)
+	{
+		FDamageEvent DmgEvent;
+		HitResult.GetActor()->TakeDamage(10.f, DmgEvent, GetController(), this);
+	}
 
 }

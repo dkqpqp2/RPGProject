@@ -67,6 +67,12 @@
     <ClInclude Include="..\..\Source\Project_A\AI\MonsterAnimInstance.h">
       <Filter>Source\Project_A\AI</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\MonsterPawn.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\MonsterPawn.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Project_A\AI\PA_AI.h">
       <Filter>Source\Project_A\AI</Filter>
     </ClInclude>
@@ -144,6 +150,15 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\Character\PA_ComboActionData.h">
       <Filter>Source\Project_A\Character</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\Effect">
+      <UniqueIdentifier>{D19301F2-D6AA-3051-926C-7BA681E2C414}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Effect\EffectBase.cpp">
+      <Filter>Source\Project_A\Effect</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Effect\EffectBase.h">
+      <Filter>Source\Project_A\Effect</Filter>
     </ClInclude>
     <Filter Include="Source\Project_A\Game">
       <UniqueIdentifier>{FC9E4DDE-1AB8-3D2E-B9BB-003D9CE9E08F}</UniqueIdentifier>

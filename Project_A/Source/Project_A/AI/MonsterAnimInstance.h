@@ -38,5 +38,9 @@ public:
 
 public:
 	virtual void NativeInitializeAnimation();
-	virtual void NativeUpdateAnimation(float DeltaSeconds);
+	virtual void NativeUpdateAnimation(float DeltaSeconds); 
+
+public:
+	UFUNCTION()
+	void AnimNotify_Attack();
 };

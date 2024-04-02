@@ -21,7 +21,6 @@ AAIPawn::AAIPawn()
 	MonsterMesh->SetupAttachment(MonsterCapsule);
 	MonsterMovement->SetUpdatedComponent(MonsterCapsule);
 
-
 	//AIControllerClass = APA_AIController::StaticClass();
 	static ConstructorHelpers::FClassFinder<AAIController> AIControllerClassRef(TEXT("/Game/Project_A/Blueprint/AI/BP_PA_AIController.BP_PA_AIController_C"));
 	if (AIControllerClassRef.Class)

@@ -58,6 +58,8 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 	}
 
 	CurrentCharacterControlType = ECharacterControlType::Quater;
+
+	//SetCanBeDamaged(true);
 }
 
 void APA_CharacterPlayer::BeginPlay()
@@ -82,6 +84,15 @@ void APA_CharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	EnhancedInputComponent->BindAction(QuaterMoveAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::QuaterMove);
 	EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::Attack);
 
+}
+
+float APA_CharacterPlayer::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	DamageAmount = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
+
+	return DamageAmount;
 }
 
 void APA_CharacterPlayer::ChangeCharacterControl()
@@ -171,7 +182,7 @@ void APA_CharacterPlayer::QuaterMove(const FInputActionValue& Value)
 
 	FVector MoveDirection = FVector(MovementVector.X, MovementVector.Y, 0.0f);
 	GetController()->SetControlRotation(FRotationMatrix::MakeFromX(MoveDirection).Rotator());
-	AddMovementInput(MoveDirection, MovementVectorSize);
+	AddMovementInput(MoveDirection, MovementVectorSize); 
 }
 
 void APA_CharacterPlayer::Attack()
