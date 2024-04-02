@@ -17,5 +17,5 @@ class PROJECT_A_API UBTTask_FindPatrolPos : public UBTTaskNode
 public:
 	UBTTask_FindPatrolPos();
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory);
-	
+	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 };

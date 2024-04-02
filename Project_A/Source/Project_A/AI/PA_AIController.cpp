@@ -46,11 +46,12 @@ void APA_AIController::OnPossess(APawn* InPawn)
 	// 블랙보드가 있을 경우
 	if (BlackboardData)
 	{
-		UBlackboardComponent* BlackboardRef = Blackboard;
+		RunAI();
+		/*UBlackboardComponent* BlackboardRef = Blackboard;
 		if (UseBlackboard(BlackboardData, BlackboardRef))
 		{
 			RunBehaviorTree(BehaviorTree);
-		}
+		}*/
 	}
 
 }

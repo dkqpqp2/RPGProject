@@ -99,8 +99,6 @@ void UBTTask_NormalAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 
 			Pawn->SetActorRotation(Rot);
 		}
-		//Dir.Normalize();
-
 		
 	}
 	

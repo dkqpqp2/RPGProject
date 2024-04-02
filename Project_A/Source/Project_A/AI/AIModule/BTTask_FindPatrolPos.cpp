@@ -3,8 +3,10 @@
 
 #include "BTTask_FindPatrolPos.h"
 #include "../PA_AI.h"
-#include "AIController.h"
+#include "../PA_AIController.h"
 #include "NavigationSystem.h"
+#include "../AIPawn.h"
+#include "../MonsterAnimInstance.h"
 
 UBTTask_FindPatrolPos::UBTTask_FindPatrolPos()
 {
@@ -14,13 +16,15 @@ EBTNodeResult::Type UBTTask_FindPatrolPos::ExecuteTask(UBehaviorTreeComponent& O
 {
 	EBTNodeResult::Type Result = Super::ExecuteTask(OwnerComp, NodeMemory);
 
-	APawn* ControllingPawn = OwnerComp.GetAIOwner()->GetPawn();
-	if (nullptr == ControllingPawn)
+	AAIController* Controller = OwnerComp.GetAIOwner();
+
+	AAIPawn* Pawn = Cast<AAIPawn>(Controller->GetPawn());
+	if (nullptr == Pawn)
 	{
 		return EBTNodeResult::Failed;
 	}
 
-	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(ControllingPawn->GetWorld());
+	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(Pawn->GetWorld());
 	if (nullptr == NavSystem)
 	{
 		return EBTNodeResult::Failed;
@@ -31,9 +35,19 @@ EBTNodeResult::Type UBTTask_FindPatrolPos::ExecuteTask(UBehaviorTreeComponent& O
 	if (NavSystem->GetRandomPointInNavigableRadius(Origin, 500.0f, NextPatrolPos))
 	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(BBKEY_PATROLPOS, NextPatrolPos.Location);
+
+		Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Walk);
+
 		return EBTNodeResult::Succeeded;
 	}
 
 
 	return EBTNodeResult::Failed;
+}
+
+void UBTTask_FindPatrolPos::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
+{
+	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
+
+
 }
