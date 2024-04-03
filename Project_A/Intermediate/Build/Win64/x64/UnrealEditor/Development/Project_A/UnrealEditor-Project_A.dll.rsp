@@ -36,8 +36,10 @@
 /FUNCTIONPADMIN:6
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\Project_AEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Module.Project_A.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AILich.cpp.obj"
+"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AIPawn.cpp.obj"
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AISpawnPoint.cpp.obj"
+"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\MonsterAnimInstance.cpp.obj"
+"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PA_CharacterPlayer.cpp.obj"
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"

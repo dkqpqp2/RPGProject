@@ -37,6 +37,15 @@ void AAISpawnPoint::BeginPlay()
 void AAISpawnPoint::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (!SpawnAI)
+	{
+		AccTime += DeltaTime;
+		if (AccTime >= SpawnTime)
+		{
+			Spawn();
+		}
+	}
 }
 
 void AAISpawnPoint::Spawn()
@@ -60,6 +69,14 @@ void AAISpawnPoint::Spawn()
 
 	SpawnAI = GetWorld()->SpawnActor<AAIPawn>(SpawnClass, GetActorLocation() + FVector(0.0, 0.0, (double)HalfHeight), GetActorRotation(), SpawnParam);
 
+	SpawnAI->SetSpawnPoint(this);
+
+}
+
+void AAISpawnPoint::ClearSpawnObject()
+{
+	SpawnAI = nullptr;
+	AccTime = 0.0f;
 }
 
 

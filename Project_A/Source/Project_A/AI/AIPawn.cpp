@@ -3,6 +3,7 @@
 
 #include "AIPawn.h"
 #include "PA_AIController.h"
+#include "AISpawnPoint.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -31,6 +32,8 @@ AAIPawn::AAIPawn()
 		AIControllerClass = AIControllerClassRef.Class;
 	}
 
+	SpawnPoint = nullptr;
+
 }
 
 void AAIPawn::ChangeAIAnimType(uint8 AnimType)
@@ -42,6 +45,16 @@ void AAIPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void AAIPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	if (SpawnPoint)
+	{
+		SpawnPoint->ClearSpawnObject();
+	}
 }
 
 // Called every frame

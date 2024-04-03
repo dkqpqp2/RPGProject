@@ -41,6 +41,16 @@ protected:
 	bool AttackEnd;
 	bool AttackRightEnd;
 
+	class AAISpawnPoint* SpawnPoint;
+
+public:
+	void SetSpawnPoint(class AAISpawnPoint* Point)
+	{
+		SpawnPoint = Point;
+	}
+
+
+
 public:
 	void SetAttackEnd(bool End)
 	{
@@ -68,6 +78,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
 	// Called every frame

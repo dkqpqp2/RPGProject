@@ -57,7 +57,7 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 		AttackAction = InputActionAttackRef.Object;
 	}
 
-	CurrentCharacterControlType = ECharacterControlType::Quater;
+	CurrentCharacterControlType = ECharacterControlType::Shoulder;
 
 	//SetCanBeDamaged(true);
 }
