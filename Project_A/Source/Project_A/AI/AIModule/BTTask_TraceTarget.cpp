@@ -75,7 +75,7 @@ void UBTTask_TraceTarget::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* Nod
 		return;
 	}
 
-	FVector Dir = Pawn->GetMovementComponent()->Velocity;
+	FVector Dir = Target->GetActorLocation() - Pawn->GetActorLocation();
 	Dir.Z = 0.0f;
 	Dir.Normalize();
 

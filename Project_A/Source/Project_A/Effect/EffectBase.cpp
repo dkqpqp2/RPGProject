@@ -2,6 +2,8 @@
 
 
 #include "EffectBase.h"
+#include "NiagaraComponent.h"
+#include "NiagaraSystem.h"
 
 // Sets default values
 AEffectBase::AEffectBase()
@@ -10,10 +12,12 @@ AEffectBase::AEffectBase()
 	PrimaryActorTick.bCanEverTick = true;
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
 	Audio = CreateDefaultSubobject<UAudioComponent>(TEXT("Audio"));
+	Niagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Niagara"));
 
 	RootComponent = Particle;
 
 	Audio->SetupAttachment(Particle);
+	Niagara->SetupAttachment(Particle);
 
 	Particle->bVisualizeComponent = true;
 
@@ -48,6 +52,19 @@ void AEffectBase::SetParticleAsset(UParticleSystem* InParticle)
 	}
 }
 
+void AEffectBase::SetNiagaraAsset(const FSoftObjectPath& Path)
+{
+	if (Niagara)
+	{
+		UNiagaraSystem* Asset = LoadObject<UNiagaraSystem>(nullptr, *Path.ToString());
+		if (Asset)
+		{
+			Niagara->SetAsset(Asset);
+			Niagara->OnSystemFinished.AddDynamic(this, &AEffectBase::OnNiagaraFinish);
+		}
+	}
+}
+
 void AEffectBase::SetSoundAsset(const FString& Path)
 {
 	USoundBase* InSound = LoadObject<USoundBase>(nullptr, *Path);
@@ -65,6 +82,11 @@ void AEffectBase::SetSoundAsset(USoundBase* InSound)
 }
 
 void AEffectBase::OnParticleFinish(UParticleSystemComponent* InParticle)
+{
+	Destroy();
+}
+
+void AEffectBase::OnNiagaraFinish(UNiagaraComponent* InSystem)
 {
 	Destroy();
 }

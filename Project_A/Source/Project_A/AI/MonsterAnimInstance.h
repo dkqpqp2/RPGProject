@@ -10,7 +10,7 @@
 UENUM(BlueprintType)
 enum class EMonsterAnimType : uint8
 {
-	Idle,
+	Idle = 0,
 	Walk,
 	AttackLeft,
 	AttackRight,

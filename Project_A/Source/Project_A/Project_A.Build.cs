@@ -18,6 +18,7 @@ public class Project_A : ModuleRules
 			, "EnhancedInput"
 			, "NavigationSystem"
 			, "AIModule"
+			, "Niagara"
 
 		
 		});

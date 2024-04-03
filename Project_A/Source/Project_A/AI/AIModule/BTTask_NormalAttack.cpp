@@ -36,7 +36,9 @@ EBTNodeResult::Type UBTTask_NormalAttack::ExecuteTask(UBehaviorTreeComponent& Ow
 		return EBTNodeResult::Failed;
 	}
 
-	Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::AttackLeft);
+	//Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::AttackLeft);
+	uint8 AttackTypeIndex = FMath::RandRange(static_cast<uint8>(EMonsterAnimType::AttackLeft), static_cast<uint8>(EMonsterAnimType::AttackRight));
+	Pawn->ChangeAIAnimType(AttackTypeIndex);
 
 	return EBTNodeResult::InProgress;
 }
@@ -99,7 +101,8 @@ void UBTTask_NormalAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 
 			Pawn->SetActorRotation(Rot);
 		}
-		
+
+		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	}
 	
 }

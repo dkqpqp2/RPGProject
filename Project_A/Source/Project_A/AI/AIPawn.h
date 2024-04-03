@@ -18,6 +18,12 @@ public:
 	AAIPawn();
 
 public:
+
+	USkeletalMeshComponent* GetMesh() const 
+	{
+		return MonsterMesh;
+	}
+
 	float GetHalfHeight() const
 	{
 		return MonsterCapsule->GetScaledCapsuleHalfHeight();
@@ -50,6 +56,7 @@ public:
 	}
 
 
+	TArray<UAnimMontage*> SkillList;
 
 public:
 	void SetAttackEnd(bool End)

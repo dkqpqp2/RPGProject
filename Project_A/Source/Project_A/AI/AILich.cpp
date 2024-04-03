@@ -25,10 +25,11 @@ AAILich::AAILich()
 
 	MonsterMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -108.0f));
 	MonsterMesh->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
-	MonsterMesh->SetCollisionProfileName(TEXT("Pawn"));
+	MonsterMesh->SetCollisionProfileName(TEXT("NoCollision"));
 
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
 	MonsterCapsule->SetCapsuleRadius(42.0f);
+	MonsterCapsule->SetCollisionProfileName(TEXT("Pawn"));
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
@@ -79,7 +80,7 @@ void AAILich::NormalAttack()
 
 		AEffectBase* Effect = GetWorld()->SpawnActor<AEffectBase>(HitResult.ImpactPoint, HitResult.ImpactNormal.Rotation(), ParamResult);
 
-		Effect->SetParticleAsset(TEXT("/Script/Engine.ParticleSystem'/Game/UndeadPack/Lich/Particles/P_Smoke_FX.P_Smoke_FX'"));
+		Effect->SetNiagaraAsset(FSoftObjectPath(TEXT("/Game/KTP_Effect/Particles/Fly/Expolison_03_01.Expolison_03_01")));
 		//Effect->SetSoundAsset(TEXT(""));
 	}
 
@@ -114,7 +115,7 @@ void AAILich::NormalAttack_B()
 
 		AEffectBase* Effect = GetWorld()->SpawnActor<AEffectBase>(HitResult.ImpactPoint, HitResult.ImpactNormal.Rotation(), ParamResult);
 
-		Effect->SetParticleAsset(TEXT("/Script/Engine.ParticleSystem'/Game/UndeadPack/Lich/Particles/P_Smoke_FX.P_Smoke_FX'"));
+		Effect->SetNiagaraAsset(FSoftObjectPath(TEXT("/Game/KTP_Effect/Particles/Fly/Explosion_01_01.Explosion_01_01")));
 		//Effect->SetSoundAsset(TEXT(""));
 	}
 }
