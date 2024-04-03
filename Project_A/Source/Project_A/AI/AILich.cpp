@@ -29,6 +29,8 @@ AAILich::AAILich()
 
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
 	MonsterCapsule->SetCapsuleRadius(42.0f);
+	
+	MonsterMovement->MaxSpeed = 450.f;
 
 }
 
@@ -37,6 +39,7 @@ void AAILich::BeginPlay()
 	Super::BeginPlay();
 
 	MonsterAnimInst = Cast<UMonsterAnimInstance>(MonsterMesh->GetAnimInstance());
+
 
 }
 

@@ -8,10 +8,7 @@
 /NODEFAULTLIB
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\Project_AEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Module.Project_A.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AIPawn.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\BTTask_FindPatrolPos.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PA_CharacterBase.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PA_AIInterface.cpp.obj"
-"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\PA_ItemBase.cpp.obj"
+"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AILich.cpp.obj"
+"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\AISpawnPoint.cpp.obj"
 "D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\Default.rc2.res"
 /OUT:"D:\ProjectA\Project_A\Intermediate\Build\Win64\x64\UnrealEditor\Development\Project_A\UnrealEditor-Project_A.lib"
