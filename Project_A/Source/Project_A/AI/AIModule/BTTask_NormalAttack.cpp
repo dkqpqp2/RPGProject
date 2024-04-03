@@ -36,7 +36,7 @@ EBTNodeResult::Type UBTTask_NormalAttack::ExecuteTask(UBehaviorTreeComponent& Ow
 		return EBTNodeResult::Failed;
 	}
 
-	Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Attack);
+	Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::AttackLeft);
 
 	return EBTNodeResult::InProgress;
 }

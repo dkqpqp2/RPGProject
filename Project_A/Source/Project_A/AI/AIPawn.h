@@ -5,10 +5,11 @@
 #include "../GameInfo.h"
 #include "GameFramework/Pawn.h"
 #include "GameFrameWork/FloatingPawnMovement.h"
+#include "../Interface/PA_AIInterface.h"
 #include "AIPawn.generated.h"
 
 UCLASS()
-class PROJECT_A_API AAIPawn : public APawn
+class PROJECT_A_API AAIPawn : public APawn, public IPA_AIInterface
 {
 	GENERATED_BODY()
 
@@ -38,6 +39,7 @@ protected:
 	UFloatingPawnMovement* MonsterMovement;
 
 	bool AttackEnd;
+	bool AttackRightEnd;
 
 public:
 	void SetAttackEnd(bool End)
@@ -48,6 +50,16 @@ public:
 	bool IsAttackEnd()
 	{
 		return AttackEnd;
+	}
+
+	void SetAttackRightEnd(bool End)
+	{
+		AttackRightEnd = End;
+	}
+
+	bool IsAttackRightEnd()
+	{
+		return AttackRightEnd;
 	}
 
 public:
@@ -63,5 +75,10 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
+protected:
+	virtual float GetAIPatrolRadius() override;
+	virtual float GetAIDetectRange() override;
+	virtual float GetAIAttackRange() override;
+	virtual float GetAITurnSpeed() override;
 };

@@ -5,25 +5,73 @@
       <Configuration>Invalid</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Invalid|Win64">
+      <Configuration>Invalid</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="DebugGame|x64">
       <Configuration>DebugGame</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame|Win64">
+      <Configuration>DebugGame</Configuration>
+      <Platform>Win64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="DebugGame_Editor|x64">
       <Configuration>DebugGame_Editor</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugGame_Editor|Win64">
+      <Configuration>DebugGame_Editor</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_DebugGame|x64">
+      <Configuration>Android_DebugGame</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_DebugGame|Win64">
+      <Configuration>Android_DebugGame</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Development|x64">
       <Configuration>Development</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development|Win64">
+      <Configuration>Development</Configuration>
+      <Platform>Win64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Development_Editor|x64">
       <Configuration>Development_Editor</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Development_Editor|Win64">
+      <Configuration>Development_Editor</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_Development|x64">
+      <Configuration>Android_Development</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_Development|Win64">
+      <Configuration>Android_Development</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Shipping|x64">
       <Configuration>Shipping</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping|Win64">
+      <Configuration>Shipping</Configuration>
+      <Platform>Win64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_Shipping|x64">
+      <Configuration>Android_Shipping</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Android_Shipping|Win64">
+      <Configuration>Android_Shipping</Configuration>
+      <Platform>Win64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -57,6 +105,18 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_AEditor Win64 DebugGame -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_DebugGame|Win64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) Project_A Android DebugGame -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) Project_A Android DebugGame -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) Project_A Android DebugGame -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\Project_A-Android-DebugGame.so</NMakeOutput>
+    <AdditionalOptions>/std:c++20  /DSAL_NO_ATTRIBUTE_DECLARATIONS=1 /permissive- /Zc:strictStrings- /Zc:__cplusplus</AdditionalOptions>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_DebugGame|Win64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_A Android DebugGame -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) Project_A Win64 Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) Project_A Win64 Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeReBuildCommandLine>
@@ -81,6 +141,18 @@
       <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_AEditor Win64 Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_Development|Win64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) Project_A Android Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) Project_A Android Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) Project_A Android Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\Project_A.so</NMakeOutput>
+    <AdditionalOptions>/std:c++20  /DSAL_NO_ATTRIBUTE_DECLARATIONS=1 /permissive- /Zc:strictStrings- /Zc:__cplusplus</AdditionalOptions>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_Development|Win64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_A Android Development -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|x64'">
     <NMakeBuildCommandLine>$(BuildBatchScript) Project_A Win64 Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(RebuildBatchScript) Project_A Win64 Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeReBuildCommandLine>
@@ -91,6 +163,18 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|x64'">
     <NMakeCompile>
       <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_A Win64 Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
+    </NMakeCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Android_Shipping|Win64'">
+    <NMakeBuildCommandLine>$(BuildBatchScript) Project_A Android Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(RebuildBatchScript) Project_A Android Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>$(CleanBatchScript) Project_A Android Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild</NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Android\Project_A-Android-Shipping.so</NMakeOutput>
+    <AdditionalOptions>/std:c++20  /DSAL_NO_ATTRIBUTE_DECLARATIONS=1 /permissive- /Zc:strictStrings- /Zc:__cplusplus</AdditionalOptions>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Android_Shipping|Win64'">
+    <NMakeCompile>
+      <NMakeCompileFileCommandLine>$(BuildBatchScript) Project_A Android Shipping -Project="$(SolutionDir)Project_A.uproject" -WaitMutex -FromMsBuild -WorkingDir=$(MSBuildProjectDirectory) -Files=$(SelectedFiles)</NMakeCompileFileCommandLine>
     </NMakeCompile>
   </ItemDefinitionGroup>
   <PropertyGroup>
@@ -183,6 +267,12 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_TraceTarget.h"/>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\MyBTTask_NormalAttack_B.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\MyBTTask_NormalAttack_B.h"/>
     <ClCompile Include="..\..\Source\Project_A\Animation\AnimNotify_AttackHitCheck.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
@@ -231,6 +321,12 @@
       <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\Game\PA_GameMode.h"/>
+    <ClCompile Include="..\..\Source\Project_A\Interface\PA_AIInterface.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalOptions>$(ClCompile_AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Interface\PA_AIInterface.h"/>
     <ClCompile Include="..\..\Source\Project_A\Interface\PA_AnimationAttackInterface.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ClCompile_ForcedIncludeFiles)</ForcedIncludeFiles>

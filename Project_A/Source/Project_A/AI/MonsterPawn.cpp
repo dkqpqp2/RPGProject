@@ -40,3 +40,7 @@ void AMonsterPawn::NormalAttack()
 {
 
 }
+
+void AMonsterPawn::NormalAttack_B()
+{
+}

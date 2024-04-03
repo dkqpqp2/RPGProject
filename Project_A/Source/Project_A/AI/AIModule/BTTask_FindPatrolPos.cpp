@@ -7,6 +7,7 @@
 #include "NavigationSystem.h"
 #include "../AIPawn.h"
 #include "../MonsterAnimInstance.h"
+#include "Interface/PA_AIInterface.h"
 
 UBTTask_FindPatrolPos::UBTTask_FindPatrolPos()
 {
@@ -30,18 +31,22 @@ EBTNodeResult::Type UBTTask_FindPatrolPos::ExecuteTask(UBehaviorTreeComponent& O
 		return EBTNodeResult::Failed;
 	}
 
+
+	IPA_AIInterface* AIPawn = Cast<IPA_AIInterface>(Pawn);
+
 	FVector Origin = OwnerComp.GetBlackboardComponent()->GetValueAsVector(BBKEY_HOMEPOS);
+	float PatrolRadius = AIPawn->GetAIPatrolRadius();
 	FNavLocation NextPatrolPos;
-	if (NavSystem->GetRandomPointInNavigableRadius(Origin, 500.0f, NextPatrolPos))
+	if (NavSystem->GetRandomPointInNavigableRadius(Origin, PatrolRadius, NextPatrolPos))
 	{
+
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(BBKEY_PATROLPOS, NextPatrolPos.Location);
 
 		Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Walk);
 
 		return EBTNodeResult::Succeeded;
 	}
-
-
+	
 	return EBTNodeResult::Failed;
 }
 

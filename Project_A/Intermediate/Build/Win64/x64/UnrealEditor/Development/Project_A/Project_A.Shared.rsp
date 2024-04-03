@@ -259,9 +259,9 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AIModule\UHT"
 /I "Runtime\AIModule\Classes"
 /I "Runtime\AIModule\Public"
-/I "D:\RPG_Game\Project_A\Intermediate\Build\Win64\UnrealEditor\Inc\Project_A\UHT"
-/I "D:\RPG_Game\Project_A\Source\Project_A"
-/I "D:\RPG_Game\Project_A\Source"
+/I "D:\ProjectA\Project_A\Intermediate\Build\Win64\UnrealEditor\Inc\Project_A\UHT"
+/I "D:\ProjectA\Project_A\Source\Project_A"
+/I "D:\ProjectA\Project_A\Source"
 /I "..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT"
 /I "..\Plugins\EnhancedInput\Source\EnhancedInput\Public"
 /external:W0

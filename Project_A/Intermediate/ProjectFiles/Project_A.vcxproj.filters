@@ -109,6 +109,12 @@
     <ClInclude Include="..\..\Source\Project_A\AI\AIModule\BTTask_TraceTarget.h">
       <Filter>Source\Project_A\AI\AIModule</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AIModule\MyBTTask_NormalAttack_B.cpp">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AIModule\MyBTTask_NormalAttack_B.h">
+      <Filter>Source\Project_A\AI\AIModule</Filter>
+    </ClInclude>
     <Filter Include="Source\Project_A\Animation">
       <UniqueIdentifier>{34E46255-1062-399A-9577-782E7000DAFF}</UniqueIdentifier>
     </Filter>
@@ -172,6 +178,12 @@
     <Filter Include="Source\Project_A\Interface">
       <UniqueIdentifier>{A0ECB8F6-C482-3F49-BF5A-C7CA78C851F2}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Interface\PA_AIInterface.cpp">
+      <Filter>Source\Project_A\Interface</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Interface\PA_AIInterface.h">
+      <Filter>Source\Project_A\Interface</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Project_A\Interface\PA_AnimationAttackInterface.cpp">
       <Filter>Source\Project_A\Interface</Filter>
     </ClCompile>

@@ -58,3 +58,23 @@ void AAIPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+float AAIPawn::GetAIPatrolRadius()
+{
+	return 500.0f;
+}
+
+float AAIPawn::GetAIDetectRange()
+{
+	return 0.0f;
+}
+
+float AAIPawn::GetAIAttackRange()
+{
+	return 0.0f;
+}
+
+float AAIPawn::GetAITurnSpeed()
+{
+	return 0.0f;
+}
+
