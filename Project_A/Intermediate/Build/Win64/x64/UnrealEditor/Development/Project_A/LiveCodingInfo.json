@@ -25,8 +25,15 @@
 			"PA_GameMode.gen.cpp.obj",
 			"PA_PlayerController.gen.cpp.obj",
 			"Project_A.init.gen.cpp.obj",
+			"AILich.cpp.obj",
 			"BTService_DetectTarget.cpp.obj",
+			"BTTask_FindPatrolPos.cpp.obj",
+			"BTTask_NormalAttack.cpp.obj",
 			"BTTask_TraceTarget.cpp.obj",
+			"MyBTTask_NormalAttack_B.cpp.obj",
+			"AIPawn.cpp.obj",
+			"MonsterAnimInstance.cpp.obj",
+			"MonsterPawn.cpp.obj",
 			"PA_AIController.cpp.obj",
 			"AnimNotify_AttackHitCheck.cpp.obj",
 			"PA_AnimInstance.cpp.obj",
@@ -37,17 +44,10 @@
 			"EffectBase.cpp.obj",
 			"GameInfo.cpp.obj",
 			"PA_GameMode.cpp.obj",
+			"PA_AIInterface.cpp.obj",
 			"PA_AnimationAttackInterface.cpp.obj",
 			"PA_PlayerController.cpp.obj",
-			"Project_A.cpp.obj",
-			"AILich.cpp.obj",
-			"BTTask_FindPatrolPos.cpp.obj",
-			"BTTask_NormalAttack.cpp.obj",
-			"MyBTTask_NormalAttack_B.cpp.obj",
-			"AIPawn.cpp.obj",
-			"MonsterAnimInstance.cpp.obj",
-			"MonsterPawn.cpp.obj",
-			"PA_AIInterface.cpp.obj"
+			"Project_A.cpp.obj"
 		]
 	}
 }
