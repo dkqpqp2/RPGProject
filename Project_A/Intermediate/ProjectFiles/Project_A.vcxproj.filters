@@ -61,6 +61,12 @@
     <ClInclude Include="..\..\Source\Project_A\AI\AIPawn.h">
       <Filter>Source\Project_A\AI</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\Project_A\AI\AISpawnPoint.cpp">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\AI\AISpawnPoint.h">
+      <Filter>Source\Project_A\AI</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\Project_A\AI\MonsterAnimInstance.cpp">
       <Filter>Source\Project_A\AI</Filter>
     </ClCompile>
@@ -189,6 +195,15 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Project_A\Interface\PA_AnimationAttackInterface.h">
       <Filter>Source\Project_A\Interface</Filter>
+    </ClInclude>
+    <Filter Include="Source\Project_A\Item">
+      <UniqueIdentifier>{1ADC4232-5270-3553-B2D5-E268D865A2C2}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Project_A\Item\PA_ItemBase.cpp">
+      <Filter>Source\Project_A\Item</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Project_A\Item\PA_ItemBase.h">
+      <Filter>Source\Project_A\Item</Filter>
     </ClInclude>
     <Filter Include="Source\Project_A\Physics">
       <UniqueIdentifier>{13997B6F-370D-3450-AFF6-67E25AACD636}</UniqueIdentifier>

@@ -26,4 +26,5 @@ public:
 	virtual float GetAIDetectRange() = 0;
 	virtual float GetAIAttackRange() = 0;
 	virtual float GetAITurnSpeed() = 0;
+
 };

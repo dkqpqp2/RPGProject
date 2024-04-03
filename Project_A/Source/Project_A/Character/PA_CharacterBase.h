@@ -36,6 +36,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_ComboActionData> ComboActionData;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Equipment, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class USkeletalMeshComponent> Weapon;
+
 	void ProcessComboCommand();
 	void ComboActionBegin();
 	void ComboActionEnd(class UAnimMontage* TargetMontage, bool IsProperlyEnded);

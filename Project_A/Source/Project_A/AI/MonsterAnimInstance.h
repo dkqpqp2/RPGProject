@@ -14,6 +14,7 @@ enum class EMonsterAnimType : uint8
 	Walk,
 	AttackLeft,
 	AttackRight,
+	Spawn,
 	Death,
 	Skill
 };

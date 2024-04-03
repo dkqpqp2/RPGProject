@@ -40,6 +40,17 @@ EBTNodeResult::Type UBTTask_FindPatrolPos::ExecuteTask(UBehaviorTreeComponent& O
 	if (NavSystem->GetRandomPointInNavigableRadius(Origin, PatrolRadius, NextPatrolPos))
 	{
 
+		FVector AILocation = Pawn->GetActorLocation();
+		FVector Dir = NextPatrolPos.Location - AILocation;
+
+		Dir.Z = 0.0f;
+
+		FRotator Rot = FRotationMatrix::MakeFromX(Dir).Rotator();
+		Rot.Pitch = 0.0f;
+		Rot.Roll = 0.0f;
+
+		Pawn->SetActorRotation(Rot);
+
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(BBKEY_PATROLPOS, NextPatrolPos.Location);
 
 		Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Walk);

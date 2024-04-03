@@ -69,6 +69,8 @@ APA_CharacterBase::APA_CharacterBase()
 		ComboActionData = ComboActionDataRef.Object;
 	}
 
+	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
+	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
 
 }
 
