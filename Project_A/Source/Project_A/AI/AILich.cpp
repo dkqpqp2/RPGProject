@@ -6,6 +6,7 @@
 #include "MonsterAnimInstance.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "../Effect/EffectBase.h"
+#include "Physics/PA_Collision.h"
 
 AAILich::AAILich()
 {
@@ -29,7 +30,7 @@ AAILich::AAILich()
 
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
 	MonsterCapsule->SetCapsuleRadius(42.0f);
-	MonsterCapsule->SetCollisionProfileName(TEXT("Pawn"));
+	MonsterCapsule->SetCollisionProfileName(CPROFILE_PAMONSTERCAPSULE);
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
@@ -119,3 +120,18 @@ void AAILich::NormalAttack_B()
 		//Effect->SetSoundAsset(TEXT(""));
 	}
 }
+
+void AAILich::SetDead()
+{
+	Super::SetDead();
+
+	FTimerHandle DeadTimerHandle;
+
+	GetWorld()->GetTimerManager().SetTimer(DeadTimerHandle, FTimerDelegate::CreateLambda(
+		[&]()
+		{
+			Destroy();
+		}
+	), DeadEventDelaytime, false);
+}
+

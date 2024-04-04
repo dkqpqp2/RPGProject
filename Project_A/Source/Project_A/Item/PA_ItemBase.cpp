@@ -32,7 +32,7 @@ APA_ItemBase::APA_ItemBase()
 	Mesh->SetRelativeLocation(FVector(0.0f, -3.5f, -30.0f));
 	Mesh->SetCollisionProfileName(TEXT("NoCollision"));
 
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> EffectRef(TEXT("/Script/Engine.ParticleSystem'/Game/UndeadPack/SkeletonEnemy/Particles/P_Smoke_FX.P_Smoke_FX'"));
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> EffectRef(TEXT("/Script/Engine.Texture2D'/Game/InfinityBladeWeapons/Effects/FX/T_FogPlane01_Clouds.T_FogPlane01_Clouds'"));
 	if (EffectRef.Object)
 	{
 		Effect->SetTemplate(EffectRef.Object);

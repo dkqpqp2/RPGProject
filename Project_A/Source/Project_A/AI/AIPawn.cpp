@@ -4,6 +4,7 @@
 #include "AIPawn.h"
 #include "PA_AIController.h"
 #include "AISpawnPoint.h"
+#include "MonsterAnimInstance.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -53,8 +54,19 @@ void AAIPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 	if (SpawnPoint)
 	{
-		SpawnPoint->ClearSpawnObject();
+		SpawnPoint->ClearSpawnObject(); 
 	}
+}
+
+float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	DamageAmount = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
+
+	SetDead();
+
+	return DamageAmount;
 }
 
 // Called every frame
@@ -64,12 +76,6 @@ void AAIPawn::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void AAIPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
 
 float AAIPawn::GetAIPatrolRadius()
 {
@@ -90,5 +96,13 @@ float AAIPawn::GetAITurnSpeed()
 {
 	return 0.0f;
 }
+
+void AAIPawn::SetDead()
+{
+	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
+	SetActorEnableCollision(false);
+}
+
+
 
 

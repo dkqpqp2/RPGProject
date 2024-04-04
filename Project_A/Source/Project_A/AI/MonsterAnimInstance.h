@@ -52,6 +52,4 @@ public:
 	UFUNCTION()
 	void AnimNotify_AttackRight();
 
-	UFUNCTION()
-	void AnimNotify_AttackRightEnd();
 };

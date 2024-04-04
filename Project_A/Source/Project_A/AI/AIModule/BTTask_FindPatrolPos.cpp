@@ -53,7 +53,7 @@ EBTNodeResult::Type UBTTask_FindPatrolPos::ExecuteTask(UBehaviorTreeComponent& O
 
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(BBKEY_PATROLPOS, NextPatrolPos.Location);
 
-		Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Walk);
+		Pawn->ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Walk));
 
 		return EBTNodeResult::Succeeded;
 	}

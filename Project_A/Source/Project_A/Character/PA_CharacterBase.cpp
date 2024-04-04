@@ -167,7 +167,9 @@ void APA_CharacterBase::AttackHitCheck()
 	bool HitDetected = GetWorld()->SweepSingleByChannel(OutHitResult, Start, End, FQuat::Identity, CCHANNEL_PAACTION, FCollisionShape::MakeSphere(AttackRadius), Params);
 	if (HitDetected)
 	{
+		FDamageEvent DmgEvent;
 
+		OutHitResult.GetActor()->TakeDamage(25.f, DmgEvent, GetController(), this);
 	}
 
 #if ENABLE_DRAW_DEBUG

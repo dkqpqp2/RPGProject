@@ -12,5 +12,17 @@ UCLASS()
 class PROJECT_A_API AAIGoblin : public AMonsterPawn
 {
 	GENERATED_BODY()
-	
+
+public:
+	AAIGoblin();
+
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	virtual void NormalAttack();
+	virtual void NormalAttack_B();
+
+	void SetDead() override;
+
 };

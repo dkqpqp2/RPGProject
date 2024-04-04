@@ -24,4 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void NormalAttack();
 	virtual void NormalAttack_B();
+
+	void SetDead() override;
+
 };
