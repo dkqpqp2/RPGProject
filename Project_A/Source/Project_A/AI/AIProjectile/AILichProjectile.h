@@ -29,13 +29,6 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = Projectile)
 	UProjectileMovementComponent* Projectile;
 
-
-
-	
-public:	
-	// Sets default values for this actor's properties
-	AAILichProjectile();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

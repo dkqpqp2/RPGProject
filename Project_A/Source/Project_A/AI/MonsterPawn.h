@@ -31,4 +31,5 @@ public:
 
 	virtual void NormalAttack();
 	virtual void NormalAttack_B();
+	virtual void SkillA();
 };

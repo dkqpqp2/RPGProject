@@ -44,3 +44,7 @@ void AMonsterPawn::NormalAttack()
 void AMonsterPawn::NormalAttack_B()
 {
 }
+
+void AMonsterPawn::SkillA()
+{
+}

@@ -2,6 +2,11 @@
 
 
 #include "AILichProjectile.h"
+#include "NiagaraComponent.h"
+#include "NiagaraSystem.h"
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "Effect/EffectBase.h"
+
 
 // Sets default values
 AAILichProjectile::AAILichProjectile()
@@ -13,10 +18,17 @@ AAILichProjectile::AAILichProjectile()
 	Projectile = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile"));
 
 	RootComponent = Mesh;
-	SphereTrigger->SetupAttachment(Mesh);
 	Niagara->SetupAttachment(Mesh);
-	Projectile->SetupAttachment(Mesh);
+	SphereTrigger->SetupAttachment(Mesh);
+	Mesh->SetCollisionProfileName(TEXT("EnemyAttack"));
 
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> StaticMeshRef(TEXT("/Script/Engine.StaticMesh'/Game/InfinityBladeWeapons/Weapons/Staff/StaticMesh/SM_Stf_StaffofAncients.SM_Stf_StaffofAncients'"));
+	if (StaticMeshRef.Object)
+	{
+		Mesh->SetStaticMesh(StaticMeshRef.Object);
+	}
+
+	
 
 }
 
@@ -31,6 +43,7 @@ void AAILichProjectile::BeginPlay()
 void AAILichProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 
 }
 

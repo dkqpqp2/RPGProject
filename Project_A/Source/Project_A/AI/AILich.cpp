@@ -7,6 +7,7 @@
 #include "GameFramework/FloatingPawnMovement.h"
 #include "../Effect/EffectBase.h"
 #include "Physics/PA_Collision.h"
+#include "AIProjectile/AILichProjectile.h"
 
 AAILich::AAILich()
 {
@@ -119,6 +120,20 @@ void AAILich::NormalAttack_B()
 		Effect->SetNiagaraAsset(FSoftObjectPath(TEXT("/Game/KTP_Effect/Particles/Fly/Explosion_01_01.Explosion_01_01")));
 		//Effect->SetSoundAsset(TEXT(""));
 	}
+}
+
+void AAILich::SkillA()
+{
+
+
+	FVector vPos = GetActorLocation() + GetActorUpVector() * 30.f + GetActorForwardVector() * 100.f;
+
+	// 스폰 파라미터를 설정한다
+	FActorSpawnParameters params;
+	params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+	// 월드에 액터를 배치한다
+	AAILichProjectile* ProjectileArrow = GetWorld()->SpawnActor<AAILichProjectile>(AILichProjectileClass, vPos, GetActorRotation(), params);
 }
 
 void AAILich::SetDead()
