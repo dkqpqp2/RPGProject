@@ -129,6 +129,7 @@ void AAIPawn::SetDead()
 {
 	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
 	SetActorEnableCollision(false);
+	HpBar->SetHiddenInGame(true);
 }
 
 void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
