@@ -6,16 +6,19 @@
 #include "GameFramework/Pawn.h"
 #include "GameFrameWork/FloatingPawnMovement.h"
 #include "../Interface/PA_AIInterface.h"
+#include "../Interface/PA_MonsterWidgetInterface.h"
 #include "AIPawn.generated.h"
 
 UCLASS()
-class PROJECT_A_API AAIPawn : public APawn, public IPA_AIInterface
+class PROJECT_A_API AAIPawn : public APawn, public IPA_AIInterface, public IPA_MonsterWidgetInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
 	AAIPawn();
+
+	virtual void PostInitializeComponents() override;
 
 public:
 
@@ -101,5 +104,15 @@ protected:
 	virtual void SetDead();
 
 	float DeadEventDelaytime = 5.0f;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UPA_MonsterStatComponent> Stat;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UPA_MonsterWidgetComponent> HpBar;
+
+	virtual void SetupMonsterWidget(class UPA_MonsterWidget* InMonsterWidget) override;
 
 };

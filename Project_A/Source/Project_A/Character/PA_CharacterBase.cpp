@@ -8,6 +8,8 @@
 #include "Animation/AnimMontage.h"
 #include "PA_ComboActionData.h"
 #include "Physics/PA_Collision.h"
+#include "CharacterStat/PA_CharacterStatComponent.h"
+#include "Components/WidgetComponent.h"
 
 
 // Sets default values
@@ -71,6 +73,20 @@ APA_CharacterBase::APA_CharacterBase()
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
 	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
+
+	Stat = CreateDefaultSubobject<UPA_CharacterStatComponent>(TEXT("Stat"));
+
+	HpBar = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
+	HpBar->SetupAttachment(GetMesh());
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
+	static ConstructorHelpers::FClassFinder<UUserWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_HpBar.WBP_HpBar_C"));
+	if (HpBarWidgetRef.Class)
+	{
+		HpBar->SetWidgetClass(HpBarWidgetRef.Class);
+		HpBar->SetWidgetSpace(EWidgetSpace::Screen);
+		HpBar->SetDrawSize(FVector2D(150.0f, 15.0f));
+		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 
 }
 

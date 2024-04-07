@@ -122,19 +122,6 @@ void AAILich::NormalAttack_B()
 	}
 }
 
-void AAILich::SkillA()
-{
-
-
-	FVector vPos = GetActorLocation() + GetActorUpVector() * 30.f + GetActorForwardVector() * 100.f;
-
-	// 스폰 파라미터를 설정한다
-	FActorSpawnParameters params;
-	params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-
-	// 월드에 액터를 배치한다
-	AAILichProjectile* ProjectileArrow = GetWorld()->SpawnActor<AAILichProjectile>(AILichProjectileClass, vPos, GetActorRotation(), params);
-}
 
 void AAILich::SetDead()
 {

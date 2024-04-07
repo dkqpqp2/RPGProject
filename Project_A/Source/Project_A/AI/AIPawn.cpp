@@ -5,6 +5,10 @@
 #include "PA_AIController.h"
 #include "AISpawnPoint.h"
 #include "MonsterAnimInstance.h"
+#include "AI/AIStat/PA_MonsterStatComponent.h"
+#include "AI/AIUI/PA_MonsterWidgetComponent.h"
+#include "AI/AIUI/PA_MonsterHpBarWidget.h"
+#include "Components/WidgetComponent.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -34,6 +38,30 @@ AAIPawn::AAIPawn()
 	}
 
 	SpawnPoint = nullptr;
+	
+	Stat = CreateDefaultSubobject<UPA_MonsterStatComponent>(TEXT("Stat"));
+	HpBar = CreateDefaultSubobject<UPA_MonsterWidgetComponent>(TEXT("Widget"));
+	HpBar->SetupAttachment(GetMesh());
+	// 
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
+	static ConstructorHelpers::FClassFinder<UPA_MonsterWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_MonsteHpBar.WBP_MonsterHpBar_C"));
+	if (HpBarWidgetRef.Class)
+	{
+		HpBar->SetWidgetClass(HpBarWidgetRef.Class);
+		HpBar->SetWidgetSpace(EWidgetSpace::Screen);
+		HpBar->SetDrawSize(FVector2D(150.0f, 15.0f));
+		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+
+
+
+}
+
+void AAIPawn::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	Stat->OnHpZero.AddUObject(this, &AAIPawn::SetDead);
 
 }
 
@@ -64,7 +92,7 @@ float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
 
-	SetDead();
+	Stat->ApplyDamage(DamageAmount);
 
 	return DamageAmount;
 }
@@ -101,6 +129,18 @@ void AAIPawn::SetDead()
 {
 	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
 	SetActorEnableCollision(false);
+}
+
+void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
+{
+	UPA_MonsterHpBarWidget* HpBarWidget = Cast<UPA_MonsterHpBarWidget>(InMonsterWidget);
+
+	if (HpBarWidget)
+	{
+		HpBarWidget->SetMaxHp(Stat->GetMaxHp());
+		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
+		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
+	}
 }
 
 
