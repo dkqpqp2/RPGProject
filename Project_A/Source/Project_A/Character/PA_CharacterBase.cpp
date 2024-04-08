@@ -9,7 +9,11 @@
 #include "PA_ComboActionData.h"
 #include "Physics/PA_Collision.h"
 #include "CharacterStat/PA_CharacterStatComponent.h"
-#include "Components/WidgetComponent.h"
+#include "UI/PA_WidgetComponent.h"
+#include "UI/PA_HpBarWidget.h"
+#include "Item/PA_WeaponItemData.h"
+
+DEFINE_LOG_CATEGORY(LogPACharacter);
 
 
 // Sets default values
@@ -71,12 +75,18 @@ APA_CharacterBase::APA_CharacterBase()
 		ComboActionData = ComboActionDataRef.Object;
 	}
 
+	static ConstructorHelpers::FObjectFinder<UAnimMontage> DeadMontageRef(TEXT("/Script/Engine.AnimMontage'/Game/Project_A/Animation/AM_Dead.AM_Dead'"));
+	if (DeadMontageRef.Object)
+	{
+		DeadMontage = DeadMontageRef.Object;
+	}
+
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
 	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
 
 	Stat = CreateDefaultSubobject<UPA_CharacterStatComponent>(TEXT("Stat"));
 
-	HpBar = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
+	HpBar = CreateDefaultSubobject<UPA_WidgetComponent>(TEXT("Widget"));
 	HpBar->SetupAttachment(GetMesh());
 	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
 	static ConstructorHelpers::FClassFinder<UUserWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_HpBar.WBP_HpBar_C"));
@@ -87,6 +97,16 @@ APA_CharacterBase::APA_CharacterBase()
 		HpBar->SetDrawSize(FVector2D(150.0f, 15.0f));
 		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
+
+	TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &APA_CharacterBase::EquipWeapon)));
+
+}
+
+void APA_CharacterBase::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	Stat->OnHpZero.AddUObject(this, &APA_CharacterBase::SetDead);
 
 }
 
@@ -200,4 +220,64 @@ void APA_CharacterBase::AttackHitCheck()
 #endif
 }
 
+
+float APA_CharacterBase::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
+
+	Stat->ApplyDamage(DamageAmount);
+
+	return DamageAmount;
+}
+
+void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
+{
+	UPA_HpBarWidget* HpBarWidget = Cast<UPA_HpBarWidget>(InUserWidget);
+	if (HpBarWidget)
+	{
+		HpBarWidget->SetMaxHp(Stat->GetMaxHp());
+		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
+		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_HpBarWidget::UpdateHpBar);
+
+	}
+}
+
+void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
+{
+	if (InItemData)
+	{
+		TakeItemActions[(uint8)InItemData->Type].ItemDelegate.ExecuteIfBound(InItemData);
+	}
+}
+
+void APA_CharacterBase::EquipWeapon(UPA_ItemData* InItemData)
+{
+	UPA_WeaponItemData* WeaponItemData = Cast<UPA_WeaponItemData>(InItemData);
+
+	if (WeaponItemData)
+	{
+		if (WeaponItemData->WeaponMesh.IsPending())
+		{
+			WeaponItemData->WeaponMesh.LoadSynchronous();
+		}
+		Weapon->SetSkeletalMesh(WeaponItemData->WeaponMesh.Get());
+	}
+}
+
+void APA_CharacterBase::SetDead()
+{
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
+	PlayDeadAnimation();
+	SetActorEnableCollision(false);
+	HpBar->SetHiddenInGame(true);
+}
+
+void APA_CharacterBase::PlayDeadAnimation()
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	AnimInstance->StopAllMontages(0.0f);
+	AnimInstance->Montage_Play(DeadMontage, 1.0f);
+}
 

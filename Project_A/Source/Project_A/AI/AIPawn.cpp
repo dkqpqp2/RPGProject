@@ -42,9 +42,8 @@ AAIPawn::AAIPawn()
 	Stat = CreateDefaultSubobject<UPA_MonsterStatComponent>(TEXT("Stat"));
 	HpBar = CreateDefaultSubobject<UPA_MonsterWidgetComponent>(TEXT("Widget"));
 	HpBar->SetupAttachment(GetMesh());
-	// 
 	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
-	static ConstructorHelpers::FClassFinder<UPA_MonsterWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_MonsteHpBar.WBP_MonsterHpBar_C"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_MonsterHpBar.WBP_MonsterHpBar_C"));
 	if (HpBarWidgetRef.Class)
 	{
 		HpBar->SetWidgetClass(HpBarWidgetRef.Class);
@@ -73,6 +72,7 @@ void AAIPawn::ChangeAIAnimType(uint8 AnimType)
 void AAIPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
 	
 }
 
@@ -88,7 +88,7 @@ void AAIPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	DamageAmount = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
 
@@ -125,13 +125,6 @@ float AAIPawn::GetAITurnSpeed()
 	return 0.0f;
 }
 
-void AAIPawn::SetDead()
-{
-	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
-	SetActorEnableCollision(false);
-	HpBar->SetHiddenInGame(true);
-}
-
 void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
 {
 	UPA_MonsterHpBarWidget* HpBarWidget = Cast<UPA_MonsterHpBarWidget>(InMonsterWidget);
@@ -143,6 +136,14 @@ void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
 		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
 	}
 }
+
+void AAIPawn::SetDead()
+{
+	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
+	SetActorEnableCollision(false);
+	HpBar->SetHiddenInGame(true);
+}
+
 
 
 

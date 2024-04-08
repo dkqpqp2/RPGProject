@@ -3,10 +3,25 @@
 
 #include "PA_HpBarWidget.h"
 #include "Components/ProgressBar.h"
+#include "Interface/PA_CharacterWidgetInterface.h"
 
 UPA_HpBarWidget::UPA_HpBarWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	MaxHp = -1.0f;
+}
+
+void UPA_HpBarWidget::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	HpProgressBar = Cast<UProgressBar>(GetWidgetFromName(TEXT("PbHpBar")));
+	ensure(HpProgressBar);
+
+	IPA_CharacterWidgetInterface* CharacterWidget = Cast<IPA_CharacterWidgetInterface>(OwningActor);
+	if (CharacterWidget)
+	{
+		CharacterWidget->SetupCharacterWidget(this);
+	}
 }
 
 void UPA_HpBarWidget::UpdateHpBar(float NewCurrentHp)
@@ -16,12 +31,4 @@ void UPA_HpBarWidget::UpdateHpBar(float NewCurrentHp)
 	{
 		HpProgressBar->SetPercent(NewCurrentHp / MaxHp);
 	}
-}
-
-void UPA_HpBarWidget::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	HpProgressBar = Cast<UProgressBar>(GetWidgetFromName(TEXT("PbHpBar")));
-	ensure(HpProgressBar);
 }

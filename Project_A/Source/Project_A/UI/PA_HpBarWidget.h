@@ -3,14 +3,14 @@
 #pragma once
 
 #include "../GameInfo.h"
-#include "Blueprint/UserWidget.h"
+#include "PA_UserWidget.h"
 #include "PA_HpBarWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_A_API UPA_HpBarWidget : public UUserWidget
+class PROJECT_A_API UPA_HpBarWidget : public UPA_UserWidget
 {
 	GENERATED_BODY()
 	

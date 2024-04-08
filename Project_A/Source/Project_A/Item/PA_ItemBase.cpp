@@ -6,6 +6,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Physics/PA_Collision.h"
+#include "Interface/PA_CharacterItemInterface.h"
 
 
 // Sets default values
@@ -32,7 +33,7 @@ APA_ItemBase::APA_ItemBase()
 	Mesh->SetRelativeLocation(FVector(0.0f, -3.5f, -30.0f));
 	Mesh->SetCollisionProfileName(TEXT("NoCollision"));
 
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> EffectRef(TEXT("/Script/Engine.Texture2D'/Game/InfinityBladeWeapons/Effects/FX/T_FogPlane01_Clouds.T_FogPlane01_Clouds'"));
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> EffectRef(TEXT("/Script/Engine.ParticleSystem'/Game/Watermills/Particles/P_Water_Splashes.P_Water_Splashes'"));
 	if (EffectRef.Object)
 	{
 		Effect->SetTemplate(EffectRef.Object);
@@ -42,6 +43,13 @@ APA_ItemBase::APA_ItemBase()
 
 void APA_ItemBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OthderBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult)
 {
+
+	IPA_CharacterItemInterface* OverlappingPawn = Cast<IPA_CharacterItemInterface>(OtherActor);
+	if (OverlappingPawn)
+	{
+		OverlappingPawn->TakeItem(Item);
+	}
+
 	Effect->Activate(true);
 	Mesh->SetHiddenInGame(true);
 	SetActorEnableCollision(false);

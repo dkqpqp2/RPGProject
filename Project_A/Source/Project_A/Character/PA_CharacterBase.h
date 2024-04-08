@@ -5,7 +5,11 @@
 #include "../GameInfo.h"
 #include "GameFramework/Character.h"
 #include "Interface/PA_AnimationAttackInterface.h"
+#include "Interface/PA_CharacterWidgetInterface.h"
+#include "Interface/PA_CharacterItemInterface.h"
 #include "PA_CharacterBase.generated.h"
+
+DECLARE_LOG_CATEGORY_EXTERN(LogPACharacter, Log, All);
 
 UENUM()
 enum class ECharacterControlType : uint8
@@ -14,14 +18,26 @@ enum class ECharacterControlType : uint8
 	Quater
 };
 
+DECLARE_DELEGATE_OneParam(FOnTakeItemDelegate, class UPA_ItemData* /*InItemData*/)
+USTRUCT(BlueprintType)
+struct FTakeItemDelegateWrapper
+{
+	GENERATED_BODY()
+	FTakeItemDelegateWrapper() {}
+	FTakeItemDelegateWrapper(const FOnTakeItemDelegate& InItemDelegate) : ItemDelegate(InItemDelegate) {}
+	FOnTakeItemDelegate ItemDelegate;
+};
+
 UCLASS()
-class PROJECT_A_API APA_CharacterBase : public ACharacter, public IPA_AnimationAttackInterface
+class PROJECT_A_API APA_CharacterBase : public ACharacter, public IPA_AnimationAttackInterface, public IPA_CharacterWidgetInterface, public IPA_CharacterItemInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
 	APA_CharacterBase();
+	
+	virtual void PostInitializeComponents() override;
 
 protected:
 	virtual void SetCharacterControlData(const class UPA_CharacterControlData* CharacterControlData);
@@ -49,8 +65,20 @@ protected:
 	FTimerHandle ComboTimerHandle;
 	bool HasNextComboCommand = false;
 
+public:
+	
+
 protected:
 	virtual void AttackHitCheck() override;
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
+	virtual void SetDead();
+	void PlayDeadAnimation();
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UAnimMontage> DeadMontage;
+
+
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
@@ -58,5 +86,14 @@ protected:
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<class UWidgetComponent> HpBar;
+	TObjectPtr<class UPA_WidgetComponent> HpBar;
+
+	virtual void SetupCharacterWidget(class UPA_UserWidget* InUserWidget) override;
+
+protected:
+	UPROPERTY()
+	TArray<FTakeItemDelegateWrapper> TakeItemActions;
+
+	virtual void TakeItem(UPA_ItemData* InItemData) override;
+	virtual void EquipWeapon(class UPA_ItemData* InItemData);
 };

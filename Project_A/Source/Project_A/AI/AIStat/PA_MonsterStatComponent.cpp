@@ -35,7 +35,7 @@ float UPA_MonsterStatComponent::ApplyDamage(float InDamage)
 
 void UPA_MonsterStatComponent::SetHp(float NewHp)
 {
-	CurrentHp = FMath::Clamp<float>(NewHp, 0.0, MaxHp);
+	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, MaxHp);
 
 	OnHpChanged.Broadcast(CurrentHp);
 }
