@@ -10,7 +10,10 @@ struct FPA_CharacterData : public FTableRowBase
 	GENERATED_BODY()
 
 public:
-	FPA_CharacterData() : MaxHp(0.0f), AttackDamage(0.0f), AttackRange(0.0f), AttackSpeed(0.0f), MovementSpeed(0.0f), TraceDistance(0.0f) {}
+	FPA_CharacterData() : Level(1.0f), MaxHp(0.0f), AttackDamage(0.0f), AttackRange(0.0f), AttackSpeed(0.0f), MaxExp(0.0f), MovementSpeed(0.0f) {}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
+	float Level = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float MaxHp;
@@ -23,12 +26,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float AttackSpeed;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
+	float MaxExp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float MovementSpeed;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
-	float TraceDistance;
 
 	FPA_CharacterData operator+(const FPA_CharacterData& Other) const
 	{

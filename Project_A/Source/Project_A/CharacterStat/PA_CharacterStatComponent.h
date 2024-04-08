@@ -4,6 +4,7 @@
 
 #include "../GameInfo.h"
 #include "Components/ActorComponent.h"
+#include "GameData/PA_CharacterData.h"
 #include "PA_CharacterStatComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(FOnHpZeroDelegate);
@@ -27,18 +28,26 @@ public:
 	FOnHpZeroDelegate OnHpZero;
 	FOnHpChangedDelegate OnHpChanged;
 
-	FORCEINLINE float GetMaxHp(){ return MaxHp; }
+	void SetLevelStat(int32 InNewLevel);
+	FORCEINLINE float GetCurrentLevel() const { return CurrentLevel; }
+	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat) { ModifierStat = InModifierStat; }
+	FORCEINLINE FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
 	float ApplyDamage(float InDamage);
 
 protected:
 	void SetHp(float NewHp);
-	UPROPERTY(VisibleInstanceOnly, Category = Stat)
-	float MaxHp;
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
 
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
+	float CurrentLevel;
 
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	FPA_CharacterData BaseStat;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	FPA_CharacterData ModifierStat;;
 		
 };
