@@ -3,6 +3,7 @@
 
 #include "PA_GameMode.h"
 #include "Player/PA_PlayerController.h"
+#include "../Character/PA_CharacterState.h"
 
 APA_GameMode::APA_GameMode()
 {
@@ -17,4 +18,6 @@ APA_GameMode::APA_GameMode()
 	{
 		PlayerControllerClass = PlayerControllerClassRef.Class;
 	}
+
+	PlayerStateClass = APA_CharacterState::StaticClass();
 }
