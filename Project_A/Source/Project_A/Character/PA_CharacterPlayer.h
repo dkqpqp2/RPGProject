@@ -4,14 +4,14 @@
 
 #include "../GameInfo.h"
 #include "Character/PA_CharacterBase.h"
-
+#include "Interface/PA_CharacterHUDInterface.h"
 #include "PA_CharacterPlayer.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_A_API APA_CharacterPlayer : public APA_CharacterBase
+class PROJECT_A_API APA_CharacterPlayer : public APA_CharacterBase, public IPA_CharacterHUDInterface
 {
 	GENERATED_BODY()
 
@@ -64,4 +64,7 @@ protected:
 	ECharacterControlType CurrentCharacterControlType;
 
 	void Attack();
+
+protected:
+	virtual void SetupHUDWidget(class UPA_HUDWidget* InHUDWidget) override;
 };

@@ -88,6 +88,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_WidgetComponent> HpBar;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UWidgetComponent> ExpBar;
+
 	virtual void SetupCharacterWidget(class UPA_UserWidget* InUserWidget) override;
 
 protected:

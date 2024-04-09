@@ -90,7 +90,7 @@ float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("Dmg : %.2f"), DamageAmount));
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("DmgPlayer : %.2f"), DamageAmount));
 
 	Stat->ApplyDamage(DamageAmount);
 

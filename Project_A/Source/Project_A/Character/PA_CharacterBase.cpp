@@ -11,6 +11,7 @@
 #include "CharacterStat/PA_CharacterStatComponent.h"
 #include "UI/PA_WidgetComponent.h"
 #include "UI/PA_HpBarWidget.h"
+#include "UI/PA_ExpBarWidget.h"
 #include "Item/PA_WeaponItemData.h"
 #include "PA_CharacterState.h"
 
@@ -141,7 +142,7 @@ void APA_CharacterBase::ComboActionBegin()
 	CurrentCombo = 1;
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_None);
 
-	const float AttackSpeedRate = 1.0f;
+	const float AttackSpeedRate = Stat->GetTotalStat().AttackSpeed;
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	AnimInstance->Montage_Play(ComboActionMontage, AttackSpeedRate);
 	
@@ -167,7 +168,7 @@ void APA_CharacterBase::SetComboCheckTimer()
 	int32 ComboIndex = CurrentCombo - 1;
 	ensure(ComboActionData->EFfecttiveFrameCount.IsValidIndex(ComboIndex));
 
-	const float AttackSpeedRate = 1.0f;
+	const float AttackSpeedRate = Stat->GetTotalStat().AttackSpeed;
 	float ComboEffectiveTime = (ComboActionData->EFfecttiveFrameCount[ComboIndex] / ComboActionData->FrameRate) / AttackSpeedRate;
 	if (ComboEffectiveTime > 0.0f)
 	{
@@ -197,11 +198,11 @@ void APA_CharacterBase::AttackHitCheck()
 
 	APA_CharacterState* State = GetPlayerState<APA_CharacterState>();
 
-	const float AttackRange = 40.0f;
+	const float AttackRange = Stat->GetTotalStat().AttackRange;
 	const float AttackRadius = 50.0f;
-	const float AttackDamage = State->AttachDamage;
-	const FVector Start = GetActorLocation();
-	const FVector End = Start + GetActorForwardVector() * State->AttackDistance;
+	const float AttackDamage = Stat->GetTotalStat().AttackDamage;
+	const FVector Start = GetActorLocation() + GetActorForwardVector() * GetCapsuleComponent()->GetScaledCapsuleRadius();
+	const FVector End = Start + GetActorForwardVector() * AttackRange;
 
 	bool HitDetected = GetWorld()->SweepSingleByChannel(OutHitResult, Start, End, FQuat::Identity, CCHANNEL_PAACTION, FCollisionShape::MakeSphere(AttackRadius), Params);
 	if (HitDetected)
@@ -214,7 +215,7 @@ void APA_CharacterBase::AttackHitCheck()
 #if ENABLE_DRAW_DEBUG
 
 	FVector CapsuleOrigin = Start + (End - Start) + 0.5f;
-	float CapsuleHalfHeight = State->AttackDistance * 0.5f;
+	float CapsuleHalfHeight = AttackRange * 0.5f;
 	FColor DrawColor = HitDetected ? FColor::Red : FColor::Green;
 
 	DrawDebugCapsule(GetWorld(), CapsuleOrigin, CapsuleHalfHeight, AttackRadius, FRotationMatrix::MakeFromZ(GetActorForwardVector()).ToQuat(), DrawColor, false, 5.0f);
@@ -240,9 +241,18 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 	UPA_HpBarWidget* HpBarWidget = Cast<UPA_HpBarWidget>(InUserWidget);
 	if (HpBarWidget)
 	{
-		HpBarWidget->SetMaxHp(Stat->GetMaxHp());
+		HpBarWidget->SetMaxHp(Stat->GetTotalStat().MaxHp);
 		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
 		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_HpBarWidget::UpdateHpBar);
+
+	}
+
+	UPA_ExpBarWidget* ExpBarWidget = Cast<UPA_ExpBarWidget>(InUserWidget);
+	if (ExpBarWidget)
+	{
+		ExpBarWidget->SetMaxExp(Stat->GetTotalStat().MaxExp);
+		ExpBarWidget->UpdateExpBar(Stat->GetCurrentExp());
+		Stat->OnHpChanged.AddUObject(ExpBarWidget, &UPA_ExpBarWidget::UpdateExpBar);
 
 	}
 }

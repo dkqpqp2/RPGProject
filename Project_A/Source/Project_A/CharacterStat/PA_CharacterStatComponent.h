@@ -9,6 +9,9 @@
 
 DECLARE_MULTICAST_DELEGATE(FOnHpZeroDelegate);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnHpChangedDelegate, float /*CurrentHp*/);
+DECLARE_MULTICAST_DELEGATE(FOnExpFullDelegate);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnExpChangedDelegate, float /*CurrentExp*/);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatChangedDelegate, const FPA_CharacterData& /*BaseStat*/, const FPA_CharacterData& /*ModifierStat*/);
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -16,30 +19,48 @@ class PROJECT_A_API UPA_CharacterStatComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	// Sets default values for this component's properties
+public:
 	UPA_CharacterStatComponent();
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+	virtual void InitializeComponent() override;
 
 public:
 	FOnHpZeroDelegate OnHpZero;
 	FOnHpChangedDelegate OnHpChanged;
 
+	FOnExpFullDelegate OnExpFull;
+	FOnExpChangedDelegate OnExpChanged;
+	
+	FOnStatChangedDelegate OnStatChanged;
+
 	void SetLevelStat(int32 InNewLevel);
 	FORCEINLINE float GetCurrentLevel() const { return CurrentLevel; }
-	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat) { ModifierStat = InModifierStat; }
+	FORCEINLINE void SetBaseStat(const FPA_CharacterData& InBaseStat) { BaseStat = InBaseStat; OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat()); }
+	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat) { ModifierStat = InModifierStat; OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat()); }
+
+	FORCEINLINE FPA_CharacterData GetBaseStat() const { return BaseStat; }
+	FORCEINLINE FPA_CharacterData GetModifierStat() const { return ModifierStat; }
 	FORCEINLINE FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
 	float ApplyDamage(float InDamage);
 
+	FORCEINLINE float GetMaxExp() { return MaxExp; }
+	FORCEINLINE float GetCurrentExp() { return CurrentExp; }
+	float GetExp(float InExp);
+
 protected:
 	void SetHp(float NewHp);
+	void SetExp(float NewExp);
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
+
+	UPROPERTY(VisibleInstanceOnly, Category = Stat)
+	float MaxExp;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
+	float CurrentExp;
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentLevel;

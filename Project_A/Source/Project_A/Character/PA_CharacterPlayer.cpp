@@ -8,6 +8,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Character/PA_CharacterControlData.h"
+#include "UI/PA_HUDWidget.h"
+#include "CharacterStat/PA_CharacterStatComponent.h"
 
 APA_CharacterPlayer::APA_CharacterPlayer()
 {
@@ -188,5 +190,19 @@ void APA_CharacterPlayer::QuaterMove(const FInputActionValue& Value)
 void APA_CharacterPlayer::Attack()
 {
 	ProcessComboCommand();
+}
+
+void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)
+{
+	if (InHUDWidget)
+	{
+		InHUDWidget->UpdateStat(Stat->GetBaseStat(), Stat->GetModifierStat());
+		InHUDWidget->UpdateHpBar(Stat->GetCurrentHp());
+		InHUDWidget->UpdateExpBar(Stat->GetCurrentExp());
+
+		Stat->OnStatChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateStat);
+		Stat->OnHpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateHpBar);
+		Stat->OnExpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateExpBar);
+	}
 }
 

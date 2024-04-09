@@ -2,22 +2,32 @@
 
 
 #include "PA_CharacterStatComponent.h"
+#include "GameData/PA_GameSingleton.h"
 
 // Sets default values for this component's properties
 UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 {
-	MaxHp = 200.0f;
-	CurrentHp = MaxHp;
+	CurrentLevel = 1;
+	MaxExp = 100.0f;
+	CurrentExp = 0.0f;
+
+	bWantsInitializeComponent = true;
+
 }
 
-
-// Called when the game starts
-void UPA_CharacterStatComponent::BeginPlay()
+void UPA_CharacterStatComponent::InitializeComponent()
 {
-	Super::BeginPlay();
+	Super::InitializeComponent();
+	CurrentExp = 0.0f;
+	SetLevelStat(CurrentLevel);
+	SetHp(BaseStat.MaxHp);
+}
 
-	SetHp(MaxHp);
-	
+void UPA_CharacterStatComponent::SetLevelStat(int32 InNewLevel)
+{
+	CurrentLevel = FMath::Clamp(InNewLevel, 1, UPA_GameSingleton::Get().CharacterMaxLevel);
+	SetBaseStat(UPA_GameSingleton::Get().GetCharacterData(CurrentLevel));
+	check(BaseStat.MaxHp > 0.0f);
 }
 
 float UPA_CharacterStatComponent::ApplyDamage(float InDamage)
@@ -33,12 +43,34 @@ float UPA_CharacterStatComponent::ApplyDamage(float InDamage)
 	return ActualDamage;
 }
 
+
+float UPA_CharacterStatComponent::GetExp(float InExp)
+{
+	const float PrevExp = CurrentExp;
+	const float ActualExp = FMath::Clamp<float>(InExp, 0, InExp);
+	SetExp(PrevExp + ActualExp);
+	if (CurrentExp >= MaxExp)
+	{
+		OnExpFull.Broadcast();
+	}
+
+	return ActualExp;
+}
+
 void UPA_CharacterStatComponent::SetHp(float NewHp)
 {
-	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, MaxHp);
+	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, BaseStat.MaxHp);
 
 	OnHpChanged.Broadcast(CurrentHp);
 }
+
+void UPA_CharacterStatComponent::SetExp(float NewExp)
+{
+	CurrentExp = FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
+
+	OnExpChanged.Broadcast(CurrentExp);
+}
+
 
 
 

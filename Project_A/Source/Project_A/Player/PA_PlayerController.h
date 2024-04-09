@@ -20,6 +20,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUD)
+	TSubclassOf<class UPA_HUDWidget> PA_HUDWidgetClass;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUD)
+	TObjectPtr<class UPA_HUDWidget> PA_HUDWidget;
 };

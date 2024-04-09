@@ -15,6 +15,8 @@ class PROJECT_A_API AAILich : public AMonsterPawn
 public:
 	AAILich();
 
+	float MonsterExp = 5.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
