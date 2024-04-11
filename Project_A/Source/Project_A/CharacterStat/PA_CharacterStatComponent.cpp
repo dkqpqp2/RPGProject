@@ -7,9 +7,7 @@
 // Sets default values for this component's properties
 UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 {
-	CurrentLevel = 1;
-	MaxExp = 100.0f;
-	CurrentExp = 0.0f;
+	CurrentLevel = 2;
 
 	bWantsInitializeComponent = true;
 
@@ -72,7 +70,7 @@ void UPA_CharacterStatComponent::SetHp(float NewHp)
 
 void UPA_CharacterStatComponent::SetExp(float NewExp)
 {
-	CurrentExp += FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
+	CurrentExp = FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
 
 	OnExpChanged.Broadcast(CurrentExp);
 }

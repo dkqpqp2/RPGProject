@@ -4,6 +4,7 @@
 
 #include "../GameInfo.h"
 #include "Item/PA_ItemData.h"
+#include "GameData/PA_CharacterData.h"
 #include "PA_WeaponItemData.generated.h"
 
 /**
@@ -18,4 +19,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Weapon)
 	TSoftObjectPtr<class USkeletalMesh> WeaponMesh;
 	
+	UPROPERTY(EditAnywhere, Category = Stat)
+	FPA_CharacterData ModifierStat;
 };

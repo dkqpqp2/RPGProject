@@ -12,8 +12,6 @@ AMonsterPawn::AMonsterPawn()
 
 	AIControllerClass = APA_AIController::StaticClass();
 
-
-
 }
 
 void AMonsterPawn::ChangeAIAnimType(uint8 AnimType)
