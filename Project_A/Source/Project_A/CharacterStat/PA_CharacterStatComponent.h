@@ -49,9 +49,11 @@ public:
 	FORCEINLINE float GetCurrentExp() { return CurrentExp; }
 	float GetExp(float InExp);
 
+	void LevelUp();
+
 protected:
 	void SetHp(float NewHp);
-	void SetExp(float NewExp);
+	void SetExp(float NewExp);             
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
@@ -69,6 +71,6 @@ protected:
 	FPA_CharacterData BaseStat;
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
-	FPA_CharacterData ModifierStat;;
+	FPA_CharacterData ModifierStat;
 		
 };

@@ -252,16 +252,61 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 	{
 		ExpBarWidget->SetMaxExp(Stat->GetTotalStat().MaxExp);
 		ExpBarWidget->UpdateExpBar(Stat->GetCurrentExp());
-		Stat->OnHpChanged.AddUObject(ExpBarWidget, &UPA_ExpBarWidget::UpdateExpBar);
+		Stat->OnExpChanged.AddUObject(ExpBarWidget, &UPA_ExpBarWidget::UpdateExpBar);
 
 	}
 }
+
+//void AddExp(float InIncreaseExp)
+//{
+//	Level
+//
+//	LevelMaxExp
+//
+//		if (CurExp + 50 < LevelMaxExp)
+//		{
+//			return;
+//	}
+//
+//	NextCurExp = CurExp + 50 - LevelMaxExp;
+//	Level++;
+//
+//	Updatestat(Level);
+//}
+
+//void Key1번입력()
+//{
+//	UPA_ItemData* SlotItemData = QuickSlotComp->FindSlotInfo(1);
+//	if (SlotItemData == nullptr)
+//	{
+//		return;
+//	}
+//	//TakeItemActions[static_cast<uint8>(SlotItemData->Type)].ItemDelegate.ExecuteIfBound(SlotItemData);
+//	if (IsholdingItem)
+//	{
+//		EquipWeapon(SlotItemData);
+//	}
+//	else
+//	{
+//		HoldWeapon(SlotItemData);
+//	}
+//}
 
 void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
 {
 	if (InItemData)
 	{
-		TakeItemActions[(uint8)InItemData->Type].ItemDelegate.ExecuteIfBound(InItemData);
+		/*InventoryComp->AddItem(InItemDat);
+		if (InItemData == 무기)
+		{
+			등뒤에 소켓에 장착
+				Slot* SlotInfo = QuickSlotComp->FindEmptySlot()
+				SlotInfo->SetItemData(InItemData);
+			HoldWeapon(InItemData);
+		}*/
+
+		//TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
+		EquipWeapon(InItemData);
 	}
 }
 

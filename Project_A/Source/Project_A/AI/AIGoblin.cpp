@@ -8,7 +8,8 @@
 #include "../Effect/EffectBase.h"
 #include "Physics/PA_Collision.h"
 
-AAIGoblin::AAIGoblin()
+AAIGoblin::AAIGoblin
+()
 {
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> GoblinMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/UndeadPack/EnemyGoblin/Mesh/SM_EnemyGoblin.SM_EnemyGoblin'"));
 	if (GoblinMeshRef.Object)
@@ -62,7 +63,7 @@ void AAIGoblin::NormalAttack()
 	if (IsCollision)
 	{
 		FDamageEvent DmgEvent;
-		HitResult.GetActor()->TakeDamage(10.f, DmgEvent, GetController(), this);
+		HitResult.GetActor()->TakeDamage(0.f, DmgEvent, GetController(), this);
 
 		FActorSpawnParameters ParamResult;
 
@@ -97,7 +98,7 @@ void AAIGoblin::NormalAttack_B()
 	if (IsCollision)
 	{
 		FDamageEvent DmgEvent;
-		HitResult.GetActor()->TakeDamage(20.f, DmgEvent, GetController(), this);
+		HitResult.GetActor()->TakeDamage(0.f, DmgEvent, GetController(), this);
 
 		FActorSpawnParameters ParamResult;
 

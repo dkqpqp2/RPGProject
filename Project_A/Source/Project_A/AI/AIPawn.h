@@ -82,6 +82,9 @@ public:
 		return AttackRightEnd;
 	}
 
+	float MonsterExp = 5.0f;
+
+
 public:
 	virtual void ChangeAIAnimType(uint8 AnimType);
 
@@ -112,6 +115,8 @@ protected:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_MonsterWidgetComponent> HpBar;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
+	float HpBarZOffset = 180.f;
 
 	virtual void SetupMonsterWidget(class UPA_MonsterWidget* InMonsterWidget) override;
 

@@ -58,6 +58,12 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 	{
 		AttackAction = InputActionAttackRef.Object;
 	}
+	 
+	struct ConstructorHelpers::FObjectFinder<UInputAction> InputActionOnOffStatDataRef(TEXT("/Script/EnhancedInput.InputAction'/Game/Project_A/Input/Actions/IA_StatData.IA_StatData'"));
+	if(nullptr != InputActionOnOffStatDataRef.Object)
+	{
+		OnOffStatDataAction = InputActionOnOffStatDataRef.Object;
+	}
 
 	CurrentCharacterControlType = ECharacterControlType::Shoulder;
 
@@ -185,6 +191,11 @@ void APA_CharacterPlayer::QuaterMove(const FInputActionValue& Value)
 	FVector MoveDirection = FVector(MovementVector.X, MovementVector.Y, 0.0f);
 	GetController()->SetControlRotation(FRotationMatrix::MakeFromX(MoveDirection).Rotator());
 	AddMovementInput(MoveDirection, MovementVectorSize); 
+}
+
+void APA_CharacterPlayer::OnOffStatDataVisible(const FInputActionValue& Value)
+{
+	
 }
 
 void APA_CharacterPlayer::Attack()

@@ -19,7 +19,7 @@ void UPA_HUDWidget::UpdateStat(const FPA_CharacterData& BaseStat, const FPA_Char
 	HpBar->SetMaxHp(TotalStat.MaxHp);
 	ExpBar->SetMaxExp(TotalStat.MaxExp);
 
-//	CharacterStat->UpdateStat(BaseStat, ModifierStat);
+	CharacterStat->UpdateStat(BaseStat, ModifierStat);
 	
 }
 
@@ -40,6 +40,7 @@ void UPA_HUDWidget::NativeConstruct()
 	HpBar = Cast<UPA_HpBarWidget>(GetWidgetFromName(TEXT("WidgetHpBar")));
 	CharacterStat = Cast<UPA_CharacterStatWidget>(GetWidgetFromName(TEXT("WidgetCharacterStat")));
 	ExpBar = Cast<UPA_ExpBarWidget>(GetWidgetFromName(TEXT("WidgetExpBar")));
+
 
 	IPA_CharacterHUDInterface* HUDPawn = Cast<IPA_CharacterHUDInterface>(GetOwningPlayerPawn());
 	if (HUDPawn)

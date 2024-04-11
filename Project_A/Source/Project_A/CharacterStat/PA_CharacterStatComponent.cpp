@@ -52,9 +52,15 @@ float UPA_CharacterStatComponent::GetExp(float InExp)
 	if (CurrentExp >= MaxExp)
 	{
 		OnExpFull.Broadcast();
+		LevelUp();
 	}
 
 	return ActualExp;
+}
+
+void UPA_CharacterStatComponent::LevelUp()
+{
+	BaseStat.Level++;
 }
 
 void UPA_CharacterStatComponent::SetHp(float NewHp)
@@ -66,7 +72,7 @@ void UPA_CharacterStatComponent::SetHp(float NewHp)
 
 void UPA_CharacterStatComponent::SetExp(float NewExp)
 {
-	CurrentExp = FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
+	CurrentExp += FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
 
 	OnExpChanged.Broadcast(CurrentExp);
 }

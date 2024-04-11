@@ -9,6 +9,7 @@
 #include "AI/AIUI/PA_MonsterWidgetComponent.h"
 #include "AI/AIUI/PA_MonsterHpBarWidget.h"
 #include "Components/WidgetComponent.h"
+#include "CharacterStat/PA_CharacterStatComponent.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -42,7 +43,7 @@ AAIPawn::AAIPawn()
 	Stat = CreateDefaultSubobject<UPA_MonsterStatComponent>(TEXT("Stat"));
 	HpBar = CreateDefaultSubobject<UPA_MonsterWidgetComponent>(TEXT("Widget"));
 	HpBar->SetupAttachment(GetMesh());
-	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f));
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
 	static ConstructorHelpers::FClassFinder<UUserWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_MonsterHpBar.WBP_MonsterHpBar_C"));
 	if (HpBarWidgetRef.Class)
 	{
@@ -94,6 +95,13 @@ float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 
 	Stat->ApplyDamage(DamageAmount);
 
+	/*if (Stat->IsDead())
+	{
+		FExpData = 가져와;
+
+		DamageCauser->AddExp(FExpData->IncreaseExp);
+	}*/
+
 	return DamageAmount;
 }
 
@@ -142,6 +150,12 @@ void AAIPawn::SetDead()
 	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
 	SetActorEnableCollision(false);
 	HpBar->SetHiddenInGame(true);
+
+	APA_AIController* PossessAIController = Cast<APA_AIController>(GetController());
+	if (PossessAIController)
+	{
+		PossessAIController->StopAI();
+	}
 }
 
 
