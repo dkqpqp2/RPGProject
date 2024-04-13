@@ -4,6 +4,8 @@
 #include "PA_CharacterBase.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Engine/TextureRenderTarget2D.h"
+#include "Components/SceneCaptureComponent2D.h"
 #include "Character/PA_CharacterControlData.h"
 #include "Animation/AnimMontage.h"
 #include "PA_ComboActionData.h"
@@ -11,6 +13,7 @@
 #include "CharacterStat/PA_CharacterStatComponent.h"
 #include "UI/PA_WidgetComponent.h"
 #include "UI/PA_HpBarWidget.h"
+#include "UI/MpBarWidget.h"
 #include "UI/PA_ExpBarWidget.h"
 #include "Item/PA_WeaponItemData.h"
 #include "PA_CharacterState.h"
@@ -39,6 +42,11 @@ APA_CharacterBase::APA_CharacterBase()
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -100.0f), FRotator(0.0f, -90.0f, 0.0f));
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
 	GetMesh()->SetCollisionProfileName(TEXT("NoCollision"));
+
+	FaceCapture = CreateDefaultSubobject<USceneCaptureComponent2D>(TEXT("FaceCapture"));
+	FaceCapture->SetupAttachment(GetMesh());
+	FaceCapture->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
+	FaceCapture->CaptureSource = ESceneCaptureSource::SCS_SceneColorSceneDepth;
 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharacterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWarriors/Character/CompleteCharacters/SK_CharM_Cardboard.SK_CharM_Cardboard'"));
 	if (CharacterMeshRef.Object)
@@ -82,6 +90,14 @@ APA_CharacterBase::APA_CharacterBase()
 	{
 		DeadMontage = DeadMontageRef.Object;
 	}
+	
+	static ConstructorHelpers::FObjectFinder<UTextureRenderTarget2D> FaceTargetRef(TEXT("/Script/Engine.TextureRenderTarget2D'/Game/Project_A/Blueprint/RT_PlayerFace.RT_PlayerFace'"));
+	if (FaceTargetRef.Succeeded())
+	{
+		FaceCapture->TextureTarget = FaceTargetRef.Object;
+	}
+
+	TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &APA_CharacterBase::EquipWeapon)));
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
 	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
@@ -100,8 +116,9 @@ APA_CharacterBase::APA_CharacterBase()
 		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 
-	TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &APA_CharacterBase::EquipWeapon)));
 
+
+	
 }
 
 void APA_CharacterBase::PostInitializeComponents()
@@ -110,6 +127,7 @@ void APA_CharacterBase::PostInitializeComponents()
 
 	Stat->OnHpZero.AddUObject(this, &APA_CharacterBase::SetDead);
 
+	FaceCapture->ShowOnlyActors.Add(this);
 }
 
 void APA_CharacterBase::SetCharacterControlData(const UPA_CharacterControlData* CharacterControlData)
@@ -247,6 +265,15 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 
 	}
 
+	UMpBarWidget* MpBarWidget = Cast<UMpBarWidget>(InUserWidget);
+	if (MpBarWidget)
+	{
+		MpBarWidget->SetMaxMp(Stat->MaxMp);
+		MpBarWidget->UpdateMpBar(Stat->GetCurrentMp());
+		Stat->OnMpChanged.AddUObject(MpBarWidget, &UMpBarWidget::UpdateMpBar);
+
+	}
+
 	UPA_ExpBarWidget* ExpBarWidget = Cast<UPA_ExpBarWidget>(InUserWidget);
 	if (ExpBarWidget)
 	{
@@ -305,8 +332,8 @@ void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
 			HoldWeapon(InItemData);
 		}*/
 
-		//TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
-		EquipWeapon(InItemData);
+		TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
+		//EquipWeapon(InItemData);
 	}
 }
 

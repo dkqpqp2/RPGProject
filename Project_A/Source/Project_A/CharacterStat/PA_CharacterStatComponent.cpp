@@ -7,7 +7,7 @@
 // Sets default values for this component's properties
 UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 {
-	CurrentLevel = 2;
+	CurrentLevel = 1;
 
 	bWantsInitializeComponent = true;
 
@@ -19,6 +19,8 @@ void UPA_CharacterStatComponent::InitializeComponent()
 	CurrentExp = 0.0f;
 	SetLevelStat(CurrentLevel);
 	SetHp(BaseStat.MaxHp);
+	SetMp(100.0f);
+	SetExp(BaseStat.MaxExp);
 }
 
 void UPA_CharacterStatComponent::SetLevelStat(int32 InNewLevel)
@@ -41,6 +43,19 @@ float UPA_CharacterStatComponent::ApplyDamage(float InDamage)
 	return ActualDamage;
 }
 
+float UPA_CharacterStatComponent::UseSkill(float InUseSkillMp)
+{
+	const float PrevMp = CurrentMp;
+	const float ActualSkillMp = FMath::Clamp<float>(InUseSkillMp, 0, InUseSkillMp);
+
+	SetMp(PrevMp - ActualSkillMp);
+	if (CurrentMp <= KINDA_SMALL_NUMBER)
+	{
+		OnMpZero.Broadcast();
+	}
+
+	return ActualSkillMp;
+}
 
 float UPA_CharacterStatComponent::GetExp(float InExp)
 {
@@ -66,6 +81,13 @@ void UPA_CharacterStatComponent::SetHp(float NewHp)
 	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, BaseStat.MaxHp);
 
 	OnHpChanged.Broadcast(CurrentHp);
+}
+
+void UPA_CharacterStatComponent::SetMp(float NewMp)
+{
+	CurrentMp = FMath::Clamp<float>(NewMp, 0.0f, MaxMp);
+
+	OnMpChanged.Broadcast(CurrentMp);
 }
 
 void UPA_CharacterStatComponent::SetExp(float NewExp)

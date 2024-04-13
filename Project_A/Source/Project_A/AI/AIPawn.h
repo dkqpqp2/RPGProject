@@ -82,7 +82,14 @@ public:
 		return AttackRightEnd;
 	}
 
-	float MonsterExp = 5.0f;
+	void SetMonsterExp(float InMonsterExp)
+	{
+		MonsterExp = InMonsterExp;
+	}
+
+protected:
+	UPROPERTY(EditAnywhere)
+	float MonsterExp;
 
 
 public:
@@ -111,7 +118,8 @@ protected:
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_MonsterStatComponent> Stat;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UPA_CharacterStatComponent> PlayerStat;
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_MonsterWidgetComponent> HpBar;

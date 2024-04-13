@@ -25,7 +25,7 @@ APA_ItemBase::APA_ItemBase()
 	Trigger->SetSphereRadius(50.0f, true);
 	Trigger->OnComponentBeginOverlap.AddDynamic(this, &APA_ItemBase::OnOverlapBegin);
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> WeaponMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWeapons/Weapons/Blade/Swords/Blade_DragonSword/SK_Blade_DragonSword.SK_Blade_DragonSword'"));
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> WeaponMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWeapons/Weapons/Blade/Swords/Blade_Glimmer/SK_Blade_Glimmer.SK_Blade_Glimmer'"));
 	if (WeaponMeshRef.Object)
 	{
 		Mesh->SetSkeletalMesh(WeaponMeshRef.Object);
@@ -43,7 +43,11 @@ APA_ItemBase::APA_ItemBase()
 
 void APA_ItemBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OthderBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult)
 {
-
+	if (nullptr == Item)
+	{
+		Destroy();
+		return;
+	}
 	IPA_CharacterItemInterface* OverlappingPawn = Cast<IPA_CharacterItemInterface>(OtherActor);
 	if (OverlappingPawn)
 	{

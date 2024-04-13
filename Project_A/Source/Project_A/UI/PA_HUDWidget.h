@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "../GameInfo.h"
 #include "Blueprint/UserWidget.h"
 #include "GameData/PA_CharacterData.h"
 #include "PA_HUDWidget.generated.h"
@@ -21,6 +21,7 @@ public:
 public:
 	void UpdateStat(const FPA_CharacterData& BaseStat, const FPA_CharacterData& ModifierStat);
 	void UpdateHpBar(float NewCurrentHp);
+	void UpdateMpBar(float NewCurrentMp);
 	void UpdateExpBar(float NewCurrentExp);
 
 protected:
@@ -29,6 +30,9 @@ protected:
 protected:
 	UPROPERTY()
 	TObjectPtr<class UPA_HpBarWidget> HpBar;
+
+	UPROPERTY()
+	TObjectPtr<class UMpBarWidget> MpBar;
 
 	UPROPERTY()
 	TObjectPtr<class UPA_CharacterStatWidget> CharacterStat;

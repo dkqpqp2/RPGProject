@@ -9,7 +9,6 @@
 #include "AI/AIUI/PA_MonsterWidgetComponent.h"
 #include "AI/AIUI/PA_MonsterHpBarWidget.h"
 #include "Components/WidgetComponent.h"
-#include "CharacterStat/PA_CharacterStatComponent.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -150,7 +149,6 @@ void AAIPawn::SetDead()
 	ChangeAIAnimType(static_cast<uint8>(EMonsterAnimType::Death));
 	SetActorEnableCollision(false);
 	HpBar->SetHiddenInGame(true);
-
 	APA_AIController* PossessAIController = Cast<APA_AIController>(GetController());
 	if (PossessAIController)
 	{

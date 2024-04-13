@@ -9,6 +9,8 @@
 
 DECLARE_MULTICAST_DELEGATE(FOnHpZeroDelegate);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnHpChangedDelegate, float /*CurrentHp*/);
+DECLARE_MULTICAST_DELEGATE(FOnMpZeroDelegate);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnMpChangedDelegate, float /*CurrentMp*/);
 DECLARE_MULTICAST_DELEGATE(FOnExpFullDelegate);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnExpChangedDelegate, float /*CurrentExp*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatChangedDelegate, const FPA_CharacterData& /*BaseStat*/, const FPA_CharacterData& /*ModifierStat*/);
@@ -29,6 +31,9 @@ public:
 	FOnHpZeroDelegate OnHpZero;
 	FOnHpChangedDelegate OnHpChanged;
 
+	FOnMpZeroDelegate OnMpZero;
+	FOnMpChangedDelegate OnMpChanged;
+
 	FOnExpFullDelegate OnExpFull;
 	FOnExpChangedDelegate OnExpChanged;
 	
@@ -43,7 +48,10 @@ public:
 	FORCEINLINE FPA_CharacterData GetModifierStat() const { return ModifierStat; }
 	FORCEINLINE FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
+	FORCEINLINE float GetCurrentMp() { return CurrentMp; }
+
 	float ApplyDamage(float InDamage);
+	float UseSkill(float InUseSkillMp);
 
 	FORCEINLINE float GetMaxExp() { return MaxExp; }
 	FORCEINLINE float GetCurrentExp() { return CurrentExp; }
@@ -51,12 +59,19 @@ public:
 
 	void LevelUp();
 
+	UPROPERTY(VisibleInstanceOnly, Category = Stat)
+	float MaxMp = 100.0f;
+
 protected:
 	void SetHp(float NewHp);
+	void SetMp(float NewMp);
 	void SetExp(float NewExp);             
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
+	float CurrentMp;
 
 	UPROPERTY(VisibleInstanceOnly, Category = Stat)
 	float MaxExp;

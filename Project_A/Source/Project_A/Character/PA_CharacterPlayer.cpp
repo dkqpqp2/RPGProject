@@ -209,10 +209,12 @@ void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)
 	{
 		InHUDWidget->UpdateStat(Stat->GetBaseStat(), Stat->GetModifierStat());
 		InHUDWidget->UpdateHpBar(Stat->GetCurrentHp());
+		InHUDWidget->UpdateMpBar(Stat->GetCurrentMp());
 		InHUDWidget->UpdateExpBar(Stat->GetCurrentExp());
 
 		Stat->OnStatChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateStat);
 		Stat->OnHpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateHpBar);
+		Stat->OnMpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateMpBar);
 		Stat->OnExpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateExpBar);
 	}
 }

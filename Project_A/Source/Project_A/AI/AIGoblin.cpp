@@ -33,6 +33,7 @@ AAIGoblin::AAIGoblin
 
 	MonsterMovement->MaxSpeed = 500.0f;
 
+	SetMonsterExp(10.0);
 
 }
 
