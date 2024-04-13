@@ -43,7 +43,9 @@ AAIPawn::AAIPawn()
 	Stat = CreateDefaultSubobject<UPA_MonsterStatComponent>(TEXT("Stat"));
 	HpBar = CreateDefaultSubobject<UPA_MonsterWidgetComponent>(TEXT("Widget"));
 	HpBar->SetupAttachment(GetMesh());
-	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
+
+	//수정 HpBarZOffset -> Blueprint Setting
+	//HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
 	static ConstructorHelpers::FClassFinder<UUserWidget> HpBarWidgetRef(TEXT("/Game/Project_A/UI/WBP_MonsterHpBar.WBP_MonsterHpBar_C"));
 	if (HpBarWidgetRef.Class)
 	{
@@ -52,9 +54,6 @@ AAIPawn::AAIPawn()
 		HpBar->SetDrawSize(FVector2D(150.0f, 15.0f));
 		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
-
-
-
 }
 
 void AAIPawn::PostInitializeComponents()
@@ -74,7 +73,12 @@ void AAIPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	//수정 HpBarZOffset -> Blueprint Setting
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
+
+	//수정 MonsterExp 
+	//MonsterExp -> Blueprint Setting
+	SetMonsterExp(MonsterExp);
 }
 
 void AAIPawn::EndPlay(const EEndPlayReason::Type EndPlayReason)

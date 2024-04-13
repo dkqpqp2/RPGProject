@@ -63,12 +63,16 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UInputAction> PickUpAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UInputAction> WeaponChangeAction;
+
 
 	void ShoulderMove(const FInputActionValue& Value);
 	void ShoulderLook(const FInputActionValue& Value);
 	void QuaterMove(const FInputActionValue& Value);
 	void OnOffStatDataVisible(const FInputActionValue& Value);
 	void OnPickUp(const FInputActionValue& Value);
+	void OnWeaponChange(const FInputActionValue& Value);
 	
 	bool SholudDestroyActor(AActor* Item);
 
@@ -79,7 +83,7 @@ protected:
 
 
 public:
-	void AddExp(float InExp);
+	void AddExp(float InAdditionalExp);
 
 protected:
 	virtual void SetupHUDWidget(class UPA_HUDWidget* InHUDWidget) override;

@@ -15,7 +15,7 @@ UENUM()
 enum class ECharacterControlType : uint8
 {
 	Shoulder,
-	Quater
+	Quater,
 };
 
 DECLARE_DELEGATE_OneParam(FOnTakeItemDelegate, class UPA_ItemData* /*InItemData*/)

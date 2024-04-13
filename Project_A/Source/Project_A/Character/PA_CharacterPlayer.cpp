@@ -72,6 +72,12 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 		PickUpAction = InputActionPickUpRef.Object;
 	}
 
+	struct ConstructorHelpers::FObjectFinder<UInputAction> InputActionWeaponChangeRef(TEXT("/Script/EnhancedInput.InputAction'/Game/Project_A/Input/Actions/IA_WeaponChange.IA_WeaponChange'"));
+	if (nullptr != InputActionWeaponChangeRef.Object)
+	{
+		WeaponChangeAction = InputActionWeaponChangeRef.Object;
+	}
+
 	CurrentCharacterControlType = ECharacterControlType::Shoulder;
 
 	//SetCanBeDamaged(true);
@@ -99,6 +105,7 @@ void APA_CharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	EnhancedInputComponent->BindAction(QuaterMoveAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::QuaterMove);
 	EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::Attack);
 	EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::OnPickUp);
+	EnhancedInputComponent->BindAction(WeaponChangeAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::OnWeaponChange);
 
 }
 
@@ -220,6 +227,14 @@ void APA_CharacterPlayer::OnPickUp(const FInputActionValue& Value)
 	}
 }
 
+void APA_CharacterPlayer::OnWeaponChange(const FInputActionValue& Value)
+{
+	//무기를 습득했나??
+
+	//현재 무기는 어디에 위치했는가??
+	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+}
+
 bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)
 {
 	if (Item->IsA<AItemBase>())
@@ -235,9 +250,12 @@ void APA_CharacterPlayer::Attack()
 	ProcessComboCommand();
 }
 
-void APA_CharacterPlayer::AddExp(float InExp)
+void APA_CharacterPlayer::AddExp(float InAdditionalExp)
 {
-	Stat->GetExp(InExp);
+	//수정 Get함수 내에서 값 수정 절대 금지
+	//Stat->GetExp(InAdditionalExp);
+	float CurrentExp = Stat->GetExp();
+	Stat->SetExp(CurrentExp + InAdditionalExp);
 }
 
 void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)

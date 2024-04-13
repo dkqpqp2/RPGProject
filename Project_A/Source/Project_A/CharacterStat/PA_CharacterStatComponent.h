@@ -56,17 +56,21 @@ public:
 
 	FORCEINLINE float GetMaxExp() { return MaxExp; }
 	FORCEINLINE float GetCurrentExp() { return CurrentExp; }
-	float GetExp(float InExp);
+	float GetExp() const;
+	//수정 Get함수 내에서 값 수정 절대 금지
+	//float GetExp(float InExp) const;
 
 	void LevelUp();
 
 	UPROPERTY(VisibleInstanceOnly, Category = Stat)
 	float MaxMp = 100.0f;
 
+	//수정 Get함수 내에서 값 수정 절대 금지
+	void SetExp(float NewExp);
 protected:
 	void SetHp(float NewHp);
 	void SetMp(float NewMp);
-	void SetExp(float NewExp);             
+	//void SetExp(float NewExp);             
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;

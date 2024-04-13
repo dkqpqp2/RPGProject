@@ -103,8 +103,8 @@ APA_CharacterBase::APA_CharacterBase()
 	TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &APA_CharacterBase::EquipWeapon)));
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
-	Weapon->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
-
+	Weapon->SetupAttachment(GetMesh());
+	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("hand_rSocket"));
 	Stat = CreateDefaultSubobject<UPA_CharacterStatComponent>(TEXT("Stat"));
 
 	HpBar = CreateDefaultSubobject<UPA_WidgetComponent>(TEXT("Widget"));

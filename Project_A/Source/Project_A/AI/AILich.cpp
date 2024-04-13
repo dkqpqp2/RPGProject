@@ -36,11 +36,13 @@ AAILich::AAILich()
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
-	HpBarZOffset = 230.0f;
-	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
+	//수정 HpBarZOffset
+	//HpBarZOffset = 230.0f;
+	//HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
 
-	MonsterExp = 101.0f;
-	SetMonsterExp(MonsterExp);
+	//수정 MonsterExp
+	//MonsterExp = 101.0f;
+	//SetMonsterExp(MonsterExp);
 }
 
 void AAILich::BeginPlay()

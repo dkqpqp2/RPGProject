@@ -69,18 +69,24 @@ float UPA_CharacterStatComponent::UseSkill(float InUseSkillMp)
 	return ActualSkillMp;
 }
 
-float UPA_CharacterStatComponent::GetExp(float InExp)
-{
-	const float PrevExp = CurrentExp;
-	const float ActualExp = FMath::Clamp<float>(InExp, 0, InExp);
-	SetExp(PrevExp + ActualExp);
-	if (CurrentExp >= BaseStat.MaxExp)
-	{
-		OnExpFull.Broadcast();
-		LevelUp();
-	}
+//수정 Get함수 내에서 값 수정 절대 금지
+//float UPA_CharacterStatComponent::GetExp(float InExp) const 
+//{
+//	const float PrevExp = CurrentExp;
+//	const float ActualExp = FMath::Clamp<float>(InExp, 0, InExp);
+//	SetExp(PrevExp + ActualExp);
+//	if (CurrentExp >= BaseStat.MaxExp)
+//	{
+//		OnExpFull.Broadcast();
+//		LevelUp();
+//	}
+//
+//	return ActualExp;
+//}
 
-	return ActualExp;
+float UPA_CharacterStatComponent::GetExp() const
+{
+	return CurrentExp;
 }
 
 void UPA_CharacterStatComponent::LevelUp()
@@ -88,12 +94,13 @@ void UPA_CharacterStatComponent::LevelUp()
 	
 	if (CurrentExp >= BaseStat.MaxExp)
 	{
-		float PlusCurrentExp = CurrentExp - BaseStat.MaxExp;
+		//수정
 		float NextLevel = ++CurrentLevel;
+
+		float PlusCurrentExp = CurrentExp - BaseStat.MaxExp;
 		SetLevelStat(NextLevel);
 		SetExp(PlusCurrentExp);
 	}
-
 }
 
 void UPA_CharacterStatComponent::SetHp(float NewHp)
@@ -112,7 +119,21 @@ void UPA_CharacterStatComponent::SetMp(float NewMp)
 
 void UPA_CharacterStatComponent::SetExp(float NewExp)
 {
+	if (NewExp == 0.f)
+	{
+		CurrentExp = 0.f;
+		return;
+	}
+
 	CurrentExp = NewExp;
+	if (CurrentExp >= BaseStat.MaxExp)
+	{
+		OnExpFull.Broadcast();
+		LevelUp();
+	}
+
+	//수정 Get함수 내에서 값 수정 절대 금지
+	//CurrentExp = NewExp;
 
 	OnExpChanged.Broadcast(CurrentExp);
 }
