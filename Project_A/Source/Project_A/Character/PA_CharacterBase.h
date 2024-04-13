@@ -78,6 +78,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class USceneCaptureComponent2D> FaceCapture;
 
+	UPROPERTY(EditAnywhere, Category = Inventory)
+	TObjectPtr<class UPA_PlayerInventorySystem> Inventory;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UPA_CharacterStatComponent> Stat;

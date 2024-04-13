@@ -9,6 +9,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Character/PA_CharacterControlData.h"
 #include "UI/PA_HUDWidget.h"
+#include "Character/PA_CharacterBase.h"
 #include "CharacterStat/PA_CharacterStatComponent.h"
 
 APA_CharacterPlayer::APA_CharacterPlayer()
@@ -65,6 +66,12 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 		OnOffStatDataAction = InputActionOnOffStatDataRef.Object;
 	}
 
+	struct ConstructorHelpers::FObjectFinder<UInputAction> InputActionPickUpRef(TEXT("/Script/EnhancedInput.InputAction'/Game/Project_A/Input/Actions/IA_PickUp.IA_PickUp'"));
+	if (nullptr != InputActionPickUpRef.Object)
+	{
+		PickUpAction = InputActionPickUpRef.Object;
+	}
+
 	CurrentCharacterControlType = ECharacterControlType::Shoulder;
 
 	//SetCanBeDamaged(true);
@@ -91,6 +98,7 @@ void APA_CharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	EnhancedInputComponent->BindAction(ShoulderLookAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::ShoulderLook);
 	EnhancedInputComponent->BindAction(QuaterMoveAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::QuaterMove);
 	EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::Attack);
+	EnhancedInputComponent->BindAction(PickUpAction, ETriggerEvent::Triggered, this, &APA_CharacterPlayer::OnPickUp);
 
 }
 
@@ -195,12 +203,41 @@ void APA_CharacterPlayer::QuaterMove(const FInputActionValue& Value)
 
 void APA_CharacterPlayer::OnOffStatDataVisible(const FInputActionValue& Value)
 {
-	
+
+}
+
+void APA_CharacterPlayer::OnPickUp(const FInputActionValue& Value)
+{
+	TArray<AActor*> OverlappingActors;
+	GetOverlappingActors(OverlappingActors);
+
+	for (AActor* Item : OverlappingActors)
+	{
+		if(SholudDestroyActor(Item))
+		{
+			Item->Destroy();
+		}
+	}
+}
+
+bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)
+{
+	if (Item->IsA<AItemBase>())
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void APA_CharacterPlayer::Attack()
 {
 	ProcessComboCommand();
+}
+
+void APA_CharacterPlayer::AddExp(float InExp)
+{
+	Stat->GetExp(InExp);
 }
 
 void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)

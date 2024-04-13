@@ -28,6 +28,7 @@ float UPA_MonsterStatComponent::ApplyDamage(float InDamage)
 	if (CurrentHp <= KINDA_SMALL_NUMBER)
 	{
 		OnHpZero.Broadcast();
+		bDead = true;
 	}
 
 	return AutaulDamage;

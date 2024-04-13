@@ -7,6 +7,7 @@
 #include "GameFramework/FloatingPawnMovement.h"
 #include "../Effect/EffectBase.h"
 #include "Physics/PA_Collision.h"
+#include "AI/AIUI/PA_MonsterWidgetComponent.h"
 
 AAIGoblin::AAIGoblin
 ()
@@ -33,7 +34,11 @@ AAIGoblin::AAIGoblin
 
 	MonsterMovement->MaxSpeed = 500.0f;
 
-	SetMonsterExp(10.0);
+	HpBarZOffset = 130.0f;
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
+
+	MonsterExp = 25.0f;
+	SetMonsterExp(MonsterExp);
 
 }
 

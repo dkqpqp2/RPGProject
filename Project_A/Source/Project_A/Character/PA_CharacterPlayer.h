@@ -5,6 +5,7 @@
 #include "../GameInfo.h"
 #include "Character/PA_CharacterBase.h"
 #include "Interface/PA_CharacterHUDInterface.h"
+#include "Item/ItemBase.h"
 #include "PA_CharacterPlayer.generated.h"
 
 /**
@@ -59,15 +60,26 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<class UInputAction> OnOffStatDataAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<class UInputAction> PickUpAction;
+
 
 	void ShoulderMove(const FInputActionValue& Value);
 	void ShoulderLook(const FInputActionValue& Value);
 	void QuaterMove(const FInputActionValue& Value);
 	void OnOffStatDataVisible(const FInputActionValue& Value);
+	void OnPickUp(const FInputActionValue& Value);
 	
+	bool SholudDestroyActor(AActor* Item);
+
+
 	ECharacterControlType CurrentCharacterControlType;
 
 	void Attack();
+
+
+public:
+	void AddExp(float InExp);
 
 protected:
 	virtual void SetupHUDWidget(class UPA_HUDWidget* InHUDWidget) override;

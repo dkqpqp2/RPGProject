@@ -40,9 +40,10 @@ public:
 	FOnStatChangedDelegate OnStatChanged;
 
 	void SetLevelStat(int32 InNewLevel);
+	
 	FORCEINLINE float GetCurrentLevel() const { return CurrentLevel; }
-	FORCEINLINE void SetBaseStat(const FPA_CharacterData& InBaseStat) { BaseStat = InBaseStat; OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat()); }
-	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat) { ModifierStat = InModifierStat; OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat()); }
+	FORCEINLINE void SetBaseStat(const FPA_CharacterData& InBaseStat);
+	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat);
 
 	FORCEINLINE FPA_CharacterData GetBaseStat() const { return BaseStat; }
 	FORCEINLINE FPA_CharacterData GetModifierStat() const { return ModifierStat; }

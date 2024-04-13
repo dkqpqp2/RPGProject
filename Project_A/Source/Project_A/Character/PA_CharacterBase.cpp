@@ -17,6 +17,7 @@
 #include "UI/PA_ExpBarWidget.h"
 #include "Item/PA_WeaponItemData.h"
 #include "PA_CharacterState.h"
+#include "Inventory/PA_PlayerInventorySystem.h"
 
 DEFINE_LOG_CATEGORY(LogPACharacter);
 
@@ -97,6 +98,8 @@ APA_CharacterBase::APA_CharacterBase()
 		FaceCapture->TextureTarget = FaceTargetRef.Object;
 	}
 
+	
+
 	TakeItemActions.Add(FTakeItemDelegateWrapper(FOnTakeItemDelegate::CreateUObject(this, &APA_CharacterBase::EquipWeapon)));
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
@@ -116,7 +119,7 @@ APA_CharacterBase::APA_CharacterBase()
 		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 
-
+	Inventory = CreateDefaultSubobject<UPA_PlayerInventorySystem>(TEXT("Inventory"));
 
 	
 }
@@ -332,8 +335,8 @@ void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
 			HoldWeapon(InItemData);
 		}*/
 
-		TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
-		//EquipWeapon(InItemData);
+		//TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
+		EquipWeapon(InItemData);
 	}
 }
 

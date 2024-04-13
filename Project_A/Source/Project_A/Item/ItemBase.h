@@ -15,13 +15,35 @@ public:
 	AItemBase();
 
 
+	UPROPERTY(EditAnywhere, Category = Box)
+	TObjectPtr<class UBoxComponent> Trigger;
+
+	UPROPERTY(EditAnywhere, Category = Box)
+	TObjectPtr<class UStaticMeshComponent> BoxMesh;
+
+	UPROPERTY(EditAnywhere, Category = Widget)
+	TObjectPtr<class UWidgetComponent> Widget;
+
+	UPROPERTY(EditAnywhere, Category = Effect)
+	TObjectPtr<class UParticleSystemComponent> Effect;
+
+	UPROPERTY(EditAnywhere, Category = Item)
+	TObjectPtr<class UItemData> Item;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	void FClickAction();
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+protected:
+	virtual void Tick(float DeltaSeconds);
 
+
+public:
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult);
+
+	UFUNCTION()
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION()
+	void OnEffectFinished(class UParticleSystemComponent* ParticleSystem);
 };

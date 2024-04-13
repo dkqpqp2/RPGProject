@@ -9,6 +9,7 @@
 #include "AI/AIUI/PA_MonsterWidgetComponent.h"
 #include "AI/AIUI/PA_MonsterHpBarWidget.h"
 #include "Components/WidgetComponent.h"
+#include "Character/PA_CharacterPlayer.h"
 
 // Sets default values
 AAIPawn::AAIPawn()
@@ -93,13 +94,11 @@ float AAIPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, A
 	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Red, FString::Printf(TEXT("DmgPlayer : %.2f"), DamageAmount));
 
 	Stat->ApplyDamage(DamageAmount);
-
-	/*if (Stat->IsDead())
+	 
+	if (Stat->IsDead())
 	{
-		FExpData = 가져와;
-
-		DamageCauser->AddExp(FExpData->IncreaseExp);
-	}*/
+		Cast<APA_CharacterPlayer>(DamageCauser)->AddExp(MonsterExp);
+	}
 
 	return DamageAmount;
 }

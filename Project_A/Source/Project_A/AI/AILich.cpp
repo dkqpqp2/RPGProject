@@ -8,6 +8,7 @@
 #include "../Effect/EffectBase.h"
 #include "Physics/PA_Collision.h"
 #include "AIProjectile/AILichProjectile.h"
+#include "AI/AIUI/PA_MonsterWidgetComponent.h"
 
 AAILich::AAILich()
 {
@@ -35,6 +36,11 @@ AAILich::AAILich()
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
+	HpBarZOffset = 230.0f;
+	HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
+
+	MonsterExp = 101.0f;
+	SetMonsterExp(MonsterExp);
 }
 
 void AAILich::BeginPlay()
@@ -128,7 +134,7 @@ void AAILich::SetDead()
 	Super::SetDead();
 
 	FTimerHandle DeadTimerHandle;
-
+	
 	GetWorld()->GetTimerManager().SetTimer(DeadTimerHandle, FTimerDelegate::CreateLambda(
 		[&]()
 		{

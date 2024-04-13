@@ -8,7 +8,7 @@
 UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 {
 	CurrentLevel = 1;
-
+	CurrentExp = 0.0f;
 	bWantsInitializeComponent = true;
 
 }
@@ -16,11 +16,11 @@ UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 void UPA_CharacterStatComponent::InitializeComponent()
 {
 	Super::InitializeComponent();
-	CurrentExp = 0.0f;
+
 	SetLevelStat(CurrentLevel);
 	SetHp(BaseStat.MaxHp);
 	SetMp(100.0f);
-	SetExp(BaseStat.MaxExp);
+	SetExp(CurrentExp);
 }
 
 void UPA_CharacterStatComponent::SetLevelStat(int32 InNewLevel)
@@ -28,6 +28,18 @@ void UPA_CharacterStatComponent::SetLevelStat(int32 InNewLevel)
 	CurrentLevel = FMath::Clamp(InNewLevel, 1, UPA_GameSingleton::Get().CharacterMaxLevel);
 	SetBaseStat(UPA_GameSingleton::Get().GetCharacterData(CurrentLevel));
 	check(BaseStat.MaxHp > 0.0f);
+}
+
+void UPA_CharacterStatComponent::SetBaseStat(const FPA_CharacterData& InBaseStat)
+{
+	BaseStat = InBaseStat; 
+	OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
+}
+
+void UPA_CharacterStatComponent::SetModifierStat(const FPA_CharacterData& InModifierStat)
+{
+	ModifierStat = InModifierStat;
+	OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
 }
 
 float UPA_CharacterStatComponent::ApplyDamage(float InDamage)
@@ -62,7 +74,7 @@ float UPA_CharacterStatComponent::GetExp(float InExp)
 	const float PrevExp = CurrentExp;
 	const float ActualExp = FMath::Clamp<float>(InExp, 0, InExp);
 	SetExp(PrevExp + ActualExp);
-	if (CurrentExp >= MaxExp)
+	if (CurrentExp >= BaseStat.MaxExp)
 	{
 		OnExpFull.Broadcast();
 		LevelUp();
@@ -73,7 +85,15 @@ float UPA_CharacterStatComponent::GetExp(float InExp)
 
 void UPA_CharacterStatComponent::LevelUp()
 {
-	BaseStat.Level++;
+	
+	if (CurrentExp >= BaseStat.MaxExp)
+	{
+		float PlusCurrentExp = CurrentExp - BaseStat.MaxExp;
+		float NextLevel = ++CurrentLevel;
+		SetLevelStat(NextLevel);
+		SetExp(PlusCurrentExp);
+	}
+
 }
 
 void UPA_CharacterStatComponent::SetHp(float NewHp)
@@ -92,7 +112,7 @@ void UPA_CharacterStatComponent::SetMp(float NewMp)
 
 void UPA_CharacterStatComponent::SetExp(float NewExp)
 {
-	CurrentExp = FMath::Clamp<float>(NewExp, 0.0f, MaxExp);
+	CurrentExp = NewExp;
 
 	OnExpChanged.Broadcast(CurrentExp);
 }

@@ -33,6 +33,7 @@ public:
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
 	float ApplyDamage(float InDamage);
 
+	bool IsDead() const { return bDead;  }
 protected:
 	void SetHp(float NewHp);
 
@@ -41,4 +42,6 @@ protected:
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
+
+	bool bDead = false;
 };
