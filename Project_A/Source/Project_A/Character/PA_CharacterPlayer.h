@@ -8,9 +8,7 @@
 #include "Item/ItemBase.h"
 #include "PA_CharacterPlayer.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class PROJECT_A_API APA_CharacterPlayer : public APA_CharacterBase, public IPA_CharacterHUDInterface
 {

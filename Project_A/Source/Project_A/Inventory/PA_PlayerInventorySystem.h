@@ -4,6 +4,8 @@
 
 #include "../GameInfo.h"
 #include "Components/ActorComponent.h"
+#include "Item/S_Item.h"
+#include "S_Slot.h"
 #include "PA_PlayerInventorySystem.generated.h"
 
 
@@ -15,6 +17,14 @@ class PROJECT_A_API UPA_PlayerInventorySystem : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UPA_PlayerInventorySystem();
+
+protected:
+
+	int32 InventorySize;
+	FS_Slot Slot;
+	bool IsAddFailed;
+
+	void AddItem();
 
 protected:
 	// Called when the game starts

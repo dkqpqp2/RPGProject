@@ -11,6 +11,9 @@
 #include "UI/PA_HUDWidget.h"
 #include "Character/PA_CharacterBase.h"
 #include "CharacterStat/PA_CharacterStatComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/SkeletalMeshSocket.h"
+
 
 APA_CharacterPlayer::APA_CharacterPlayer()
 {
@@ -229,10 +232,14 @@ void APA_CharacterPlayer::OnPickUp(const FInputActionValue& Value)
 
 void APA_CharacterPlayer::OnWeaponChange(const FInputActionValue& Value)
 {
+	
+	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+
 	//무기를 습득했나??
 
+
 	//현재 무기는 어디에 위치했는가??
-	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+	
 }
 
 bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)

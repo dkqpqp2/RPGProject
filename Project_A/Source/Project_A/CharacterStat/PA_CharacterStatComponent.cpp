@@ -99,6 +99,7 @@ void UPA_CharacterStatComponent::LevelUp()
 
 		float PlusCurrentExp = CurrentExp - BaseStat.MaxExp;
 		SetLevelStat(NextLevel);
+		SetHp(BaseStat.MaxHp);
 		SetExp(PlusCurrentExp);
 	}
 }
