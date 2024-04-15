@@ -42,6 +42,12 @@ void UPA_CharacterStatComponent::SetModifierStat(const FPA_CharacterData& InModi
 	OnStatChanged.Broadcast(GetBaseStat(), GetModifierStat());
 }
 
+void UPA_CharacterStatComponent::SetZeroStat(const FPA_CharacterData& InZeroStat)
+{
+	ZeroStat = InZeroStat;
+	OnStatChanged.Broadcast(GetBaseStat(), GetZeroStat());
+}
+
 float UPA_CharacterStatComponent::ApplyDamage(float InDamage)
 {
 	const float PrevHp = CurrentHp;
@@ -99,14 +105,14 @@ void UPA_CharacterStatComponent::LevelUp()
 
 		float PlusCurrentExp = CurrentExp - BaseStat.MaxExp;
 		SetLevelStat(NextLevel);
-		SetHp(BaseStat.MaxHp);
+		SetHp(GetTotalStat().MaxHp);
 		SetExp(PlusCurrentExp);
 	}
 }
 
 void UPA_CharacterStatComponent::SetHp(float NewHp)
 {
-	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, BaseStat.MaxHp);
+	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, GetTotalStat().MaxHp);
 
 	OnHpChanged.Broadcast(CurrentHp);
 }

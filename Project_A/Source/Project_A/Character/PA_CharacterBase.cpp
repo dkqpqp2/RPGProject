@@ -104,7 +104,11 @@ APA_CharacterBase::APA_CharacterBase()
 
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
 	Weapon->SetupAttachment(GetMesh());
+
 	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("hand_rSocket"));
+
+
+	
 
 	Stat = CreateDefaultSubobject<UPA_CharacterStatComponent>(TEXT("Stat"));
 
@@ -338,6 +342,7 @@ void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
 
 		//TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
 		EquipWeapon(InItemData);
+		AddWeapon = true;
 	}
 }
 

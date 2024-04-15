@@ -13,7 +13,8 @@
 #include "CharacterStat/PA_CharacterStatComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/SkeletalMeshSocket.h"
-
+#include "Item/PA_ItemData.h"
+#include "Item/PA_WeaponItemData.h"
 
 APA_CharacterPlayer::APA_CharacterPlayer()
 {
@@ -233,13 +234,52 @@ void APA_CharacterPlayer::OnPickUp(const FInputActionValue& Value)
 void APA_CharacterPlayer::OnWeaponChange(const FInputActionValue& Value)
 {
 	
-	Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+	/*const USkeletalMeshComponent* MeshComponent = GetMesh();
+	if (MeshComponent)
+	{
+		FName SocketName = "hand_rSocket";
+		const USkeletalMeshSocket* Socket = MeshComponent->GetSocketByName(SocketName);
+		if (Socket == nullptr)
+		{
+			UE_LOG(LogTemp, Log, TEXT("nullptr"));
+		}
+	}*/
+
+	/*USkeletalMeshComponent* AttachedWeapon = Cast<USkeletalMeshComponent>(Weapon->GetAttachParent());
+	const USkeletalMeshSocket* HandSocket = GetMesh()->GetSocketByName("hand_rSocket");
+	if (AttachedWeapon->GetSocketByName("hand_rSocket"))
+	{
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+		
+		return;
+	}
+	else
+	{
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("hand_rSocket"));
+	}*/
+
 
 	//무기를 습득했나??
+	if (!AddWeapon)
+	{
+		// ㄴㄴ
+		return;
+	}
+	else
+	{
+		// ㅇㅇ
+		//현재 무기는 어디에 위치했는가?? -> hand_rSocket
+		if (Weapon->GetSocketLocation("hand_rSocket") == GetMesh()->GetSocketLocation("hand_rSocket"))
+		{
+			Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
+		}
+		//현재 무기는 어디에 위치했는가?? -> unequip
+		else
+		{
+			Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("hand_rSocket"));
 
-
-	//현재 무기는 어디에 위치했는가??
-	
+		}
+	}
 }
 
 bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)
@@ -280,4 +320,6 @@ void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)
 		Stat->OnExpChanged.AddUObject(InHUDWidget, &UPA_HUDWidget::UpdateExpBar);
 	}
 }
+
+
 

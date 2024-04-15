@@ -64,6 +64,7 @@ protected:
 	int32 CurrentCombo = 0;
 	FTimerHandle ComboTimerHandle;
 	bool HasNextComboCommand = false;
+	bool AddWeapon = false;
 
 protected:
 	virtual void AttackHitCheck() override;

@@ -44,9 +44,11 @@ public:
 	FORCEINLINE float GetCurrentLevel() const { return CurrentLevel; }
 	FORCEINLINE void SetBaseStat(const FPA_CharacterData& InBaseStat);
 	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat);
+	FORCEINLINE void SetZeroStat(const FPA_CharacterData& InZeroStat);
 
 	FORCEINLINE FPA_CharacterData GetBaseStat() const { return BaseStat; }
 	FORCEINLINE FPA_CharacterData GetModifierStat() const { return ModifierStat; }
+	FORCEINLINE FPA_CharacterData GetZeroStat() const { return ZeroStat; }
 	FORCEINLINE FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
 	FORCEINLINE float GetCurrentMp() { return CurrentMp; }
@@ -92,5 +94,8 @@ protected:
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
 	FPA_CharacterData ModifierStat;
+
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat, Meta = (AllowPrivateAccess = "true"))
+	FPA_CharacterData ZeroStat;
 		
 };
