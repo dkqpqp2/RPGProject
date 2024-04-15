@@ -5,7 +5,6 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/WidgetComponent.h"
-#include "Item/ItemComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Physics/PA_Collision.h"
@@ -17,7 +16,6 @@ AItemBase::AItemBase()
 	BoxMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BoxMesh"));
 	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
 	Effect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Effect"));
-	BPC_Item = CreateDefaultSubobject<UItemComponent>(TEXT("BPC_Item"));
 
 	RootComponent = Trigger;
 	BoxMesh->SetupAttachment(Trigger);

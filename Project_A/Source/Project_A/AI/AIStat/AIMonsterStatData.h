@@ -27,13 +27,13 @@ public:
 	FString MonsterName;
 
 	UPROPERTY(EditAnywhere)
-	int32 Level;
+	float Level;
 
 	UPROPERTY(EditAnywhere)
 	float MaxHp;
 
 	UPROPERTY(EditAnywhere)
-	int32 AttackDamage;
+	float AttackDamage;
 
 	UPROPERTY(EditAnywhere)
 	float MonsterArmor;
