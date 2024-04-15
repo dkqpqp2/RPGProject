@@ -130,6 +130,11 @@ float AAIPawn::GetAIAttackRange()
 	return 0.0f;
 }
 
+void AAIPawn::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+}
+
 float AAIPawn::GetAITurnSpeed()
 {
 	return 0.0f;

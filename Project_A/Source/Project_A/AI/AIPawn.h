@@ -101,6 +101,7 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
+	virtual void OnConstruction(const FTransform& Transform) override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
@@ -125,6 +126,9 @@ protected:
 	TObjectPtr<class UPA_MonsterWidgetComponent> HpBar;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
 	float HpBarZOffset = 180.f;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<class UPA_MonsterStatComponent> MonsterStat;
 
 	virtual void SetupMonsterWidget(class UPA_MonsterWidget* InMonsterWidget) override;
 

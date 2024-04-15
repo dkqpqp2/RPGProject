@@ -41,7 +41,7 @@ AAIGoblin::AAIGoblin
 	//수정 MonsterExp
 	//MonsterExp = 25.0f;
 	//SetMonsterExp(MonsterExp);
-
+	TableRowName = TEXT("Goblin");
 }
 
 void AAIGoblin::BeginPlay()
