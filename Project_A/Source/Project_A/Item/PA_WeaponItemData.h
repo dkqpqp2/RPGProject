@@ -21,7 +21,4 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category = Stat)
 	FPA_CharacterData ModifierStat;
-
-	UPROPERTY(EditAnywhere, Category = Stat)
-	FPA_CharacterData ZeroStat;
 };
