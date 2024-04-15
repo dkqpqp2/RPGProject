@@ -34,6 +34,8 @@ AAIGoblin::AAIGoblin
 
 	MonsterMovement->MaxSpeed = 500.0f;
 
+	TableRowName = TEXT("Goblin");
+
 	//수정 HpBarZOffset
 	//HpBarZOffset = 130.0f;
 	//HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
@@ -105,7 +107,7 @@ void AAIGoblin::NormalAttack_B()
 	if (IsCollision)
 	{
 		FDamageEvent DmgEvent;
-		HitResult.GetActor()->TakeDamage(0.f, DmgEvent, GetController(), this);
+		HitResult.GetActor()->TakeDamage(0.0f, DmgEvent, GetController(), this);
 
 		FActorSpawnParameters ParamResult;
 

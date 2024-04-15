@@ -42,6 +42,9 @@ public:
 	float AttackSpeed;
 
 	UPROPERTY(EditAnywhere)
+	float MovementSpeed;
+
+	UPROPERTY(EditAnywhere)
 	float AttackDistance;
 
 	UPROPERTY(EditAnywhere)

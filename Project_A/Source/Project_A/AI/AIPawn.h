@@ -47,6 +47,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Monster)
 	UFloatingPawnMovement* MonsterMovement;
 
+	UPROPERTY(EditAnywhere)
+	class UPA_MonsterStatComponent* State;
+
 	bool AttackEnd;
 	bool AttackRightEnd;
 
@@ -126,9 +129,6 @@ protected:
 	TObjectPtr<class UPA_MonsterWidgetComponent> HpBar;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Widget, Meta = (AllowPrivateAccess = "true"))
 	float HpBarZOffset = 180.f;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<class UPA_MonsterStatComponent> MonsterStat;
 
 	virtual void SetupMonsterWidget(class UPA_MonsterWidget* InMonsterWidget) override;
 

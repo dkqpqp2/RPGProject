@@ -6,8 +6,7 @@
 // Sets default values for this component's properties
 UPA_MonsterStatComponent::UPA_MonsterStatComponent()
 {
-	MaxHp = 200.0f;
-	CurrentHp = MaxHp;
+
 }
 
 
@@ -15,13 +14,13 @@ UPA_MonsterStatComponent::UPA_MonsterStatComponent()
 void UPA_MonsterStatComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetHp(MaxHp);
+	SetHp(MonsterBaseStat.MaxHp);
 }
+
 
 float UPA_MonsterStatComponent::ApplyDamage(float InDamage)
 {
-	const float PrevHp = CurrentHp;
+	const float PrevHp = MonsterBaseStat.MaxHp;
 	const float AutaulDamage = FMath::Clamp<float>(InDamage, 0, InDamage);
 
 	SetHp(PrevHp - AutaulDamage);
@@ -36,9 +35,7 @@ float UPA_MonsterStatComponent::ApplyDamage(float InDamage)
 
 void UPA_MonsterStatComponent::SetHp(float NewHp)
 {
-	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, MaxHp);
+	CurrentHp = FMath::Clamp<float>(NewHp, 0.0f, MonsterBaseStat.MaxHp);
 
 	OnHpChanged.Broadcast(CurrentHp);
 }
-
-

@@ -148,7 +148,7 @@ void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
 	{
 		HpBarWidget->SetMaxHp(Stat->GetMaxHp());
 		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
-		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
+		State->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
 	}
 }
 

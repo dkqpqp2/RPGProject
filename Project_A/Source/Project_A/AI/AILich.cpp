@@ -36,6 +36,7 @@ AAILich::AAILich()
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
+	TableRowName = TEXT("Lich");
 
 	//수정 HpBarZOffset
 	//HpBarZOffset = 230.0f;
