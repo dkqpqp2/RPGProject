@@ -81,6 +81,7 @@ APA_CharacterPlayer::APA_CharacterPlayer()
 		WeaponChangeAction = InputActionWeaponChangeRef.Object;
 	}
 
+
 	CurrentCharacterControlType = ECharacterControlType::Shoulder;
 
 	//SetCanBeDamaged(true);
@@ -216,6 +217,7 @@ void APA_CharacterPlayer::OnOffStatDataVisible(const FInputActionValue& Value)
 
 }
 
+
 void APA_CharacterPlayer::OnPickUp(const FInputActionValue& Value)
 {
 	TArray<AActor*> OverlappingActors;
@@ -239,6 +241,7 @@ void APA_CharacterPlayer::OnWeaponChange(const FInputActionValue& Value)
 	}
 	else
 	{
+		//현재 무기는 어디에 위치했는가??	//현재 무기는 어디에 위치했는가??
 		if (Weapon->GetSocketLocation("hand_rSocket") == GetMesh()->GetSocketLocation("hand_rSocket"))
 		{
 			Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("unequip"));
@@ -248,7 +251,7 @@ void APA_CharacterPlayer::OnWeaponChange(const FInputActionValue& Value)
 			Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("hand_rSocket"));
 		}
 	}
-	//현재 무기는 어디에 위치했는가??
+
 }
 
 bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)
@@ -260,6 +263,7 @@ bool APA_CharacterPlayer::SholudDestroyActor(AActor* Item)
 
 	return false;
 }
+
 
 void APA_CharacterPlayer::Attack()
 {

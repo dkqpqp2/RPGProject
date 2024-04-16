@@ -13,7 +13,7 @@ APA_GameMode::APA_GameMode()
 		DefaultPawnClass = DefaultPlayerRef.Class;
 	}
 
-	static ConstructorHelpers::FClassFinder<APA_PlayerController> PlayerControllerClassRef(TEXT("/Script/Project_A.PA_PlayerController"));
+	static ConstructorHelpers::FClassFinder<APA_PlayerController> PlayerControllerClassRef(TEXT("/Game/Project_A/Blueprint/PA_PlayerController.PA_PlayerController_C")); 
 	if (PlayerControllerClassRef.Class)
 	{
 		PlayerControllerClass = PlayerControllerClassRef.Class;

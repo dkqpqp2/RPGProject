@@ -77,7 +77,6 @@ protected:
 	
 	bool SholudDestroyActor(AActor* Item);
 
-
 	ECharacterControlType CurrentCharacterControlType;
 
 	void Attack();
