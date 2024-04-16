@@ -34,8 +34,6 @@ AAIGoblin::AAIGoblin
 
 	MonsterMovement->MaxSpeed = 500.0f;
 
-	TableRowName = TEXT("Goblin");
-
 	//수정 HpBarZOffset
 	//HpBarZOffset = 130.0f;
 	//HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));

@@ -22,14 +22,6 @@ public:
 	// Sets default values for this component's properties
 	UPA_MonsterStatComponent();
 
-public:
-	UPROPERTY(EditAnywhere)
-	float MovementSpeed;
-
-	UPROPERTY(EditAnywhere)
-	float InteractionDistance;
-	FString DataTableRowName;
-
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -39,18 +31,18 @@ public:
 	FOnHpZeroDelegate OnHpZero;
 	FOnHpChangedDelegate OnHpChanged;
 
-	FORCEINLINE float GetMaxHp() { return MonsterBaseStat.MaxHp; }
+	FORCEINLINE float GetMaxHp() { return MaxHp; }
 	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
 	float ApplyDamage(float InDamage);
 
 	bool IsDead() const { return bDead; }
 protected:
 	void SetHp(float NewHp);
-	void SetCurrentHp(float CurrentHp) { CurrentHp = MonsterBaseStat.MaxHp; }
 	bool bDead = false;
 
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
 
-	FAIMonsterStatData MonsterBaseStat;
+	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
+	float MaxHp;
 };

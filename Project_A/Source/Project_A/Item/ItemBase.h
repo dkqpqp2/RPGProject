@@ -30,13 +30,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Item)
 	TObjectPtr<class UItemData> Item;
 
-	UPROPERTY(EditAnywhere, Category = Item)
-<<<<<<< HEAD
-	TObjectPtr<class UItemComponent> ItemComponent;
-=======
-	TObjectPtr<class UItemComponent> BPC_Item;
->>>>>>> 616626dd3d93e07fce58ec259f69a2a350026e93
-
 protected:
 	void FClickAction();
 

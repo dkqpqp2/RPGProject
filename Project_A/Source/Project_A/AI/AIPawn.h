@@ -47,9 +47,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Monster)
 	UFloatingPawnMovement* MonsterMovement;
 
-	UPROPERTY(EditAnywhere)
-	class UPA_MonsterStatComponent* State;
-
 	bool AttackEnd;
 	bool AttackRightEnd;
 

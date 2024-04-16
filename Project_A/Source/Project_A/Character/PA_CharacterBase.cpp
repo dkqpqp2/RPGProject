@@ -340,6 +340,7 @@ void APA_CharacterBase::TakeItem(UPA_ItemData* InItemData)
 
 		//TakeItemActions[static_cast<uint8>(InItemData->Type)].ItemDelegate.ExecuteIfBound(InItemData);
 		EquipWeapon(InItemData);
+		AddWeapon = true;
 	}
 }
 

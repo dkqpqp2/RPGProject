@@ -3,7 +3,6 @@
 #pragma once
 
 #include "AIPawn.h"
-#include "AI/AIStat/AIMonsterStatData.h"
 #include "MonsterPawn.generated.h"
 
 
@@ -12,11 +11,6 @@ class PROJECT_A_API AMonsterPawn : public AAIPawn
 {
 	GENERATED_BODY()
 
-protected:
-	static UDataTable* MonsterDataTable;
-
-public:
-	static const FAIMonsterStatData* FindMonsterData(const FString& Name);
 
 public:
 	AMonsterPawn();
@@ -25,8 +19,6 @@ public:
 
 protected:
 	class UMonsterAnimInstance* MonsterAnimInst;
-	FString TableRowName;
-	
 
 protected:
 	// Called when the game starts or when spawned
