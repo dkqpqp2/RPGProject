@@ -14,6 +14,10 @@ UPA_PlayerInventorySystem::UPA_PlayerInventorySystem()
 }
 
 
+void UPA_PlayerInventorySystem::AddItem()
+{
+}
+
 // Called when the game starts
 void UPA_PlayerInventorySystem::BeginPlay()
 {

@@ -8,7 +8,7 @@
 
 
 UENUM(BlueprintType)
-enum class EItemType : uint8
+enum class ENewItemType : uint8
 {
 	Weapon,
 	Potion,
@@ -25,5 +25,5 @@ class PROJECT_A_API UPA_ItemData : public UPrimaryDataAsset
 	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Type)
-	EItemType Type;
+	ENewItemType Type;
 };

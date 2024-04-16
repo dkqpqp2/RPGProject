@@ -27,5 +27,5 @@ public:
 	int32 StackSize;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
-	ENewItemType ItemType;
+	EItemType ItemType;
 };

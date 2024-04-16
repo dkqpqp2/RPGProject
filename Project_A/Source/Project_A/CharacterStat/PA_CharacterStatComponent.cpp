@@ -3,12 +3,11 @@
 
 #include "PA_CharacterStatComponent.h"
 #include "GameData/PA_GameSingleton.h"
+#include "UI/PA_HpBarWidget.h"
 
 // Sets default values for this component's properties
 UPA_CharacterStatComponent::UPA_CharacterStatComponent()
 {
-	CurrentLevel = 1;
-	CurrentExp = 0.0f;
 	bWantsInitializeComponent = true;
 
 }

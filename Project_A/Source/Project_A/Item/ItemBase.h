@@ -18,10 +18,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = Box)
 	TObjectPtr<class UBoxComponent> Trigger;
 
-	UPROPERTY(EditAnywhere, Category = Box)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Box)
 	TObjectPtr<class UStaticMeshComponent> BoxMesh;
 
-	UPROPERTY(EditAnywhere, Category = Widget)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widget)
 	TObjectPtr<class UWidgetComponent> Widget;
 
 	UPROPERTY(EditAnywhere, Category = Effect)
@@ -29,6 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Item)
 	TObjectPtr<class UItemData> Item;
+
+	UPROPERTY(EditAnywhere, Category = Item)
+	TObjectPtr<class UItemComponent> ItemComponent;
 
 protected:
 	void FClickAction();
@@ -38,12 +41,12 @@ protected:
 
 
 public:
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void OnEffectFinished(class UParticleSystemComponent* ParticleSystem);
 };

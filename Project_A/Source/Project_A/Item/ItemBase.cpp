@@ -5,7 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/WidgetComponent.h"
-
+#include "Inventory/ItemComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Physics/PA_Collision.h"
@@ -44,15 +44,17 @@ AItemBase::AItemBase()
 	}
 	Widget->SetRelativeLocation(FVector(0.0f, -5.0f, 5.0f));
 	Widget->SetWidgetSpace(EWidgetSpace::Screen);
-	Widget->SetVisibility(false);
+	//Widget->SetVisibility(false);
+
+	ItemComponent = CreateDefaultSubobject<UItemComponent>(TEXT("ItmeComponent"));
 }
 
 void AItemBase::FClickAction()
 {
-	Effect->SetActive(true);
+	/*Effect->SetActive(true);
 	BoxMesh->SetHiddenInGame(true);
 	SetActorEnableCollision(false);
-	Effect->OnSystemFinished.AddDynamic(this, &AItemBase::OnEffectFinished);
+	Effect->OnSystemFinished.AddDynamic(this, &AItemBase::OnEffectFinished);*/
 }
 
 void AItemBase::Tick(float DeltaSeconds)
@@ -66,17 +68,17 @@ void AItemBase::Tick(float DeltaSeconds)
 
 void AItemBase::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepHitResult)
 {
-	Widget->SetVisibility(true);
+	//Widget->SetVisibility(true);
 }
 
 void AItemBase::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	Widget->SetVisibility(false);
+	//Widget->SetVisibility(false);
 }
 
 void AItemBase::OnEffectFinished(UParticleSystemComponent* ParticleSystem)
 {
-	Destroy();
+	//Destroy();
 }
 
 

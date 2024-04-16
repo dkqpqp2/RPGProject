@@ -32,8 +32,11 @@ AItemSoda::AItemSoda()
 			Opener->SetupAttachment(BoxMesh);
 			Opener->SetStaticMesh(SodaOpenerMeshRef.Object);
 		}
-
+		BoxMesh->SetRelativeLocation(FVector(0.0f, -5.0f, 0.0f));
 		BoxMesh->SetWorldScale3D(FVector(0.05f, 0.05f, 0.05f));
+		Cap->SetCollisionProfileName(TEXT("NoCollision"));
+		Opener->SetCollisionProfileName(TEXT("NoCollision"));
 	}
-
+	BoxMesh->SetCollisionProfileName(TEXT("NoCollision"));
 }
+

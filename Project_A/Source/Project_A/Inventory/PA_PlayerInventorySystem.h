@@ -20,10 +20,14 @@ public:
 
 protected:
 
+	UPROPERTY()
 	int32 InventorySize;
+	UPROPERTY()
 	FS_Slot Slot;
+	UPROPERTY()
 	bool IsAddFailed;
 
+	UFUNCTION()
 	void AddItem();
 
 protected:

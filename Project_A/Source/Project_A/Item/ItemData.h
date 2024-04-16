@@ -7,7 +7,7 @@
 #include "ItemData.generated.h"
 
 UENUM(BlueprintType)
-enum class ENewItemType : uint8
+enum class EItemType : uint8
 {
 	Weapon,
 	Potion,
@@ -24,6 +24,6 @@ class PROJECT_A_API UItemData : public UPrimaryDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Type)
-	ENewItemType Type;
+	EItemType Type;
 	
 };

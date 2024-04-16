@@ -69,7 +69,10 @@ protected:
 	void ShoulderLook(const FInputActionValue& Value);
 	void QuaterMove(const FInputActionValue& Value);
 	void OnOffStatDataVisible(const FInputActionValue& Value);
+
+	UFUNCTION()
 	void OnPickUp(const FInputActionValue& Value);
+
 	void OnWeaponChange(const FInputActionValue& Value);
 	
 	bool SholudDestroyActor(AActor* Item);

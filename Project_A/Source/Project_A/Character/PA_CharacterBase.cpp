@@ -267,7 +267,7 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 	UPA_HpBarWidget* HpBarWidget = Cast<UPA_HpBarWidget>(InUserWidget);
 	if (HpBarWidget)
 	{
-		HpBarWidget->SetMaxHp(Stat->GetTotalStat().MaxHp);
+		HpBarWidget->SetMaxHp(Stat->GetBaseStat().MaxHp);
 		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
 		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_HpBarWidget::UpdateHpBar);
 
@@ -291,6 +291,8 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 
 	}
 }
+
+
 
 //void AddExp(float InIncreaseExp)
 //{

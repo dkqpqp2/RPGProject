@@ -12,8 +12,10 @@ APA_PlayerController::APA_PlayerController()
 		PA_HUDWidgetClass = PAHUDWidgetRef.Class;
 	}
 
+	/*FInputModeUIOnly input;
+	SetInputMode(input);
 
-
+	bShowMouseCursor = true;*/
 }
 
 void APA_PlayerController::BeginPlay()
