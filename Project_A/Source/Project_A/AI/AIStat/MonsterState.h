@@ -26,9 +26,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	float Level;
 
-	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
-	float CurrentHp;
-
 	UPROPERTY(EditAnywhere)
 	float MaxHp;
 

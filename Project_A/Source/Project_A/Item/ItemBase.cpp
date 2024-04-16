@@ -5,6 +5,10 @@
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/WidgetComponent.h"
+<<<<<<< HEAD
+=======
+#include "Item/ItemComponent.h"
+>>>>>>> parent of de30210 (Weapon 위치 변경 구현)
 #include "Blueprint/UserWidget.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Physics/PA_Collision.h"
@@ -16,6 +20,7 @@ AItemBase::AItemBase()
 	BoxMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BoxMesh"));
 	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
 	Effect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Effect"));
+	BPC_Item = CreateDefaultSubobject<UItemComponent>(TEXT("BPC_Item"));
 
 	RootComponent = Trigger;
 	BoxMesh->SetupAttachment(Trigger);
