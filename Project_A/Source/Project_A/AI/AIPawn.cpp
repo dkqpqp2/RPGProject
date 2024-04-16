@@ -130,6 +130,11 @@ float AAIPawn::GetAIAttackRange()
 	return 0.0f;
 }
 
+void AAIPawn::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+}
+
 float AAIPawn::GetAITurnSpeed()
 {
 	return 0.0f;
@@ -143,7 +148,7 @@ void AAIPawn::SetupMonsterWidget(UPA_MonsterWidget* InMonsterWidget)
 	{
 		HpBarWidget->SetMaxHp(Stat->GetMaxHp());
 		HpBarWidget->UpdateHpBar(Stat->GetCurrentHp());
-		Stat->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
+		State->OnHpChanged.AddUObject(HpBarWidget, &UPA_MonsterHpBarWidget::UpdateHpBar);
 	}
 }
 

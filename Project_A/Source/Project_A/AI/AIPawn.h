@@ -47,6 +47,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = Monster)
 	UFloatingPawnMovement* MonsterMovement;
 
+	UPROPERTY(EditAnywhere)
+	class UPA_MonsterStatComponent* State;
+
 	bool AttackEnd;
 	bool AttackRightEnd;
 
@@ -101,6 +104,7 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
+	virtual void OnConstruction(const FTransform& Transform) override;
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser);
