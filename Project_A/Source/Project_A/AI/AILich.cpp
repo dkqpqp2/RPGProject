@@ -28,6 +28,7 @@ AAILich::AAILich()
 
 	MonsterMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -108.0f));
 	MonsterMesh->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
+	MonsterMesh->SetRelativeScale3D(FVector(2.0f, 2.0f, 2.0f));
 	MonsterMesh->SetCollisionProfileName(TEXT("NoCollision"));
 
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
