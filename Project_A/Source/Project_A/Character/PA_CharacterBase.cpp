@@ -120,8 +120,6 @@ APA_CharacterBase::APA_CharacterBase()
 		HpBar->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 
-	Inventory = CreateDefaultSubobject<UPA_PlayerInventorySystem>(TEXT("Inventory"));
-
 	
 }
 
