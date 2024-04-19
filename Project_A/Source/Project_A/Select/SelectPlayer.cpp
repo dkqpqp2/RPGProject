@@ -2,6 +2,7 @@
 
 
 #include "SelectPlayer.h"
+#include "SelectAnimInstance.h"
 
 // Sets default values
 ASelectPlayer::ASelectPlayer()
@@ -27,6 +28,8 @@ ASelectPlayer::ASelectPlayer()
 void ASelectPlayer::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AnimInst = Cast<USelectAnimInstance>(Mesh->GetAnimInstance());
 	
 }
 
@@ -35,5 +38,13 @@ void ASelectPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ASelectPlayer::SetSelect(bool InSelect)
+{
+	if (IsValid(AnimInst))
+	{
+		AnimInst->SetSelect(InSelect);
+	}
 }
 

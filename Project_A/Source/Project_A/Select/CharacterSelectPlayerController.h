@@ -13,5 +13,19 @@ UCLASS()
 class PROJECT_A_API ACharacterSelectPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+public:
+	ACharacterSelectPlayerController();
+
+protected:
+	AActor* HitActor;
+
+protected:
+	virtual void BeginPlay() override;
+	virtual void SetupInputComponent()override;
+
+public:
+	virtual void Tick(float DeltaTime) override;
+protected:
+	void OnSelect(const FInputActionValue& Value);
 };

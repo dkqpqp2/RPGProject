@@ -5,7 +5,9 @@
 #include "EngineMinimal.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DamageEvents.h"
-
+#include "InputMappingContext.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BlackboardData.h"

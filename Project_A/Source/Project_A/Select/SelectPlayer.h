@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* Mesh;
 
-
+	class USelectAnimInstance* AnimInst;
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,4 +32,5 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void SetSelect(bool InSelect);
 };

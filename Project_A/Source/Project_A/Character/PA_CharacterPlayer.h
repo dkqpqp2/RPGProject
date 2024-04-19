@@ -88,3 +88,20 @@ public:
 protected:
 	virtual void SetupHUDWidget(class UPA_HUDWidget* InHUDWidget) override;
 };
+
+UCLASS()
+class USelectInputDataConfig : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	USelectInputDataConfig();
+
+public:
+	TObjectPtr<class UInputMappingContext> DefaultSelectContext = nullptr;
+
+public:
+	TObjectPtr<class UInputAction> Select = nullptr;
+
+
+};

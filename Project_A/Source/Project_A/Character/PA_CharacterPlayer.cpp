@@ -294,3 +294,18 @@ void APA_CharacterPlayer::SetupHUDWidget(UPA_HUDWidget* InHUDWidget)
 	}
 }
 
+USelectInputDataConfig::USelectInputDataConfig()
+{
+
+	static ConstructorHelpers::FObjectFinder<UInputMappingContext> DefaultSelectMappingContextRef(TEXT("/Script/EnhancedInput.InputMappingContext'/Game/Project_A/Blueprint/CharacterSelect/Input/IMC_Select.IMC_Select'"));
+	if (DefaultSelectMappingContextRef.Object)
+	{
+		DefaultSelectContext = DefaultSelectMappingContextRef.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UInputAction> SelectActionRef(TEXT("/Script/EnhancedInput.InputAction'/Game/Project_A/Blueprint/CharacterSelect/Input/IA_Select.IA_Select'"));
+	if (SelectActionRef.Object)
+	{
+		Select = SelectActionRef.Object;
+	}
+}
