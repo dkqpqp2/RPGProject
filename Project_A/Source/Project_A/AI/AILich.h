@@ -19,12 +19,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	//TSubclassOf<AAILichProjectile> AILichProjectileClass;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class AAILichProjectile> SpawnProjectileClass;
+
+	class AAILichProjectile* SpawnProjectile;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	virtual void NormalAttack();
 	virtual void NormalAttack_B();
-	//virtual void SkillA();
+	virtual void SkillA();
 
 
 	void SetDead() override;

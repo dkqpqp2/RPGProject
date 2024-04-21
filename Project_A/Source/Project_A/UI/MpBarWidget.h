@@ -20,7 +20,7 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
-	FORCEINLINE void SetMaxMp(float NewMaxMp) { MaxMp = NewMaxMp; }
+	void SetMaxMp(float NewMaxMp) { MaxMp = NewMaxMp; }
 	void UpdateMpBar(float NewCurrentMp);
 
 protected:

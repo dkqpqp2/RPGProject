@@ -39,6 +39,7 @@ public:
 	
 	virtual void PostInitializeComponents() override;
 
+	const UPA_CharacterStatComponent* GetStatComponent() const;
 protected:
 	virtual void SetCharacterControlData(const class UPA_CharacterControlData* CharacterControlData);
 

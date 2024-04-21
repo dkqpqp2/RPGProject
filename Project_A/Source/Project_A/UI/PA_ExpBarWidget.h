@@ -21,7 +21,7 @@ protected:
 	virtual void NativeConstruct() override;
 
 public:
-	FORCEINLINE void SetMaxExp(float NewMaxExp) { MaxExp = NewMaxExp; }
+	void SetMaxExp(float NewMaxExp) { MaxExp = NewMaxExp; }
 	void UpdateExpBar(float NewCurrentExp);
 	
 protected:

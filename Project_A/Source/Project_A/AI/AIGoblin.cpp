@@ -8,6 +8,7 @@
 #include "../Effect/EffectBase.h"
 #include "Physics/PA_Collision.h"
 #include "AI/AIUI/PA_MonsterWidgetComponent.h"
+#include "AIStat/PA_MonsterStatComponent.h"
 
 AAIGoblin::AAIGoblin
 ()
@@ -33,6 +34,8 @@ AAIGoblin::AAIGoblin
 	MonsterCapsule->SetCollisionProfileName(CPROFILE_PAMONSTERCAPSULE);
 
 	MonsterMovement->MaxSpeed = 500.0f;
+
+	Stat->MaxHp = 50.0f;
 
 	//수정 HpBarZOffset
 	//HpBarZOffset = 130.0f;

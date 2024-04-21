@@ -6,7 +6,6 @@
 // Sets default values for this component's properties
 UPA_MonsterStatComponent::UPA_MonsterStatComponent()
 {
-	MaxHp = 200.0f;
 	CurrentHp = MaxHp;
 }
 

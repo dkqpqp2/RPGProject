@@ -14,10 +14,8 @@ enum class EMonsterAnimType : uint8
 	Walk,
 	AttackLeft,
 	AttackRight,
-	Spawn,
-	Hit,
+	Skill,
 	Death,
-	Skill
 };
 /**
  * 
@@ -52,4 +50,9 @@ public:
 	UFUNCTION()
 	void AnimNotify_AttackRight();
 
+	UFUNCTION()
+	void AnimNotify_Skill();
+
+	UFUNCTION()
+	void AnimNotify_SkillEnd();
 };

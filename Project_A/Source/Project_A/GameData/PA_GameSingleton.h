@@ -21,7 +21,7 @@ public:
 	static UPA_GameSingleton& Get();
 
 public:
-	FORCEINLINE FPA_CharacterData GetCharacterData(int32 InLevel) const { return CharacterDataTable.IsValidIndex(InLevel - 1) ? CharacterDataTable[InLevel - 1] : FPA_CharacterData(); }
+	FPA_CharacterData GetCharacterData(int32 InLevel) const { return CharacterDataTable.IsValidIndex(InLevel - 1) ? CharacterDataTable[InLevel - 1] : FPA_CharacterData(); }
 
 	UPROPERTY()
 	int32 CharacterMaxLevel;

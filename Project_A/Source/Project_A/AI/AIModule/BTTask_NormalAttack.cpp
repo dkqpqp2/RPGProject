@@ -37,7 +37,7 @@ EBTNodeResult::Type UBTTask_NormalAttack::ExecuteTask(UBehaviorTreeComponent& Ow
 	}
 
 	//Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::AttackLeft);
-	uint8 AttackTypeIndex = FMath::RandRange(static_cast<uint8>(EMonsterAnimType::AttackLeft), static_cast<uint8>(EMonsterAnimType::AttackRight));
+	uint8 AttackTypeIndex = FMath::RandRange(static_cast<uint8>(EMonsterAnimType::AttackRight), static_cast<uint8>(EMonsterAnimType::Skill));
 	Pawn->ChangeAIAnimType(AttackTypeIndex);
 
 	return EBTNodeResult::InProgress;

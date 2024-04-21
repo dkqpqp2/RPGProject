@@ -15,7 +15,7 @@ class PROJECT_A_API UPA_UserWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	FORCEINLINE void SetOwningActor(AActor* NewOwner) { OwningActor = NewOwner; }
+	void SetOwningActor(AActor* NewOwner) { OwningActor = NewOwner; }
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actor")

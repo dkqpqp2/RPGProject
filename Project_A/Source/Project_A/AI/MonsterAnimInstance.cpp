@@ -38,3 +38,15 @@ void UMonsterAnimInstance::AnimNotify_AttackRight()
 
 }
 
+void UMonsterAnimInstance::AnimNotify_Skill()
+{
+	AMonsterPawn* Pawn = Cast<AMonsterPawn>(TryGetPawnOwner());
+	Pawn->SkillA();
+}
+
+void UMonsterAnimInstance::AnimNotify_SkillEnd()
+{
+	AMonsterPawn* Pawn = Cast<AMonsterPawn>(TryGetPawnOwner());
+	Pawn->SetSkillEnd(true);
+}
+

@@ -18,6 +18,7 @@ AAIPawn::AAIPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AttackEnd = false;
+	SkillEnd = false;
 
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 

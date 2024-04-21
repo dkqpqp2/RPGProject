@@ -4,6 +4,9 @@
 #include "PA_GameMode.h"
 #include "Player/PA_PlayerController.h"
 #include "../Character/PA_CharacterState.h"
+#include "../Character/PA_ArcherCharacter.h"
+#include "../Character/PA_KnightCharacter.h"
+#include "../PA_GameInstance.h"
 
 APA_GameMode::APA_GameMode()
 {
@@ -20,4 +23,30 @@ APA_GameMode::APA_GameMode()
 	}
 
 	PlayerStateClass = APA_CharacterState::StaticClass();
+}
+
+void APA_GameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
+{
+	Super::InitGame(MapName, Options, ErrorMessage);
+
+	EPlayerType PlayerType = GetWorld()->GetGameInstance<UPA_GameInstance>()->GetPlayerType();
+
+	switch (PlayerType)
+	{
+	case EPlayerType::Knight:
+
+		break;
+	case EPlayerType::Archer:
+
+		break;
+	}
+}
+
+APlayerController* APA_GameMode::Login(UPlayer* NewPlayer, ENetRole InRemoteRole, const FString& Portal, const FString& Options, const FUniqueNetIdRepl& UniqueId, FString& ErrorMessage)
+{
+	APlayerController* result = Super::Login(NewPlayer, InRemoteRole, Portal, Options, UniqueId, ErrorMessage);
+
+
+
+	return result;
 }

@@ -15,12 +15,10 @@ UPA_HUDWidget::UPA_HUDWidget(const FObjectInitializer& ObjectInitializer)  : Sup
 
 void UPA_HUDWidget::UpdateStat(const FPA_CharacterData& BaseStat, const FPA_CharacterData& ModifierStat)
 {
-
 	FPA_CharacterData TotalStat = BaseStat + ModifierStat;
 	HpBar->SetMaxHp(TotalStat.MaxHp);
 	ExpBar->SetMaxExp(TotalStat.MaxExp);
 	CharacterStat->UpdateStat(BaseStat, ModifierStat);
-	
 }
 
 void UPA_HUDWidget::UpdateHpBar(float NewCurrentHp)

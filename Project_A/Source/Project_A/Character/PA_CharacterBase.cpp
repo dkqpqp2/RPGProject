@@ -18,6 +18,7 @@
 #include "Item/PA_WeaponItemData.h"
 #include "PA_CharacterState.h"
 #include "Inventory/PA_PlayerInventorySystem.h"
+#include "Effect/EffectBase.h"
 
 DEFINE_LOG_CATEGORY(LogPACharacter);
 
@@ -29,16 +30,8 @@ APA_CharacterBase::APA_CharacterBase()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
-	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-	GetCapsuleComponent()->SetCollisionProfileName(CPROFILE_PACAPSULE);
-
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
-	GetCharacterMovement()->JumpZVelocity = 700.0f;
-	GetCharacterMovement()->AirControl = 0.35f;
-	GetCharacterMovement()->MaxWalkSpeed = 500.f;
-	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
-	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f); //
+	GetCapsuleComponent()->SetCollisionProfileName(CPROFILE_PACAPSULE); //
 
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -100.0f), FRotator(0.0f, -90.0f, 0.0f));
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
@@ -49,13 +42,24 @@ APA_CharacterBase::APA_CharacterBase()
 	FaceCapture->PrimitiveRenderMode = ESceneCapturePrimitiveRenderMode::PRM_UseShowOnlyList;
 	FaceCapture->CaptureSource = ESceneCaptureSource::SCS_SceneColorSceneDepth;
 
+	GetCharacterMovement()->bOrientRotationToMovement = true; //
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f); // 
+	GetCharacterMovement()->JumpZVelocity = 700.0f; // 
+	GetCharacterMovement()->AirControl = 0.35f; // 
+	GetCharacterMovement()->MaxWalkSpeed = 500.f; //
+	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f; //
+	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f; //
+
+	FaceCapture->SetRelativeLocation(FVector(0.0, 76.0, 143.0)); //
+	FaceCapture->SetRelativeRotation(FRotator(0.0, -90.0, 0.0)); //
+
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharacterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/InfinityBladeWarriors/Character/CompleteCharacters/SK_CharM_Cardboard.SK_CharM_Cardboard'"));
 	if (CharacterMeshRef.Object)
 	{
 		GetMesh()->SetSkeletalMesh(CharacterMeshRef.Object);
 	}
 
-	static ConstructorHelpers::FClassFinder<UAnimInstance> AnimaInstanceClassRef(TEXT("/Game/Project_A/Animation/ABP_PA_Character.ABP_PA_Character_C"));
+	static ConstructorHelpers::FClassFinder<UAnimInstance> AnimaInstanceClassRef(TEXT("/Game/Project_A/Animation/ABP_PA_PlayerKnight.ABP_PA_PlayerKnight_C"));
 	if (AnimaInstanceClassRef.Class)
 	{
 		GetMesh()->SetAnimInstanceClass(AnimaInstanceClassRef.Class);
@@ -130,6 +134,11 @@ void APA_CharacterBase::PostInitializeComponents()
 	Stat->OnHpZero.AddUObject(this, &APA_CharacterBase::SetDead);
 
 	FaceCapture->ShowOnlyActors.Add(this);
+}
+
+const UPA_CharacterStatComponent* APA_CharacterBase::GetStatComponent() const
+{
+	return Stat;
 }
 
 void APA_CharacterBase::SetCharacterControlData(const UPA_CharacterControlData* CharacterControlData)
@@ -230,6 +239,13 @@ void APA_CharacterBase::AttackHitCheck()
 		FDamageEvent DmgEvent;
 
 		OutHitResult.GetActor()->TakeDamage(AttackDamage, DmgEvent, GetController(), this);
+		FActorSpawnParameters ParamResult;
+
+		ParamResult.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+		AEffectBase* Effect = GetWorld()->SpawnActor<AEffectBase>(OutHitResult.ImpactPoint, OutHitResult.ImpactNormal.Rotation(), ParamResult);
+
+		Effect->SetNiagaraAsset(FSoftObjectPath(TEXT("/Game/KTP_Effect/Particles/Fly/Expolison_03_01.Expolison_03_01")));
 	}
 
 #if ENABLE_DRAW_DEBUG
@@ -274,6 +290,7 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 		MpBarWidget->UpdateMpBar(Stat->GetCurrentMp());
 		Stat->OnMpChanged.AddUObject(MpBarWidget, &UMpBarWidget::UpdateMpBar);
 
+
 	}
 
 	UPA_ExpBarWidget* ExpBarWidget = Cast<UPA_ExpBarWidget>(InUserWidget);
@@ -283,7 +300,10 @@ void APA_CharacterBase::SetupCharacterWidget(UPA_UserWidget* InUserWidget)
 		ExpBarWidget->UpdateExpBar(Stat->GetCurrentExp());
 		Stat->OnExpChanged.AddUObject(ExpBarWidget, &UPA_ExpBarWidget::UpdateExpBar);
 
+
 	}
+
+
 }
 
 

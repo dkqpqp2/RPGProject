@@ -9,6 +9,7 @@
 #include "Physics/PA_Collision.h"
 #include "AIProjectile/AILichProjectile.h"
 #include "AI/AIUI/PA_MonsterWidgetComponent.h"
+#include "AIStat/PA_MonsterStatComponent.h"
 
 AAILich::AAILich()
 {
@@ -28,7 +29,6 @@ AAILich::AAILich()
 
 	MonsterMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -108.0f));
 	MonsterMesh->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
-	MonsterMesh->SetRelativeScale3D(FVector(2.0f, 2.0f, 2.0f));
 	MonsterMesh->SetCollisionProfileName(TEXT("NoCollision"));
 
 	MonsterCapsule->SetCapsuleHalfHeight(96.0f);
@@ -37,6 +37,7 @@ AAILich::AAILich()
 	
 	MonsterMovement->MaxSpeed = 450.f;
 
+	Stat->MaxHp = 500.0f;
 	//수정 HpBarZOffset
 	//HpBarZOffset = 230.0f;
 	//HpBar->SetRelativeLocation(FVector(0.0f, 0.0f, HpBarZOffset));
@@ -101,11 +102,13 @@ void AAILich::NormalAttack_B()
 {
 	FCollisionQueryParams Params(NAME_None, false, this);
 
+
 	FVector StartLocation = GetActorLocation() + GetActorForwardVector() * 50.0f;
 	FVector EndLocation = StartLocation + GetActorForwardVector() * 150.0f;
 
 	FHitResult HitResult;
 	bool IsCollision = GetWorld()->SweepSingleByChannel(HitResult, StartLocation, EndLocation, FQuat::Identity, ECC_GameTraceChannel2, FCollisionShape::MakeSphere(50.0f), Params);
+	
 
 #if ENABLE_DRAW_DEBUG
 
@@ -118,7 +121,7 @@ void AAILich::NormalAttack_B()
 	if (IsCollision)
 	{
 		FDamageEvent DmgEvent;
-		HitResult.GetActor()->TakeDamage(20.f, DmgEvent, GetController(), this);
+		HitResult.GetActor()->TakeDamage(0.f, DmgEvent, GetController(), this);
 
 		FActorSpawnParameters ParamResult;
 
@@ -127,6 +130,43 @@ void AAILich::NormalAttack_B()
 		AEffectBase* Effect = GetWorld()->SpawnActor<AEffectBase>(HitResult.ImpactPoint, HitResult.ImpactNormal.Rotation(), ParamResult);
 
 		Effect->SetNiagaraAsset(FSoftObjectPath(TEXT("/Game/KTP_Effect/Particles/Fly/Explosion_01_01.Explosion_01_01")));
+		//Effect->SetSoundAsset(TEXT(""));
+	}
+}
+
+void AAILich::SkillA()
+{
+	FCollisionQueryParams Params(NAME_None, false, this);
+
+	FVector StartLocation = GetActorLocation() + GetActorForwardVector() * 50.0f;
+	FVector EndLocation = StartLocation + GetActorForwardVector() * 150.0f;
+
+	FHitResult HitResult;
+	bool IsCollision = GetWorld()->SweepSingleByChannel(HitResult, StartLocation, EndLocation, FQuat::Identity, ECC_GameTraceChannel2, FCollisionShape::MakeSphere(50.0f), Params);
+	
+
+
+#if ENABLE_DRAW_DEBUG
+
+	FColor DrawColor = IsCollision ? FColor::Red : FColor::Green;
+	DrawDebugCapsule(GetWorld(), (StartLocation + EndLocation) / 2.0f, 75.0f, 50.0f, FRotationMatrix::MakeFromZ(GetActorForwardVector()).ToQuat(), DrawColor, false, 3.0f );
+
+#endif
+
+
+	if (IsCollision)
+	{
+		/*FDamageEvent DmgEvent;
+		HitResult.GetActor()->TakeDamage(0.f, DmgEvent, GetController(), this);
+
+		ParamResult.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;*/
+
+		FActorSpawnParameters ParamResult;
+		double randomTranformY = FMath::RandRange(-50.0, 50.0);
+
+
+		SpawnProjectile = GetWorld()->SpawnActor<AAILichProjectile>(SpawnProjectileClass, GetActorLocation() + FVector(0.0, randomTranformY, 300.0), GetActorRotation(), ParamResult);
+
 		//Effect->SetSoundAsset(TEXT(""));
 	}
 }

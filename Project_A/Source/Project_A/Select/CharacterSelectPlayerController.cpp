@@ -7,6 +7,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "SelectPlayer.h"
+#include "UI/SelectWidget.h"
+#include "../PA_GameInstance.h"
 
 ACharacterSelectPlayerController::ACharacterSelectPlayerController()
 {
@@ -15,11 +17,22 @@ ACharacterSelectPlayerController::ACharacterSelectPlayerController()
 	bShowMouseCursor = true;
 
 	HitActor = nullptr;
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> SelectWidgetClassRef(TEXT("/Game/Project_A/Blueprint/CharacterSelect/UI_Select.UI_Select_C"));
+	
+	if (SelectWidgetClassRef.Succeeded())
+	{
+		SelectWidgetClass = SelectWidgetClassRef.Class;
+	}
+
 }
 
 void ACharacterSelectPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SelectWidget = CreateWidget<USelectWidget>(GetWorld(), SelectWidgetClass);
+	SelectWidget->AddToViewport();
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	const USelectInputDataConfig* SelectInputDataConfig = GetDefault<USelectInputDataConfig>();
@@ -54,6 +67,7 @@ void ACharacterSelectPlayerController::Tick(float DeltaTime)
 
 	if(Hit)
 	{
+		
 		HitActor = result.GetActor();
 	}
 	else
@@ -72,6 +86,15 @@ void ACharacterSelectPlayerController::OnSelect(const FInputActionValue& Value)
 		if (IsValid(SelectPlayer))
 		{
 			SelectPlayer->SetSelect(true);
+			// HitActor가 없다가 생기면 true
+			SelectWidget->SetStartButtonEnable(true);
+
+			GetWorld()->GetGameInstance<UPA_GameInstance>()->SetPlayerType(SelectPlayer->GetPlayerType());
 		}
+	}
+	else
+	{
+		// HitActor가 있다가 없어지면 다시 false
+		SelectWidget->SetStartButtonEnable(false);
 	}
 }

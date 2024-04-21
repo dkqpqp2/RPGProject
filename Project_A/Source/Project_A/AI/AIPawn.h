@@ -48,6 +48,7 @@ protected:
 	UFloatingPawnMovement* MonsterMovement;
 
 	bool AttackEnd;
+	bool SkillEnd;
 	bool AttackRightEnd;
 
 	class AAISpawnPoint* SpawnPoint;
@@ -65,6 +66,14 @@ public:
 	void SetAttackEnd(bool End)
 	{
 		AttackEnd = End;
+	}
+	void SetSkillEnd(bool End)
+	{
+		SkillEnd = End;
+	}
+	bool IsSkillEnd()
+	{
+		return SkillEnd;
 	}
 
 	bool IsAttackEnd()

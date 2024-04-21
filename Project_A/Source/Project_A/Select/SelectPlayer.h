@@ -24,6 +24,15 @@ protected:
 
 	class USelectAnimInstance* AnimInst;
 
+	UPROPERTY(EditAnywhere)
+	EPlayerType PlayerType;
+
+public:
+	EPlayerType GetPlayerType()
+	{
+		return PlayerType;
+	}
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

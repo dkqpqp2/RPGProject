@@ -8,6 +8,7 @@
 
 class UNiagaraComponent;
 class UProjectileMovementComponent;
+class AEffectBase;
 
 UCLASS()
 class PROJECT_A_API AAILichProjectile : public AActor
@@ -23,11 +24,15 @@ public:
 	UPROPERTY(VIsibleAnywhere, Category = Sphere)
 	USphereComponent* SphereTrigger;
 
-	UPROPERTY(VisibleAnywhere, Category = Particle)
-	UNiagaraComponent* Niagara;
+	UPROPERTY(VisibleAnywhere, Category = Effect)
+	AEffectBase* NiagaraEffect;
 
 	UPROPERTY(VisibleAnywhere, Category = Projectile)
 	UProjectileMovementComponent* Projectile;
+
+#if WITH_EDITORONLY_DATA
+	UArrowComponent* Arrow;
+#endif
 
 protected:
 	// Called when the game starts or when spawned
@@ -35,6 +40,6 @@ protected:
 
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+	virtual void Tick(float DeltaTime) override; 
+	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
 };

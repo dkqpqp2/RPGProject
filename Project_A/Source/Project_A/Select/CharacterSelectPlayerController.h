@@ -19,6 +19,10 @@ public:
 
 protected:
 	AActor* HitActor;
+	// Class 정보 들고있을 변수
+	TSubclassOf<UUserWidget> SelectWidgetClass;
+	//
+	class USelectWidget* SelectWidget;
 
 protected:
 	virtual void BeginPlay() override;

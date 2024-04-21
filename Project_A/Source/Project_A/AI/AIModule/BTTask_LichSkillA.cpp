@@ -8,6 +8,9 @@
 
 UBTTask_LichSkillA::UBTTask_LichSkillA()
 {
+	NodeName = "LichSkill";
+	bNotifyTick = true;
+	bNotifyTaskFinished = true;
 }
 
 EBTNodeResult::Type UBTTask_LichSkillA::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -44,4 +47,63 @@ EBTNodeResult::Type UBTTask_LichSkillA::ExecuteTask(UBehaviorTreeComponent& Owne
 void UBTTask_LichSkillA::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
+	AAIController* Controller = OwnerComp.GetAIOwner();
+
+	AAIPawn* Pawn = Cast<AAIPawn>(Controller->GetPawn());
+
+	if (!IsValid(Pawn))
+	{
+		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+
+		return;
+	}
+
+	AActor* Target = Cast<AActor>(Controller->GetBlackboardComponent()->GetValueAsObject(TEXT("Target")));
+	if (!IsValid(Target))
+	{
+		FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+
+		Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Idle);
+
+		return;
+	}
+
+	if (Pawn->IsSkillEnd())
+	{
+		Pawn->SetSkillEnd(false);
+		FVector AILocation = Pawn->GetActorLocation();
+		FVector TargetLocation = Target->GetActorLocation();
+
+		FVector Dir = TargetLocation - AILocation;
+		Dir.Z = 0.0;
+
+		AILocation.Z -= Pawn->GetHalfHeight();
+
+		UCapsuleComponent* TargetCapsule = Cast<UCapsuleComponent>(Target->GetRootComponent());
+
+		if (IsValid(TargetCapsule))
+		{
+			TargetLocation.Z -= TargetCapsule->GetScaledCapsuleHalfHeight();
+		}
+
+		float Distance = FVector::Distance(AILocation, TargetLocation);
+
+		if (Distance > 200.f)
+		{
+			FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+
+			Pawn->ChangeAIAnimType((uint8)EMonsterAnimType::Idle);
+		}
+		else
+		{
+			FRotator Rot = FRotationMatrix::MakeFromX(Dir).Rotator();
+			Rot.Pitch = 0.0;
+			Rot.Roll = 0.0;
+
+			Pawn->SetActorRotation(Rot);
+		}
+
+		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+	}
+
 }

@@ -41,21 +41,21 @@ public:
 
 	void SetLevelStat(int32 InNewLevel);
 	
-	FORCEINLINE float GetCurrentLevel() const { return CurrentLevel; }
-	FORCEINLINE void SetBaseStat(const FPA_CharacterData& InBaseStat);
-	FORCEINLINE void SetModifierStat(const FPA_CharacterData& InModifierStat);
+	float GetCurrentLevel() const { return CurrentLevel; }
+	void SetBaseStat(const FPA_CharacterData& InBaseStat);
+	void SetModifierStat(const FPA_CharacterData& InModifierStat);
 
-	FORCEINLINE FPA_CharacterData GetBaseStat() const { return BaseStat; }
-	FORCEINLINE FPA_CharacterData GetModifierStat() const { return ModifierStat; }
-	FORCEINLINE FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
-	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
-	FORCEINLINE float GetCurrentMp() { return CurrentMp; }
+	FPA_CharacterData GetBaseStat() const { return BaseStat; }
+	FPA_CharacterData GetModifierStat() const { return ModifierStat; }
+	FPA_CharacterData GetTotalStat() const { return BaseStat + ModifierStat; }
+	float GetCurrentHp() { return CurrentHp; }
+	float GetCurrentMp() { return CurrentMp; }
 
 	float ApplyDamage(float InDamage);
 	float UseSkill(float InUseSkillMp);
 
-	FORCEINLINE float GetMaxExp() { return MaxExp; }
-	FORCEINLINE float GetCurrentExp() { return CurrentExp; }
+	float GetMaxExp() { return MaxExp; }
+	float GetCurrentExp() { return CurrentExp; }
 	float GetExp() const;
 	//수정 Get함수 내에서 값 수정 절대 금지
 	//float GetExp(float InExp) const;

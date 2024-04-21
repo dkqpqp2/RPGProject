@@ -31,11 +31,14 @@ public:
 	FOnHpZeroDelegate OnHpZero;
 	FOnHpChangedDelegate OnHpChanged;
 
-	FORCEINLINE float GetMaxHp() { return MaxHp; }
-	FORCEINLINE float GetCurrentHp() { return CurrentHp; }
+	float GetMaxHp() { return MaxHp; }
+	float GetCurrentHp() { return CurrentHp; }
 	float ApplyDamage(float InDamage);
 
 	bool IsDead() const { return bDead; }
+
+	UPROPERTY(EditAnywhere, Category = Stat)
+	float MaxHp;
 protected:
 	void SetHp(float NewHp);
 	bool bDead = false;
@@ -43,6 +46,5 @@ protected:
 	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
 	float CurrentHp;
 
-	UPROPERTY(Transient, VisibleInstanceOnly, Category = Stat)
-	float MaxHp;
+
 };

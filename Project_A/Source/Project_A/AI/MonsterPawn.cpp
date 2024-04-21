@@ -12,7 +12,7 @@ AMonsterPawn::AMonsterPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AIControllerClass = APA_AIController::StaticClass();
-
+	
 }
 
 

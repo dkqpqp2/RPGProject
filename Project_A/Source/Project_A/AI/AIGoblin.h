@@ -23,6 +23,7 @@ protected:
 	virtual void NormalAttack();
 	virtual void NormalAttack_B();
 
+	UFUNCTION(BlueprintCallable)
 	void SetDead() override;
 
 };
